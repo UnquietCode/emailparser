@@ -93,11 +93,24 @@ public class EmailVO {
 		if (null != message.getBodyText() || !message.getBodyText().equals("")) {
 			this.setBodyTxt(message.getBodyText());
 		}
-		if (null != ParserFactory.getInstance().getMbox_parser()
-				.getHeaderEnum(message)) {
-			this.setHeader(ParserFactory.getInstance().getMbox_parser()
-					.getHeaderEnum(message));
+
+		// 根据文件格式选择处理器
+		if (this.getFileVO().getSuffix().equals("mbox")) {
+			if (null != ParserFactory.getInstance().getMbox_parser()
+					.getHeaderEnum(message)) {
+				this.setHeader(ParserFactory.getInstance().getMbox_parser()
+						.getHeaderEnum(message));
+			}
+		} else if (this.getFileVO().getSuffix().equals("msg")) {
+			if (null != ParserFactory.getInstance().getMsg_parser()
+					.getHeaderEnum(message)) {
+//				this.setHeader(ParserFactory.getInstance().getMsg_parser()
+//						.getHeaderEnum(message));
+			}
+		} else {
+			this.setHeader(null);
 		}
+
 		// if (null != ParserFactory.getInstance().getJmail_parser()
 		// .getHeaderEnum(message)) {
 		// this.setHeader(ParserFactory.getInstance().getJmail_parser()
