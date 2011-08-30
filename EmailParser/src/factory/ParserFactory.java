@@ -8,8 +8,6 @@
 package factory;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import model.EmailFileVO;
@@ -18,7 +16,6 @@ import model.EmailVO;
 import com.auxilii.msgparser.Message;
 import com.auxilii.msgparser.MsgParser;
 
-import factory.mbox.MBoxWriterViaJavaMail;
 import factory.parser.EmlParser;
 import factory.parser.JavaMailParser;
 import factory.parser.MBoxParser;
@@ -36,7 +33,6 @@ public class ParserFactory {
 	private EmlParser eml_parser;
 	private MBoxParser mbox_parser;
 	private JavaMailParser jmail_parser;
-	private MBoxWriterViaJavaMail mbox_writer;
 
 	/**
 	 * 单例模式
@@ -76,7 +72,8 @@ public class ParserFactory {
 		EmailVO email = new EmailVO(vo);
 		Message message = null;
 		try {
-			message = paserJavaMailFile(vo.getFile());
+			// message = paserJavaMailFile(vo.getFile());
+			message = paserMBoxFile(vo.getFile());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -116,35 +113,20 @@ public class ParserFactory {
 		return jmail_parser.parse(file);
 	}
 
-	// ----------------------------------------------------------------------------------------------
-
-	protected void saveMessage(Message msg, File file)
-			throws FileNotFoundException, Exception {
-		int idx = file.getName().lastIndexOf(".");
-		if (idx < 0) {
-			throw new FileNotFoundException("Cannot identify file type");
-		}
-		String suffix = file.getName().substring(idx + 1).toLowerCase();
-		if (suffix.equals("msg")) {
-			saveMsgFile(msg, file);
-		} else if (suffix.equals("mbox")) {
-			saveMBoxFile(msg, file);
-		}
+	public MsgParser getMsg_parser() {
+		return msg_parser;
 	}
 
-	public void saveMsgFile(Message msg, File file) {
-
+	public EmlParser getEml_parser() {
+		return eml_parser;
 	}
 
-	public void saveMBoxFile(Message msg, File file) throws Exception {
-		if (mbox_writer == null) {
-			mbox_writer = new MBoxWriterViaJavaMail();
-		}
-		try {
-			mbox_writer.write(msg, new FileOutputStream(file));
-		} catch (Exception ex) {
-			mbox_writer.close();
-			throw ex;
-		}
+	public MBoxParser getMbox_parser() {
+		return mbox_parser;
 	}
+
+	public JavaMailParser getJmail_parser() {
+		return jmail_parser;
+	}
+
 }

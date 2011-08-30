@@ -10,9 +10,7 @@ package factory.parser;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Enumeration;
 
-import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import utils.ReadFile;
@@ -73,16 +71,6 @@ public class MBoxParser extends AbstractParser {
 		parseBody(msg, content.substring(header_end + 1));
 
 		return msg;
-	}
-
-	public Enumeration<?> getHeaderEnum(Message message) {
-		Enumeration<?> headerEnum = null;
-		try {
-			headerEnum = mimeMessage.getAllHeaders();
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
-		return headerEnum;
 	}
 
 }

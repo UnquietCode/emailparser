@@ -39,7 +39,7 @@ import factory.mbox.headers.ToEmailHeader;
  * @Author: zhangzuoqiang
  * @Date: Aug 29, 2011
  */
-public class JavaMailParser {
+public class JavaMailParser extends AbstractParser {
 
 	static final FromEmailHeader from_parser = new FromEmailHeader();
 	static final ToEmailHeader to_parser = new ToEmailHeader();
@@ -51,7 +51,6 @@ public class JavaMailParser {
 				file));
 
 		Message msg = new Message();
-
 		from_parser.parse(msg, getAddresses(jmsg.getFrom()));
 		to_parser.parse(msg, getAddresses(jmsg.getFrom()));
 		msg.setSubject(jmsg.getSubject());
@@ -62,13 +61,16 @@ public class JavaMailParser {
 		jmsg.getContentType();
 		msg.setBodyText("");
 		msg.setBodyRTF("");
+
+		mimeMessage = new MimeMessage(null, new FileInputStream(file));
+
 		parse(msg, jmsg);
 		return msg;
 	}
 
 	private void parse(Message msg, Part part) throws MessagingException,
 			IOException {
-//		System.out.println("Content Type: " + part.getContentType());
+		// System.out.println("Content Type: " + part.getContentType());
 		if (part.isMimeType("text/plain") && msg.getBodyText().isEmpty()) {
 			msg.setBodyText((String) part.getContent());
 		} else if (part.isMimeType("multipart/*")) {

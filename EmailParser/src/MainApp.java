@@ -21,9 +21,9 @@ public class MainApp {
 
 	public static void main(String[] args) throws FileNotFoundException,
 			IOException, Exception {
-		ParserManager
-				.parser("C:\\Users\\zhangzuoqiang\\Desktop\\test-documents\\testHEADER.msg");
-		trace.pl("-------------------------------------------------------------------------------------");
+//		ParserManager
+//				.parser("C:\\Users\\zhangzuoqiang\\Desktop\\test-documents\\testHEADER.msg");
+//		trace.pl("-------------------------------------------------------------------------------------");
 		ParserManager
 				.parser("C:\\Users\\zhangzuoqiang\\Desktop\\test-documents\\header.mbox");
 		trace.pl("-------------------------------------------------------------------------------------");

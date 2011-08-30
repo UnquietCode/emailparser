@@ -20,6 +20,7 @@ import javax.mail.Part;
 import com.auxilii.msgparser.Message;
 import com.auxilii.msgparser.RecipientEntry;
 
+import factory.ParserFactory;
 import factory.mbox.MailAddress;
 import factory.parser.EmlParser;
 
@@ -82,8 +83,7 @@ public class EmailVO {
 		if (null != message.getDate()) {
 			this.setDate(message.getDate());
 		}
-		if (null != message.getMessageId()
-				|| !message.getMessageId().equals("")) {
+		if (null != message.getMessageId()) {
 			this.setMessageID(message.getMessageId());
 		}
 		if (null != message.getAttachments()
@@ -93,9 +93,16 @@ public class EmailVO {
 		if (null != message.getBodyText() || !message.getBodyText().equals("")) {
 			this.setBodyTxt(message.getBodyText());
 		}
-		if (null != message.getHeaders()) {
-			// this.setHeader(message.getHeaders());
+		if (null != ParserFactory.getInstance().getMbox_parser()
+				.getHeaderEnum(message)) {
+			this.setHeader(ParserFactory.getInstance().getMbox_parser()
+					.getHeaderEnum(message));
 		}
+		// if (null != ParserFactory.getInstance().getJmail_parser()
+		// .getHeaderEnum(message)) {
+		// this.setHeader(ParserFactory.getInstance().getJmail_parser()
+		// .getHeaderEnum(message));
+		// }
 	}
 
 	public void init(EmlParser eml) throws Exception {
