@@ -14,11 +14,11 @@ import model.EmailFileVO;
 import model.EmailVO;
 
 import com.auxilii.msgparser.Message;
+import com.auxilii.msgparser.MsgParser;
 
 import factory.parser.EmlParser;
 import factory.parser.JavaMailParser;
 import factory.parser.MBoxParser;
-import factory.parser.MSGParser;
 
 /**
  * @Description:
@@ -29,7 +29,7 @@ public class ParserFactory {
 
 	private static ParserFactory instance;
 
-	private MSGParser msg_parser;
+	private MsgParser msg_parser;
 	private EmlParser eml_parser;
 	private MBoxParser mbox_parser;
 	private JavaMailParser jmail_parser;
@@ -87,9 +87,9 @@ public class ParserFactory {
 
 	protected Message parseMsgFile(File file) throws Exception {
 		if (msg_parser == null) {
-			msg_parser = new MSGParser();
+			msg_parser = new MsgParser();
 		}
-		return msg_parser.parse(file);
+		return msg_parser.parseMsg(file);
 	}
 
 	protected EmlParser parseEmlFile(File file) throws Exception {
@@ -115,7 +115,7 @@ public class ParserFactory {
 		return jmail_parser.parse(file);
 	}
 
-	public MSGParser getMsg_parser() {
+	public MsgParser getMsg_parser() {
 		return msg_parser;
 	}
 

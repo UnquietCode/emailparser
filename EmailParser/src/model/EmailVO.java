@@ -9,18 +9,15 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.mail.Header;
 import javax.mail.Part;
 
 import com.auxilii.msgparser.Message;
 import com.auxilii.msgparser.RecipientEntry;
 
-import factory.ParserFactory;
 import factory.mbox.MailAddress;
 import factory.parser.EmlParser;
 
@@ -95,26 +92,20 @@ public class EmailVO {
 		}
 
 		// 根据文件格式选择处理器
-		if (this.getFileVO().getSuffix().equals("mbox")) {
-			if (null != ParserFactory.getInstance().getMbox_parser()
-					.getHeaderEnum(message)) {
-				this.setHeader(ParserFactory.getInstance().getMbox_parser()
-						.getHeaderEnum(message));
-			}
-		} else if (this.getFileVO().getSuffix().equals("msg")) {
-			if (null != ParserFactory.getInstance().getMsg_parser()
-					.getHeaderEnum(message)) {
-//				this.setHeader(ParserFactory.getInstance().getMsg_parser()
-//						.getHeaderEnum(message));
-			}
-		} else {
-			this.setHeader(null);
-		}
-
-		// if (null != ParserFactory.getInstance().getJmail_parser()
+		// if (this.getFileVO().getSuffix().equals("mbox")) {
+		// if (null != ParserFactory.getInstance().getMbox_parser()
 		// .getHeaderEnum(message)) {
-		// this.setHeader(ParserFactory.getInstance().getJmail_parser()
+		// this.setHeader(ParserFactory.getInstance().getMbox_parser()
 		// .getHeaderEnum(message));
+		// }
+		// } else if (this.getFileVO().getSuffix().equals("msg")) {
+		// if (null != ParserFactory.getInstance().getMsg_parser()
+		// .getHeaderEnum(message)) {
+		// // this.setHeader(ParserFactory.getInstance().getMsg_parser()
+		// // .getHeaderEnum(message));
+		// }
+		// } else {
+		// this.setHeader(null);
 		// }
 	}
 
@@ -155,8 +146,8 @@ public class EmailVO {
 		if (null != eml.getBodyText() || !eml.getBodyText().equals("")) {
 			this.setBodyTxt(eml.getBodyText());
 		}
-		if (null != eml.getHeaderEnum()) {
-			this.setHeader(eml.getHeaderEnum());
+		if (null != eml.getHeaders()) {
+			this.setHeader(eml.getHeaders());
 		}
 	}
 
@@ -186,11 +177,7 @@ public class EmailVO {
 		}
 		toStr += "BodyTxt : " + this.getBodyTxt() + "\n";
 		if (null != this.getHeader()) {
-			toStr += "Header : " + "\n";
-			while (this.getHeader().hasMoreElements()) {
-				Header h = (Header) this.getHeader().nextElement();
-				toStr += h.getName() + " : " + h.getValue() + "\n";
-			}
+			toStr += "Header : " + "\n" + this.getHeader().toString();
 		}
 		return toStr;
 	}
@@ -205,13 +192,13 @@ public class EmailVO {
 	private String messageID = "";
 	private List<?> attachList;
 	private String bodyTxt = "";
-	private Enumeration<?> header;
+	private String header;
 
-	public Enumeration<?> getHeader() {
+	public String getHeader() {
 		return header;
 	}
 
-	public void setHeader(Enumeration<?> header) {
+	public void setHeader(String header) {
 		this.header = header;
 	}
 

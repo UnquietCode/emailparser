@@ -8,10 +8,7 @@
 package factory.parser;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-
-import javax.mail.internet.MimeMessage;
 
 import utils.ReadFile;
 
@@ -41,7 +38,7 @@ public class MBoxParser extends AbstractParser {
 	public Message parse(File file) throws IOException, Exception {
 		byte bytes[] = ReadFile.getBytesFromFile(file);
 		String content = new String(bytes);
-		mimeMessage = new MimeMessage(null, new FileInputStream(file));
+		// mimeMessage = new MimeMessage(null, new FileInputStream(file));
 		return parse(content);
 	}
 
@@ -72,5 +69,7 @@ public class MBoxParser extends AbstractParser {
 
 		return msg;
 	}
+	
+	
 
 }

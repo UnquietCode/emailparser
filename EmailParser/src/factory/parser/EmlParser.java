@@ -18,6 +18,7 @@ import java.util.List;
 
 import javax.mail.BodyPart;
 import javax.mail.Flags;
+import javax.mail.Header;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -44,6 +45,7 @@ public class EmlParser {
 		try {
 			inputStream = new FileInputStream(file);
 			mimeMessage = new MimeMessage(null, inputStream);
+			toHeaderEnum();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (MessagingException e) {
@@ -317,14 +319,21 @@ public class EmlParser {
 		return list;
 	}
 
-	public Enumeration<?> getHeaderEnum() {
-		Enumeration<?> header = null;
+	public void toHeaderEnum() {
 		try {
 			header = this.getMimeMessage().getAllHeaders();
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-		return header;
+	}
+
+	public String getHeaders() {
+		String headers = "";
+		while (this.header.hasMoreElements()) {
+			Header h = (Header) this.header.nextElement();
+			headers += h.getName() + " : " + h.getValue() + "\n";
+		}
+		return headers;
 	}
 
 	public MimeMessage getMimeMessage() {
@@ -343,6 +352,7 @@ public class EmlParser {
 		this.bodytext = bodytext;
 	}
 
+	private Enumeration<?> header = null;
 	private MimeMessage mimeMessage = null;
 	// 存放邮件内容的StringBuffer对象
 	private StringBuffer bodytext = new StringBuffer();

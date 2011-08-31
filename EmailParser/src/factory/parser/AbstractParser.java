@@ -10,11 +10,7 @@ package factory.parser;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
-
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 
 import com.auxilii.msgparser.Message;
 
@@ -29,7 +25,7 @@ public abstract class AbstractParser {
 
 	protected List<HeaderParser> header_parsers = new ArrayList<HeaderParser>();
 
-	protected MimeMessage mimeMessage;
+	// protected MimeMessage mimeMessage;
 
 	public Message parse(File file) throws IOException, Exception {
 		return null;
@@ -39,6 +35,7 @@ public abstract class AbstractParser {
 		return null;
 	}
 
+	// /////////////////////////////////////////////////////////
 	public void parseHeader(Message message, String header) throws Exception {
 		String lines[] = header.split("\n");
 		for (String line : lines) {
@@ -58,17 +55,9 @@ public abstract class AbstractParser {
 		message.setBodyRTF("");
 	}
 
-	public Enumeration<?> getHeaderEnum(Message message) {
-		Enumeration<?> headerEnum = null;
-		try {
-			headerEnum = mimeMessage.getAllHeaders();
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
-		return headerEnum;
+	public List<HeaderParser> getHeaders() {
+		return header_parsers;
 	}
-
-	public MimeMessage getMime() {
-		return mimeMessage;
-	}
+	
+	
 }

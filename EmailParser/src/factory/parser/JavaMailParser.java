@@ -62,7 +62,7 @@ public class JavaMailParser extends AbstractParser {
 		msg.setBodyText("");
 		msg.setBodyRTF("");
 
-		mimeMessage = new MimeMessage(null, new FileInputStream(file));
+		// mimeMessage = new MimeMessage(null, new FileInputStream(file));
 
 		parse(msg, jmsg);
 		return msg;
