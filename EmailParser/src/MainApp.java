@@ -22,13 +22,13 @@ public class MainApp {
 	public static void main(String[] args) throws FileNotFoundException,
 			IOException, Exception {
 		ParserManager
-				.parser("C:\\Users\\zhangzuoqiang\\Desktop\\test-documents\\testHEADER.msg");
+				.parser("C:\\Users\\zuoqiang\\Desktop\\mbox\\testEml.eml");
 		trace.pl("-------------------------------------------------------------------------------------");
 		ParserManager
-				.parser("C:\\Users\\zhangzuoqiang\\Desktop\\test-documents\\header.mbox");
+				.parser("C:\\Users\\zuoqiang\\Desktop\\mbox\\testMSG.msg");
 		trace.pl("-------------------------------------------------------------------------------------");
 		ParserManager
-				.parser("C:\\Users\\zhangzuoqiang\\Desktop\\testHEADER.eml");
+				.parser("C:\\Users\\zuoqiang\\Desktop\\mbox\\testMBox.mbox");
 		trace.pl("-------------------------------------------------------------------------------------");
 	}
 }
