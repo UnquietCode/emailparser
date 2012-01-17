@@ -16,7 +16,7 @@ import utils.trace;
  * @Description: 系统启动类
  * @Author: zhangzuoqiang
  * @Date: Aug 29, 2011
- */
+ */ 
 public class MainApp {
 
 	public static void main(String[] args) throws FileNotFoundException,
