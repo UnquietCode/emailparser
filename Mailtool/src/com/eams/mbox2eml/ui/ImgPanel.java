@@ -1,4 +1,4 @@
-package com.eams.mbox2eml;
+package com.eams.mbox2eml.ui;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
