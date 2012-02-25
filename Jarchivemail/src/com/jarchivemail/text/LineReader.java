@@ -1,4 +1,4 @@
-package com.jarchivemail.handler;
+package com.jarchivemail.text;
 
 import java.io.File;
 import java.io.FileNotFoundException;

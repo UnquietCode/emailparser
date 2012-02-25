@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Vector;
 
 import com.jarchivemail.code.Base64;
+import com.jarchivemail.text.LineReader;
 import com.jarchivemail.utils.QuotedPrintable;
 import com.jarchivemail.utils.Uuencode;
 
