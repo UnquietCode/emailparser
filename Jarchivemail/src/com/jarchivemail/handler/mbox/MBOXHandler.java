@@ -1,8 +1,10 @@
 package com.jarchivemail.handler.mbox;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import com.jarchivemail.handler.IHandler;
+import com.jarchivemail.handler.LineReader;
 
 /**
  * 
@@ -12,9 +14,21 @@ import com.jarchivemail.handler.IHandler;
  */
 public class MBOXHandler implements IHandler {
 
+	private File emailFile;
+
+	public MBOXHandler(File file) {
+		this.emailFile = file;
+	}
+
 	@Override
-	public void handle(File emailFile) {
-		
+	public LineReader handle() {
+		LineReader lineReader = null;
+		try {
+			lineReader = new LineReader(this.emailFile);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return lineReader;
 	}
 
 }

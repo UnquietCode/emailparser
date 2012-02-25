@@ -2,6 +2,7 @@ package com.jarchivemail.handler;
 
 import java.io.File;
 
+import com.jarchivemail.handler.mbox.MBOXHandler;
 import com.jarchivemail.utils.FileUtils;
 
 /**
@@ -40,7 +41,7 @@ public enum MailType {
 	 * @param file
 	 * @return
 	 */
-	public static IHandler detect(File file) {
+	public static IHandler autoDetect(File file) {
 		MailType ext = MailType.string2Enum(FileUtils.getExtension(file));
 		IHandler handler;
 		switch (ext) {
@@ -51,7 +52,7 @@ public enum MailType {
 			handler = null;
 			break;
 		case MBOX:
-			handler = null;
+			handler = new MBOXHandler(file);
 			break;
 		case PST:
 			handler = null;

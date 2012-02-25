@@ -1,6 +1,5 @@
 package com.jarchivemail.handler;
 
-import java.io.File;
 
 /**
  * 
@@ -15,5 +14,5 @@ public interface IHandler {
 	 * 
 	 * @param emailFile
 	 */
-	public void handle(File emailFile);
+	public LineReader handle();
 }
