@@ -1,4 +1,4 @@
-package temp;
+package mbox;
 
 import java.util.StringTokenizer;
 

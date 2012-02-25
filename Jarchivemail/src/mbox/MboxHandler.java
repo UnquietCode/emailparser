@@ -1,4 +1,4 @@
-package temp;
+package mbox;
 
 import java.io.BufferedWriter;
 import java.io.File;

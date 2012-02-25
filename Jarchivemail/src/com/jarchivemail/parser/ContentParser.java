@@ -6,7 +6,8 @@ import java.util.Date;
 import java.util.StringTokenizer;
 import java.util.TimeZone;
 
-import temp.TextConverter;
+import mbox.TextConverter;
+
 
 import com.jarchivemail.handler.LineReader;
 
