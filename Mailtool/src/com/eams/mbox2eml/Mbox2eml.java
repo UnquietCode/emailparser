@@ -40,25 +40,28 @@ public class Mbox2eml extends Frame implements ActionListener, ItemListener {
 	private AutoTextArea messageContent;
 	private MenuBar mainMenu;
 	private Menu fileMenu, editMenu, optionsMenu, helpMenu;
+	private Checkbox sortByDate, sortBySender, sortByReceiver, sortBySubject;
+	private Label stateLabel;
+	private CheckboxMenuItem fileNameUsesSender;
+	private CheckboxMenuItem fileNameUsesReceiver;
+	private CheckboxMenuItem autoCreateDirectory;
+
 	private MboxHandler mbox = null;
 	private String sorting;
 	private String currentDirectory;
 	private String currentFile;
 	private String saveDirectory;
+
 	private ExtendedFileFilter mbxFilter = new ExtendedFileFilter(
 			"*.mbx,*.mbox", "Mailbox-Files");
 	private ExtendedFileFilter mozillaFilter = new ExtendedFileFilter("*",
 			"Mozilla-Mail");
 	private ExtendedFileFilter selectedFileFilter = mbxFilter;
-	private Checkbox sortByDate, sortBySender, sortByReceiver, sortBySubject;
-	private Label stateLabel;
 	private String appTitle;
 	private int lastSelected;
-	private CheckboxMenuItem fileNameUsesSender;
-	private CheckboxMenuItem fileNameUsesReceiver;
-	private CheckboxMenuItem autoCreateDirectory;
 
 	public Mbox2eml() {
+		
 		appTitle = "Mbox to Eml Converter";
 		setTitle(appTitle);
 		setLayout(new BorderLayout());
@@ -168,7 +171,6 @@ public class Mbox2eml extends Frame implements ActionListener, ItemListener {
 		add("Center", panel1);
 
 		sorting = "Date";
-
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				dispose();
@@ -181,6 +183,7 @@ public class Mbox2eml extends Frame implements ActionListener, ItemListener {
 		Mbox2eml mainFrame = new Mbox2eml();
 		mainFrame.setSize(900, 600);
 		mainFrame.setVisible(true);
+		
 		if (args.length > 0) {
 			File file = new File(args[0]);
 			if (!file.isAbsolute()) {
@@ -366,9 +369,10 @@ public class Mbox2eml extends Frame implements ActionListener, ItemListener {
 					String subDirectory = "";
 					if (autoCreateDirectory.getState()) {
 						subDirectory = mbox.getFilename();
-						if (subDirectory.lastIndexOf(".") >= 0)
+						if (subDirectory.lastIndexOf(".") >= 0){
 							subDirectory = subDirectory.substring(0,
 									subDirectory.lastIndexOf("."));
+						}
 						subDirectory += System.getProperty("file.separator");
 					}
 					int[] selected = messageList.getSelectedIndexes();
