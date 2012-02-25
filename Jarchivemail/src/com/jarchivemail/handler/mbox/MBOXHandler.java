@@ -1,22 +1,14 @@
 package com.jarchivemail.handler.mbox;
 
-import java.io.InputStream;
-
-import com.jarchivemail.handler.IDetector;
+import com.jarchivemail.handler.Detector;
 import com.jarchivemail.handler.IHandler;
-import com.jarchivemail.metadata.MailType;
-import com.jarchivemail.metadata.Metadata;
+import com.jarchivemail.handler.MailType;
 
-public class MBOXHandler implements IDetector, IHandler {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6061020745215201523L;
+public class MBOXHandler extends Detector implements IHandler {
 
 	@Override
-	public MailType detect(InputStream input, Metadata metadata) {
-		return null;
+	public void autoDetectHandler(MailType type) {
+
 	}
 
 }
