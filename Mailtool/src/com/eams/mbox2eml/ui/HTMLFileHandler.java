@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
 
 /**
  * 
- * @Description 
+ * @Description
  * @Author zhangzuoqiang
  * @Date 2012-2-23
  */
@@ -104,15 +104,17 @@ public class HTMLFileHandler implements Enumeration<Object> {
 			searchText = searchText.toLowerCase();
 		}
 
-		if ((options & OPTIONS_PHRASE) > 0)
+		if ((options & OPTIONS_PHRASE) > 0) {
 			st = new StringTokenizer(searchText, "");
-		else
+		} else {
 			st = new StringTokenizer(searchText);
+		}
 
-		if ((options & OPTIONS_AND) > 0)
+		if ((options & OPTIONS_AND) > 0) {
 			result = true;
-		else
+		} else {
 			result = false;
+		}
 
 		while (st.hasMoreTokens()) {
 			curWord = st.nextToken();
@@ -131,10 +133,12 @@ public class HTMLFileHandler implements Enumeration<Object> {
 					result = true;
 				}
 			}
-			if (!result && (options & OPTIONS_AND) > 0)
+			if (!result && (options & OPTIONS_AND) > 0) {
 				break;
-			if (result && (options & OPTIONS_OR) > 0)
+			}
+			if (result && (options & OPTIONS_OR) > 0) {
 				break;
+			}
 		}
 		return (result);
 	}
@@ -174,14 +178,16 @@ public class HTMLFileHandler implements Enumeration<Object> {
 
 		while (startIndex > 0 && htmlSource.charAt(startIndex) != '<') {
 			startIndex--;
-			if (htmlSource.charAt(startIndex) == '>')
+			if (htmlSource.charAt(startIndex) == '>') {
 				return ("");
+			}
 		}
 		while (endIndex < htmlSource.length() - 1
 				&& htmlSource.charAt(endIndex) != '>') {
 			endIndex++;
-			if (htmlSource.charAt(endIndex) == '<')
+			if (htmlSource.charAt(endIndex) == '<') {
 				return ("");
+			}
 		}
 
 		if (htmlSource.charAt(startIndex) == '<'
@@ -197,8 +203,9 @@ public class HTMLFileHandler implements Enumeration<Object> {
 
 		st = new StringTokenizer(tag, "<> \t");
 
-		if (st.hasMoreTokens())
+		if (st.hasMoreTokens()) {
 			return (st.nextToken());
+		}
 
 		return ("");
 	}
@@ -237,13 +244,15 @@ public class HTMLFileHandler implements Enumeration<Object> {
 		tag = getTag(fromPosition);
 
 		index = tag.toLowerCase().indexOf(key.toLowerCase());
-		if (index < 1 || tagDelimiter.indexOf(tag.charAt(index - 1)) == -1)
+		if (index < 1 || tagDelimiter.indexOf(tag.charAt(index - 1)) == -1) {
 			return ("");
+		}
 
 		tag = tag.substring(index + key.length()).trim();
 
-		if (tag.length() == 0 || tag.charAt(0) != '=')
+		if (tag.length() == 0 || tag.charAt(0) != '=') {
 			return ("");
+		}
 
 		tag = tag.substring(1).trim();
 
@@ -252,13 +261,15 @@ public class HTMLFileHandler implements Enumeration<Object> {
 
 		if (tag.charAt(0) == '"') {
 			tag = tag.substring(1).trim();
-			if ((index = tag.indexOf('"')) == -1)
+			if ((index = tag.indexOf('"')) == -1) {
 				index = tag.length();
+			}
 		} else {
 			index = 0;
 			while (index < tag.length() - 1
-					&& tagDelimiter.indexOf(tag.charAt(index)) == -1)
+					&& tagDelimiter.indexOf(tag.charAt(index)) == -1) {
 				index++;
+			}
 		}
 
 		tag = tag.substring(0, index);
@@ -356,8 +367,9 @@ public class HTMLFileHandler implements Enumeration<Object> {
 		int index;
 
 		index = getTagPosition(enumTag, enumPosition);
-		if (index == -1)
+		if (index == -1) {
 			throw new NoSuchElementException();
+		}
 		enumPosition = index + getTag(index).length();
 		return (new Integer(index));
 	}

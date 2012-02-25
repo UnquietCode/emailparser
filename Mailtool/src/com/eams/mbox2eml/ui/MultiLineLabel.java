@@ -195,8 +195,9 @@ public class MultiLineLabel extends Component {
 
 		int drawY = fm.getAscent();
 
-		if (formattedText == null)
+		if (formattedText == null) {
 			return;
+		}
 
 		StringTokenizer st = new StringTokenizer(formattedText, "\n", true);
 

@@ -100,7 +100,7 @@ public class MboxHandler {
 			addFileNames();
 
 			overallTime += System.currentTimeMillis() - startTime;
-			System.out.println(overallTime);
+			System.out.println("Spend : " + overallTime + " ms.");
 
 			sorting = new Vector<Integer>();
 			for (int i = 0; i < numMessages; i++)
@@ -126,12 +126,12 @@ public class MboxHandler {
 	}
 
 	public String getFormattedDate(int index) {
-		Date date = (Date) dates.elementAt(((Integer) sorting.elementAt(index))
+		Date date = dates.elementAt(((Integer) sorting.elementAt(index))
 				.intValue());
 		String formattedDate;
 		if (date.getTime() != 0L) {
 			SimpleDateFormat formatter = new SimpleDateFormat(
-					"dd MMMM yyyy, HH:mm:ss Z");
+					"yyyyMMdd, HH:mm:ss");
 			formattedDate = formatter.format(date);
 		} else {
 			formattedDate = "<unknown>";

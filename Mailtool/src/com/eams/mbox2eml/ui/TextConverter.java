@@ -9,12 +9,14 @@ package com.eams.mbox2eml.ui;
 public class TextConverter {
 
 	public static String convert(String s) {
-		if (s == null)
+
+		if (s == null) {
 			return null;
+		}
 
 		String westernEncoding[] = { "=?ISO-8859-15?", "=?ISO-8859-1?",
 				"=?WINDOWS-1252?", "=?WINDOWS-1250?" };
-		
+
 		s = s.trim();
 		int startIndex, endIndex;
 		String isoString = "", encoding = "";
@@ -26,13 +28,15 @@ public class TextConverter {
 			while ((startIndex = s.toUpperCase().indexOf(currentEncoding)) >= 0) {
 				buf.append(s.substring(0, startIndex));
 				s = s.substring(startIndex + currentEncoding.length());
-				if (s.length() < 2)
+				if (s.length() < 2) {
 					break;
+				}
 				encoding = s.toUpperCase().substring(0, 2);
 				s = s.substring(2);
 				endIndex = s.toUpperCase().indexOf("?=");
-				if (endIndex < 0)
+				if (endIndex < 0) {
 					break;
+				}
 				isoString = s.substring(0, endIndex);
 				s = s.substring(endIndex + 2);
 				if (encoding.equals("Q?")) {

@@ -65,8 +65,9 @@ public class ExtendedFileFilter extends FileFilter {
 
 		for (i = 0; i < extensionList.size(); i++) {
 			fullDescription += (String) extensionList.elementAt(i);
-			if (i < extensionList.size() - 1)
+			if (i < extensionList.size() - 1) {
 				fullDescription += ", ";
+			}
 		}
 		fullDescription += ")";
 	}

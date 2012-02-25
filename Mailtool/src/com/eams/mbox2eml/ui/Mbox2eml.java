@@ -32,33 +32,31 @@ public class Mbox2eml extends Frame implements ActionListener, ItemListener {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	AdvancedList messageList;
-	List attachments;
-	Label fromField;
-	Label toField;
-	Label subjectField;
-	AutoTextArea messageContent;
-	MenuBar mainMenu;
-	Menu fileMenu, editMenu, optionsMenu, helpMenu;
-	MboxHandler mbox = null;
-	String sorting;
-	String currentDirectory;
-	String currentFile;
-	String saveDirectory;
-	ExtendedFileFilter mbxFilter = new ExtendedFileFilter("*.mbx,*.mbox",
-			"Mailbox-Files");
-	ExtendedFileFilter mozillaFilter = new ExtendedFileFilter("*",
+	private AdvancedList messageList;
+	private List attachments;
+	private Label fromField;
+	private Label toField;
+	private Label subjectField;
+	private AutoTextArea messageContent;
+	private MenuBar mainMenu;
+	private Menu fileMenu, editMenu, optionsMenu, helpMenu;
+	private MboxHandler mbox = null;
+	private String sorting;
+	private String currentDirectory;
+	private String currentFile;
+	private String saveDirectory;
+	private ExtendedFileFilter mbxFilter = new ExtendedFileFilter(
+			"*.mbx,*.mbox", "Mailbox-Files");
+	private ExtendedFileFilter mozillaFilter = new ExtendedFileFilter("*",
 			"Mozilla-Mail");
-	ExtendedFileFilter selectedFileFilter = mozillaFilter;
-	Checkbox sortByDate, sortBySender, sortByReceiver, sortBySubject;
-	Label stateLabel;
-	String appTitle;
-	boolean shiftPressed;
-	boolean ctrlPressed;
-	int lastSelected;
-	CheckboxMenuItem fileNameUsesSender;
-	CheckboxMenuItem fileNameUsesReceiver;
-	CheckboxMenuItem autoCreateDirectory;
+	private ExtendedFileFilter selectedFileFilter = mbxFilter;
+	private Checkbox sortByDate, sortBySender, sortByReceiver, sortBySubject;
+	private Label stateLabel;
+	private String appTitle;
+	private int lastSelected;
+	private CheckboxMenuItem fileNameUsesSender;
+	private CheckboxMenuItem fileNameUsesReceiver;
+	private CheckboxMenuItem autoCreateDirectory;
 
 	public Mbox2eml() {
 		appTitle = "Mbox to Eml Converter";
@@ -242,8 +240,9 @@ public class Mbox2eml extends Frame implements ActionListener, ItemListener {
 	}
 
 	public void setSelectedMsgLabel() {
-		if (messageList == null)
+		if (messageList == null) {
 			return;
+		}
 		int selected = messageList.getSelectedIndexes().length;
 		stateLabel.setText(selected + " of " + mbox.getNumMessages()
 				+ " Messages Selected");
@@ -269,8 +268,9 @@ public class Mbox2eml extends Frame implements ActionListener, ItemListener {
 		setTitle(appTitle + " - " + currentFile);
 		stateLabel.setText("Loading Mbox " + currentDirectory + currentFile
 				+ "...");
-		if (mbox != null)
+		if (mbox != null) {
 			mbox.close();
+		}
 		try {
 			mbox = new MboxHandler(currentDirectory, currentFile);
 			fileMenu.getItem(1).setEnabled(true);
@@ -294,7 +294,6 @@ public class Mbox2eml extends Frame implements ActionListener, ItemListener {
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() instanceof Button) {
 			// Button src = (Button) event.getSource();
-
 		}
 
 		if (event.getSource() instanceof Menu) {
@@ -330,9 +329,10 @@ public class Mbox2eml extends Frame implements ActionListener, ItemListener {
 					String subDirectory = "";
 					if (autoCreateDirectory.getState()) {
 						subDirectory = mbox.getFilename();
-						if (subDirectory.lastIndexOf(".") >= 0)
+						if (subDirectory.lastIndexOf(".") >= 0) {
 							subDirectory = subDirectory.substring(0,
 									subDirectory.lastIndexOf("."));
+						}
 						subDirectory += System.getProperty("file.separator");
 					}
 					int numMessages = messageList.getItemCount();
@@ -472,7 +472,7 @@ public class Mbox2eml extends Frame implements ActionListener, ItemListener {
 								this,
 								"About",
 								"info.gif",
-								"Mbox2eml Version 1.2.1\n(C) Ulrich Krebs 2002-2009\neMail: ukrebs@freenet.de",
+								"Mbox2eml Version 1.0.1\n(C) SZ-AISTOR 2012 \nEmail: z.zuoqiang@gmail.com",
 								"OK");
 			}
 		}
@@ -482,16 +482,18 @@ public class Mbox2eml extends Frame implements ActionListener, ItemListener {
 		if (event.getSource() instanceof CheckboxMenuItem) {
 			CheckboxMenuItem src = (CheckboxMenuItem) event.getSource();
 			if (src == fileNameUsesSender) {
-				if (fileNameUsesSender.getState())
+				if (fileNameUsesSender.getState()) {
 					fileNameUsesReceiver.setState(false);
-				else
+				} else {
 					fileNameUsesSender.setState(true);
+				}
 			}
 			if (src == fileNameUsesReceiver) {
-				if (fileNameUsesReceiver.getState())
+				if (fileNameUsesReceiver.getState()) {
 					fileNameUsesSender.setState(false);
-				else
+				} else {
 					fileNameUsesReceiver.setState(true);
+				}
 			}
 
 			System.out.println(src);
@@ -508,20 +510,22 @@ public class Mbox2eml extends Frame implements ActionListener, ItemListener {
 				sorting = "Receiver";
 			} else if (src == sortBySubject) {
 				sorting = "Subject";
-			} else
+			} else {
 				return;
+			}
 
-			if (mbox == null)
+			if (mbox == null) {
 				return;
-
+			}
 			buildMessageList();
 		}
 
 		if (event.getSource() instanceof AdvancedList) {
 			AdvancedList src = (AdvancedList) event.getSource();
 			if (src == messageList) {
-				if (mbox == null || lastSelected >= mbox.getNumMessages())
+				if (mbox == null || lastSelected >= mbox.getNumMessages()) {
 					return;
+				}
 
 				lastSelected = ((Integer) event.getItem()).intValue();
 

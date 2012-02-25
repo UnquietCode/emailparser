@@ -47,8 +47,9 @@ public class LineReader {
 			curOffset = ((Integer) offset.elementAt(curLine - 1)).intValue();
 			br.seek(curOffset);
 			bufString = "";
-			while (readLine() != null && curLine < lineNr)
+			while (readLine() != null && curLine < lineNr) {
 				;
+			}
 		}
 	}
 

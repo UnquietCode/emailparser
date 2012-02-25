@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Panel;
+import java.net.URL;
 
 /**
  * 
@@ -23,7 +24,7 @@ public class ImgPanel extends Panel {
 
 	public ImgPanel(String fileName) {
 		try {
-			java.net.URL url = getClass().getResource(fileName);
+			URL url = getClass().getResource(fileName);
 			img = getToolkit().getImage(url);
 		} catch (Exception e) {
 		}

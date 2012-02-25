@@ -4,7 +4,7 @@ import java.util.StringTokenizer;
 
 /**
  * 
- * @Description 
+ * @Description
  * @Author zhangzuoqiang
  * @Date 2012-2-23
  */
@@ -50,8 +50,9 @@ public class Uuencode {
 				byte lastC = 0;
 				for (int i = 1; i < bytes.length; i++) {
 					int j = (i - 1) % 4;
-					if (j == 0)
+					if (j == 0) {
 						lastC = 0;
+					}
 
 					byte c = decodeByte(bytes[i]);
 					if (j > 0 && k < out.length) {
@@ -65,8 +66,9 @@ public class Uuencode {
 	}
 
 	private static byte decodeByte(byte in) {
-		if (in == 0x60)
+		if (in == 0x60) {
 			return 0;
+		}
 		return (byte) (in - 0x20);
 	}
 }

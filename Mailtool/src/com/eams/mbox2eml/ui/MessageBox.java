@@ -43,16 +43,20 @@ public class MessageBox extends Dialog implements ActionListener {
 		Dimension screenSize = dlg.getToolkit().getScreenSize();
 
 		int dlgX = parentBounds.x + (parentBounds.width - dlgBounds.width) / 2;
-		if (dlgX < 0)
+		if (dlgX < 0) {
 			dlgX = 0;
-		if (dlgX + dlgBounds.width > screenSize.width)
+		}
+		if (dlgX + dlgBounds.width > screenSize.width) {
 			dlgX = screenSize.width - dlgBounds.width;
+		}
 		int dlgY = parentBounds.y + (parentBounds.height - dlgBounds.height)
 				/ 2;
-		if (dlgY < 0)
+		if (dlgY < 0) {
 			dlgY = 0;
-		if (dlgY + dlgBounds.height > screenSize.height)
+		}
+		if (dlgY + dlgBounds.height > screenSize.height) {
 			dlgY = screenSize.height - dlgBounds.height;
+		}
 		dlg.setLocation(dlgX, dlgY);
 		dlg.setVisible(true);
 		return dlg.getResult();
