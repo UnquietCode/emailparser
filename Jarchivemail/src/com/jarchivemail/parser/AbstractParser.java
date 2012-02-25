@@ -1,6 +1,5 @@
 package com.jarchivemail.parser;
 
-
 /**
  * 
  * @Description
@@ -9,10 +8,15 @@ package com.jarchivemail.parser;
  */
 public abstract class AbstractParser {
 
-	public Archivemail archivemail;
+	protected Archivemail archivemail;
 
 	public AbstractParser(Archivemail _archivemail) {
 		this.archivemail = _archivemail;
 
 	}
+
+	public Archivemail archivemail() {
+		return archivemail;
+	}
+
 }

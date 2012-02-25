@@ -21,7 +21,7 @@ public class MBOXHandler implements IHandler {
 	}
 
 	@Override
-	public LineReader handle() {
+	public LineReader execute() {
 		LineReader lineReader = null;
 		try {
 			lineReader = new LineReader(this.emailFile);

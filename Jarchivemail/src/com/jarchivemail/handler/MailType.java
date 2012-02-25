@@ -21,10 +21,10 @@ public enum MailType {
 		this.type = type;
 	}
 
-	public static MailType string2Enum(String str) {
+	public static MailType str2Enum(String str) {
 		if (str != null) {
 			try {
-				return Enum.valueOf(MailType.class, str.trim());
+				return Enum.valueOf(MailType.class, str.trim().toUpperCase());
 			} catch (IllegalArgumentException ex) {
 			}
 		}
@@ -42,7 +42,7 @@ public enum MailType {
 	 * @return
 	 */
 	public static IHandler autoDetect(File file) {
-		MailType ext = MailType.string2Enum(FileUtils.getExtension(file));
+		MailType ext = MailType.str2Enum(FileUtils.getExtension(file));
 		IHandler handler;
 		switch (ext) {
 		case MSG:
