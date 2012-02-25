@@ -17,7 +17,7 @@ import java.util.StringTokenizer;
  * @Author zhangzuoqiang
  * @Date 2012-2-23
  */
-public class HTMLParser implements Enumeration<Object> {
+public class HtmlUtil implements Enumeration<Object> {
 
 	private String htmlSource;
 	private String lowerCaseHtmlSource;
@@ -39,7 +39,7 @@ public class HTMLParser implements Enumeration<Object> {
 	private final String delimiter = " .,;:()!?\t\n\r";
 	private final String tagDelimiter = " \t<>";
 
-	public HTMLParser(URL url) throws IOException {
+	public HtmlUtil(URL url) throws IOException {
 		InputStream is;
 		BufferedReader br;
 		String line;
@@ -56,7 +56,7 @@ public class HTMLParser implements Enumeration<Object> {
 		lowerCaseHtmlSource = htmlSource.toLowerCase();
 	}
 
-	public HTMLParser(File f) throws IOException {
+	public HtmlUtil(File f) throws IOException {
 		BufferedReader br;
 		String line;
 		StringBuffer sb;
@@ -71,7 +71,7 @@ public class HTMLParser implements Enumeration<Object> {
 		lowerCaseHtmlSource = htmlSource.toLowerCase();
 	}
 
-	public HTMLParser(String htmlSource) {
+	public HtmlUtil(String htmlSource) {
 		this.htmlSource = htmlSource;
 		lowerCaseHtmlSource = htmlSource.toLowerCase();
 	}

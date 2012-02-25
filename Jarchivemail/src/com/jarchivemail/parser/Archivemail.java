@@ -14,7 +14,7 @@ import java.util.Vector;
 
 import com.jarchivemail.handler.LineReader;
 import com.jarchivemail.utils.Base64;
-import com.jarchivemail.utils.HTMLParser;
+import com.jarchivemail.utils.HtmlUtil;
 import com.jarchivemail.utils.QuotedPrintable;
 import com.jarchivemail.utils.Uuencode;
 
@@ -405,7 +405,7 @@ public class Archivemail implements IAttachment {
 		} while (outBuf.length() == 0 && k < knownContents.length);
 
 		if (knownContents[k - 1].equals("TEXT/HTML")) {
-			HTMLParser parser = new HTMLParser(outBuf.toString());
+			HtmlUtil parser = new HtmlUtil(outBuf.toString());
 			outBuf = new StringBuffer(parser.getPlainText());
 		}
 		return outBuf.toString();
