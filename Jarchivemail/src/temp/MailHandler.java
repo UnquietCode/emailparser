@@ -1,4 +1,4 @@
-package com.jarchivemail.handler;
+package temp;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -7,8 +7,7 @@ import java.util.StringTokenizer;
 import java.util.TimeZone;
 import java.util.Vector;
 
-import com.jarchivemail.text.LineReader;
-import com.jarchivemail.utils.TextConverter;
+
 
 /**
  * 
