@@ -263,9 +263,9 @@ public class MboxHandler {
 	}
 
 	public String[] getAttachmentFileNames(int index) {
-		index = ((Integer) sorting.elementAt(index)).intValue();
+		index = (sorting.elementAt(index)).intValue();
 
-		String[] fileNames = (String[]) contentFileNames.elementAt(index);
+		String[] fileNames = contentFileNames.elementAt(index);
 		// String[] types = (String[]) contentTypes.elementAt(index);
 		int numFileNames = 0;
 
