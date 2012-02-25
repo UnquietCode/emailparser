@@ -1,5 +1,9 @@
 package com.jarchivemail.handler;
 
+import java.io.File;
+
+import com.jarchivemail.utils.FileUtils;
+
 /**
  * 
  * @Description 将要解析的邮件的类型
@@ -28,5 +32,34 @@ public enum MailType {
 
 	public int getType() {
 		return type;
+	}
+
+	/**
+	 * 识别文件（邮件、附件）类型，并返回相应的处理器
+	 * 
+	 * @param file
+	 * @return
+	 */
+	public static IHandler detect(File file) {
+		MailType ext = MailType.string2Enum(FileUtils.getExtension(file));
+		IHandler handler;
+		switch (ext) {
+		case MSG:
+			handler = null;
+			break;
+		case EML:
+			handler = null;
+			break;
+		case MBOX:
+			handler = null;
+			break;
+		case PST:
+			handler = null;
+			break;
+		default:
+			handler = null;
+			break;
+		}
+		return handler;
 	}
 }

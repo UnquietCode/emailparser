@@ -1,5 +1,6 @@
 package com.jarchivemail.handler;
 
+import java.io.File;
 
 /**
  * 
@@ -10,9 +11,9 @@ package com.jarchivemail.handler;
 public interface IHandler {
 
 	/**
-	 * 根据Detector识别到的文件类型自动转换到相应的处理器
+	 * 处理器, 返回可用于下一步解析的对象
 	 * 
-	 * @param type
+	 * @param emailFile
 	 */
-	public void autoDetectHandler(MailType type);
+	public void handle(File emailFile);
 }
