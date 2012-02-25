@@ -122,18 +122,15 @@ public class MboxHandler {
 	}
 
 	public String getSender(int index) {
-		return (String) senders.elementAt(((Integer) sorting.elementAt(index))
-				.intValue());
+		return senders.elementAt((sorting.elementAt(index)).intValue());
 	}
 
 	public String getReceiver(int index) {
-		return (String) receivers
-				.elementAt(((Integer) sorting.elementAt(index)).intValue());
+		return receivers.elementAt((sorting.elementAt(index)).intValue());
 	}
 
 	public String getFormattedDate(int index) {
-		Date date = dates.elementAt(((Integer) sorting.elementAt(index))
-				.intValue());
+		Date date = dates.elementAt((sorting.elementAt(index)).intValue());
 		String formattedDate;
 		if (date.getTime() != 0L) {
 			SimpleDateFormat formatter = new SimpleDateFormat(
@@ -146,17 +143,16 @@ public class MboxHandler {
 	}
 
 	public Date getDate(int index) {
-		return dates.elementAt(((Integer) sorting.elementAt(index)).intValue());
+		return dates.elementAt((sorting.elementAt(index)).intValue());
 	}
 
 	public String getSubject(int index) {
-		return subjects.elementAt(((Integer) sorting.elementAt(index))
-				.intValue());
+		return subjects.elementAt((sorting.elementAt(index)).intValue());
 	}
 
 	public String getContentType(int index) {
-		return contentTypes.elementAt(
-				((Integer) sorting.elementAt(index)).intValue()).toString();
+		return contentTypes.elementAt((sorting.elementAt(index)).intValue())
+				.toString();
 	}
 
 	public String getMessageContent(int index) {
