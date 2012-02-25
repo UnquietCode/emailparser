@@ -19,6 +19,18 @@ import java.io.OutputStream;
  */
 public class FileUtils {
 
+	public static String getFilename(File file) {
+		return file.getName();
+	}
+
+	public static String getDirectory(File file) {
+		return new File(file.getAbsolutePath()).getParent();
+	}
+
+	public static String getPath(File file) {
+		return file.getAbsolutePath();
+	}
+
 	/**
 	 * String --> InputStream
 	 * 

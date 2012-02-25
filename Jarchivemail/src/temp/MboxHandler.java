@@ -12,8 +12,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
-
-
 public class MboxHandler {
 
 	private Vector<String> senders;
@@ -31,7 +29,6 @@ public class MboxHandler {
 	private int numMessages = 0;
 	private LineReader br = null;
 	private String lastLine;
-	private boolean isHeader = false;
 
 	public MboxHandler(String directory, String fileName) {
 		this(new File(directory + fileName));
@@ -51,6 +48,7 @@ public class MboxHandler {
 		contentEnds = new Vector<int[]>();
 		contentFileNames = new Vector<String[]>();
 		msgOffsets = new Vector<Integer>();
+		sorting = new Vector<Integer>();
 
 		try {
 			br = new LineReader(file);
@@ -104,7 +102,6 @@ public class MboxHandler {
 			overallTime += System.currentTimeMillis() - startTime;
 			System.out.println("Spend : " + overallTime + " ms.");
 
-			sorting = new Vector<Integer>();
 			for (int i = 0; i < numMessages; i++) {
 				sorting.addElement(new Integer(i));
 			}
@@ -589,14 +586,6 @@ public class MboxHandler {
 
 	public void setLastLine(String lastLine) {
 		this.lastLine = lastLine;
-	}
-
-	public boolean isHeader() {
-		return isHeader;
-	}
-
-	public void setHeader(boolean isHeader) {
-		this.isHeader = isHeader;
 	}
 
 }

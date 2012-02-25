@@ -8,4 +8,9 @@ package com.jarchivemail.parser;
  */
 public interface IBody {
 
+	public String[] getContentTypes();
+	
+	public String[] getContentEncodings();
+	
+	public String[] getContentFileNames();
 }

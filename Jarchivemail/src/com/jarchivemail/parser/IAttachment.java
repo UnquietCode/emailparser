@@ -8,4 +8,7 @@ package com.jarchivemail.parser;
  */
 public interface IAttachment {
 
+	public int saveAttachments(int index, int[] attachments, String directory);
+
+	public String[] getAttachmentFileNames(int index);
 }
