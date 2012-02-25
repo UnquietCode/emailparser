@@ -1,4 +1,4 @@
-package com.eams.mbox2eml.ui;
+package com.eams.mbox2eml;
 
 import java.awt.BorderLayout;
 import java.awt.List;
@@ -10,7 +10,7 @@ import java.awt.event.KeyListener;
 
 /**
  * 
- * @Description 
+ * @Description
  * @Author zhangzuoqiang
  * @Date 2012-2-23
  */
@@ -67,16 +67,20 @@ public class AdvancedList extends List implements ItemListener, KeyListener {
 			select(newSelected);
 			if (shiftPressed) {
 				if (newSelected > lastSelected) {
-					for (int i = lastSelected; i <= newSelected; i++)
+					for (int i = lastSelected; i <= newSelected; i++) {
 						select(i);
+					}
 				} else {
-					for (int i = lastSelected; i >= newSelected; i--)
+					for (int i = lastSelected; i >= newSelected; i--) {
 						select(i);
+					}
 				}
-			} else
+			} else {
 				lastSelected = newSelected;
-		} else
+			}
+		} else {
 			lastSelected = newSelected;
+		}
 
 		if (itemListener != null) {
 			itemListener.itemStateChanged(new ItemEvent(this,

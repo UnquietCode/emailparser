@@ -1,4 +1,4 @@
-package com.eams.mbox2eml.ui;
+package com.eams.mbox2eml;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -38,15 +38,15 @@ public class ImgPanel extends Panel {
 	}
 
 	public Dimension getMinimumSize() {
-		return (new Dimension(img.getWidth(this), img.getHeight(this)));
+		return new Dimension(img.getWidth(this), img.getHeight(this));
 	}
 
 	public Dimension getPreferredSize() {
-		return (getMinimumSize());
+		return getMinimumSize();
 	}
 
 	public Dimension getMaximumSize() {
-		return (getMinimumSize());
+		return getMinimumSize();
 	}
 
 	public void paint(Graphics g) {

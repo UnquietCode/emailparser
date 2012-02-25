@@ -1,4 +1,4 @@
-package com.eams.mbox2eml.ui;
+package com.eams.mbox2eml;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -103,8 +103,9 @@ public class MboxHandler {
 			System.out.println("Spend : " + overallTime + " ms.");
 
 			sorting = new Vector<Integer>();
-			for (int i = 0; i < numMessages; i++)
+			for (int i = 0; i < numMessages; i++) {
 				sorting.addElement(new Integer(i));
+			}
 			sorting = indexSort(sorting, dates);
 		} catch (FileNotFoundException e) {
 		} catch (IOException e) {
@@ -140,12 +141,11 @@ public class MboxHandler {
 	}
 
 	public Date getDate(int index) {
-		return (Date) dates.elementAt(((Integer) sorting.elementAt(index))
-				.intValue());
+		return dates.elementAt(((Integer) sorting.elementAt(index)).intValue());
 	}
 
 	public String getSubject(int index) {
-		return (String) subjects.elementAt(((Integer) sorting.elementAt(index))
+		return subjects.elementAt(((Integer) sorting.elementAt(index))
 				.intValue());
 	}
 
@@ -159,7 +159,7 @@ public class MboxHandler {
 		String fileName;
 		String[] knownContents = { "TEXT", "TEXT/PLAIN", "TEXT/HTML" };
 
-		index = ((Integer) sorting.elementAt(index)).intValue();
+		index = (sorting.elementAt(index)).intValue();
 
 		int numParts = ((int[]) contentStarts.elementAt(index)).length;
 
@@ -169,8 +169,9 @@ public class MboxHandler {
 				String contentType = ((String[]) contentTypes.elementAt(index))[i];
 				if (contentType == null) {
 					contentType = "TEXT/PLAIN";
-				} else
+				} else {
 					contentType = contentType.toUpperCase();
+				}
 
 				if (contentType.equals(knownContents[k])) {
 					if (outBuf.length() > 0) {
@@ -202,8 +203,9 @@ public class MboxHandler {
 							line = br.readLine();
 							outBuf.append(line);
 							if (!contentEncoding.equalsIgnoreCase("BASE64")) {
-								if (j < contentEnd)
+								if (j < contentEnd) {
 									outBuf.append("\r\n");
+								}
 							}
 						}
 
@@ -286,7 +288,7 @@ public class MboxHandler {
 	}
 
 	public String getFilename() {
-		return (file.getName());
+		return file.getName();
 	}
 
 	public String getDirectory() {
@@ -294,20 +296,22 @@ public class MboxHandler {
 	}
 
 	public String getPath() {
-		return (file.getAbsolutePath());
+		return file.getAbsolutePath();
 	}
 
 	public File getFile() {
-		return (file);
+		return file;
 	}
 
 	private String makeFilename(String name, String subject) {
 		int index;
 
-		if (name == null)
+		if (name == null) {
 			name = new String("");
-		if (subject == null)
+		}
+		if (subject == null) {
 			subject = new String("");
+		}
 
 		name = name.trim();
 		subject = subject.trim();
@@ -322,8 +326,9 @@ public class MboxHandler {
 			name = name.substring(0, index);
 		}
 
-		if (subject.equals(""))
+		if (subject.equals("")) {
 			subject = "No Subject";
+		}
 
 		if (name.length() + subject.length() > 60) {
 			if (subject.length() > 40) {
@@ -495,8 +500,9 @@ public class MboxHandler {
 						while ((curLine = br.getLineNr()) <= contentEnd
 								&& (line = br.readLine()) != null) {
 							out.append(line);
-							if (curLine < contentEnd)
+							if (curLine < contentEnd) {
 								out.append("\r\n");
+							}
 						}
 						byte[] outBytes = Uuencode.decode(out.toString());
 						FileOutputStream fo = new FileOutputStream(outFile);
@@ -506,8 +512,9 @@ public class MboxHandler {
 						while ((curLine = br.getLineNr()) <= contentEnd
 								&& (line = br.readLine()) != null) {
 							out.append(line);
-							if (curLine < contentEnd)
+							if (curLine < contentEnd) {
 								out.append("\r\n");
+							}
 						}
 						BufferedWriter bw = new BufferedWriter(new FileWriter(
 								outFile));

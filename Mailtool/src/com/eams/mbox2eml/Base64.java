@@ -1,4 +1,4 @@
-package com.eams.mbox2eml.ui;
+package com.eams.mbox2eml;
 
 /**
  * 
@@ -16,10 +16,12 @@ public class Base64 {
 		}
 
 		int outLength = 3 * (data.length / 4);
-		if (data[data.length - 1] == '=')
+		if (data[data.length - 1] == '=') {
 			outLength--;
-		if (data[data.length - 2] == '=')
+		}
+		if (data[data.length - 2] == '=') {
 			outLength--;
+		}
 
 		out = new byte[outLength];
 
@@ -38,8 +40,9 @@ public class Base64 {
 					c = (byte) 62;
 				} else if (c == '/') {
 					c = (byte) 63;
-				} else
+				} else {
 					break;
+				}
 				if (j > 0) {
 					out[k++] = (byte) (lastC | (c >> (6 - 2 * j)));
 				}

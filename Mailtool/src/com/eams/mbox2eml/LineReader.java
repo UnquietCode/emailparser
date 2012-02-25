@@ -1,4 +1,4 @@
-package com.eams.mbox2eml.ui;
+package com.eams.mbox2eml;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -103,8 +103,9 @@ public class LineReader {
 				out += bufString;
 				bufString = "";
 				curLine++;
-			} else
+			} else {
 				return null;
+			}
 		}
 		return out;
 	}

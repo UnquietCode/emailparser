@@ -1,4 +1,4 @@
-package com.eams.mbox2eml.ui;
+package com.eams.mbox2eml;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -509,8 +509,9 @@ public class MailHandler {
 		} catch (NumberFormatException e) {
 			return null;
 		}
-		if (!timeSt.hasMoreTokens())
+		if (!timeSt.hasMoreTokens()) {
 			return null;
+		}
 		token = timeSt.nextToken();
 		try {
 			minute = Integer.parseInt(token);
@@ -566,8 +567,9 @@ public class MailHandler {
 	}
 
 	private String extractContentType(String s) {
-		if (s == null || s.equals(""))
+		if (s == null || s.equals("")) {
 			return null;
+		}
 
 		s = s.trim();
 
@@ -581,13 +583,13 @@ public class MailHandler {
 			s = s.substring(0, endIndex);
 			s = s.trim();
 		}
-
 		return s;
 	}
 
 	private String extractFileName(String s) {
-		if (s == null || s.equals(""))
+		if (s == null || s.equals("")) {
 			return null;
+		}
 
 		int startIndex = s.lastIndexOf(';');
 		if (startIndex > -1) {
@@ -601,8 +603,9 @@ public class MailHandler {
 				s = s.substring(5);
 				s = s.replace('"', ' ');
 				s = s.trim();
-			} else
+			} else {
 				return null;
+			}
 		} else {
 			return null;
 		}

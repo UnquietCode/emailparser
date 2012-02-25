@@ -1,4 +1,4 @@
-package com.eams.mbox2eml.ui;
+package com.eams.mbox2eml;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
@@ -462,8 +462,9 @@ public class Mbox2eml extends Frame implements ActionListener, ItemListener {
 					if (j < selected.length && i == selected[j]) {
 						messageList.deselect(i);
 						j++;
-					} else
+					} else {
 						messageList.select(i);
+					}
 				}
 				setSelectedMsgLabel();
 			} else if (cmd.equals("About")) {
@@ -495,7 +496,6 @@ public class Mbox2eml extends Frame implements ActionListener, ItemListener {
 					fileNameUsesReceiver.setState(true);
 				}
 			}
-
 			System.out.println(src);
 		}
 

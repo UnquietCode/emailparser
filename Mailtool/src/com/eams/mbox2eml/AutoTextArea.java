@@ -1,4 +1,4 @@
-package com.eams.mbox2eml.ui;
+package com.eams.mbox2eml;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
 
 /**
  * 
- * @Description 
+ * @Description
  * @Author zhangzuoqiang
  * @Date 2012-2-23
  */
@@ -80,8 +80,9 @@ public class AutoTextArea extends TextArea implements ComponentListener {
 		StringBuffer formattedText = new StringBuffer();
 		StringBuffer buf;
 
-		if (text == null)
+		if (text == null) {
 			return null;
+		}
 
 		int width = getSize().width - 40;
 
@@ -103,8 +104,9 @@ public class AutoTextArea extends TextArea implements ComponentListener {
 						formattedText.append(separator);
 						buf = new StringBuffer(word);
 					} else {
-						if (buf.length() > 0)
+						if (buf.length() > 0) {
 							buf.append(" ");
+						}
 						buf.append(word);
 					}
 				}

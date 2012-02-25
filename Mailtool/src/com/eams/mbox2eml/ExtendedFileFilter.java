@@ -1,4 +1,4 @@
-package com.eams.mbox2eml.ui;
+package com.eams.mbox2eml;
 
 import java.io.File;
 import java.util.StringTokenizer;
@@ -80,10 +80,10 @@ public class ExtendedFileFilter extends FileFilter {
 			String extension = getExtension(f);
 			if (extension != null && extensionList.contains("*." + extension)
 					|| extension == null && extensionList.contains("*")) {
-				return (true);
+				return true;
 			}
 		}
-		return (false);
+		return false;
 	}
 
 	public String getDescription() {

@@ -1,4 +1,4 @@
-package com.eams.mbox2eml.ui;
+package com.eams.mbox2eml;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,24 +19,25 @@ import java.util.StringTokenizer;
  */
 public class HTMLFileHandler implements Enumeration<Object> {
 
-	String htmlSource;
-	String lowerCaseHtmlSource;
-	int enumPosition;
-	String enumTag;
-	String plainText = null;
+	private String htmlSource;
+	private String lowerCaseHtmlSource;
+	private int enumPosition;
+	private String enumTag;
+	private String plainText = null;
 
-	final static int OPTIONS_OR = 1;
-	final static int OPTIONS_AND = 2;
-	final static int OPTIONS_PHRASE = 4;
-	final static int OPTIONS_WORDS = 8;
-	final static int OPTIONS_CASE = 16;
+	private final static int OPTIONS_OR = 1;
+	private final static int OPTIONS_AND = 2;
+	private final static int OPTIONS_PHRASE = 4;
+	private final static int OPTIONS_WORDS = 8;
+	private final static int OPTIONS_CASE = 16;
 
-	final String org[] = { "ä", "ö", "ü", "Ä", "Ö", "Ü", "ß", "&", "\"", "<",
-			">", " " };
-	final String rep[] = { "&auml;", "&ouml;", "&uuml;", "&Auml;", "&Ouml;",
-			"&Uuml;", "&szlig;", "&amp;", "&quot;", "&lt;", "&gt;", "&nbsp;" };
-	final String delimiter = " .,;:()!?\t\n\r";
-	final String tagDelimiter = " \t<>";
+	private final String org[] = { "ä", "ö", "ü", "Ä", "Ö", "Ü", "ß", "&",
+			"\"", "<", ">", " " };
+	private final String rep[] = { "&auml;", "&ouml;", "&uuml;", "&Auml;",
+			"&Ouml;", "&Uuml;", "&szlig;", "&amp;", "&quot;", "&lt;", "&gt;",
+			"&nbsp;" };
+	private final String delimiter = " .,;:()!?\t\n\r";
+	private final String tagDelimiter = " \t<>";
 
 	public HTMLFileHandler(URL url) throws IOException {
 		InputStream is;
@@ -206,7 +207,6 @@ public class HTMLFileHandler implements Enumeration<Object> {
 		if (st.hasMoreTokens()) {
 			return (st.nextToken());
 		}
-
 		return ("");
 	}
 
@@ -229,7 +229,6 @@ public class HTMLFileHandler implements Enumeration<Object> {
 			}
 			index++;
 		}
-
 		return (-1);
 	}
 
@@ -256,8 +255,9 @@ public class HTMLFileHandler implements Enumeration<Object> {
 
 		tag = tag.substring(1).trim();
 
-		if (tag.length() == 0)
+		if (tag.length() == 0) {
 			return ("");
+		}
 
 		if (tag.charAt(0) == '"') {
 			tag = tag.substring(1).trim();
@@ -273,7 +273,6 @@ public class HTMLFileHandler implements Enumeration<Object> {
 		}
 
 		tag = tag.substring(0, index);
-
 		return (tag);
 	}
 
@@ -325,7 +324,6 @@ public class HTMLFileHandler implements Enumeration<Object> {
 			text = sb.toString();
 			sb.setLength(0);
 		}
-
 		return (text);
 	}
 
@@ -335,7 +333,6 @@ public class HTMLFileHandler implements Enumeration<Object> {
 		int i;
 
 		sb = new StringBuffer();
-
 		for (i = 0; i < org.length; i++) {
 			startIndex = 0;
 			while ((endIndex = text.indexOf(rep[i], startIndex)) != -1) {
@@ -349,7 +346,6 @@ public class HTMLFileHandler implements Enumeration<Object> {
 			text = sb.toString();
 			sb.setLength(0);
 		}
-
 		return (text);
 	}
 
@@ -371,6 +367,6 @@ public class HTMLFileHandler implements Enumeration<Object> {
 			throw new NoSuchElementException();
 		}
 		enumPosition = index + getTag(index).length();
-		return (new Integer(index));
+		return new Integer(index);
 	}
 }

@@ -1,4 +1,4 @@
-package com.eams.mbox2eml.ui;
+package com.eams.mbox2eml;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -16,12 +16,12 @@ public class MultiLineLabel extends Component {
 	private String text;
 	private String formattedText;
 
-	static final int LEFT = 0;
-	static final int CENTER = 1;
-	static final int RIGHT = 2;
+	public static final int LEFT = 0;
+	public static final int CENTER = 1;
+	public static final int RIGHT = 2;
 
-	int alignment;
-	int ratio;
+	private int alignment;
+	private int ratio;
 
 	public MultiLineLabel(String text, int alignment, int ratio) {
 		this.text = new String(text);
@@ -115,8 +115,9 @@ public class MultiLineLabel extends Component {
 
 			while (st.hasMoreTokens()) {
 				line = st.nextToken();
-				if (line.equals("\n"))
+				if (line.equals("\n")) {
 					numLines++;
+				}
 				if (fm.stringWidth(line) > actualWidth) {
 					actualWidth = fm.stringWidth(line);
 				}
@@ -127,11 +128,11 @@ public class MultiLineLabel extends Component {
 	}
 
 	public Dimension getPreferredSize() {
-		return (getMinimumSize());
+		return getMinimumSize();
 	}
 
 	public Dimension getMaximumSize() {
-		return (getMinimumSize());
+		return getMinimumSize();
 	}
 
 	public void setText(String text) {
@@ -142,7 +143,7 @@ public class MultiLineLabel extends Component {
 	}
 
 	public String getText() {
-		return (text);
+		return text;
 	}
 
 	public void setRatio(int ratio) {
@@ -164,7 +165,7 @@ public class MultiLineLabel extends Component {
 	}
 
 	public int getAlignment() {
-		return (alignment);
+		return alignment;
 	}
 
 	private void drawAlignedString(Graphics g, String s, int y) {
