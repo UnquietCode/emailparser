@@ -274,7 +274,6 @@ public class MailHandler {
 			if (contentStarts.size() > contentEnds.size()) {
 				contentEnds.addElement(new Integer(curLine));
 			}
-
 			lr.setLineNr(curLine + 1);
 		} catch (IOException e) {
 		}
@@ -375,8 +374,9 @@ public class MailHandler {
 		String senderName = null;
 		int startIndex, endIndex;
 
-		if (s == null || s.equals(""))
+		if (s == null || s.equals("")) {
 			return null;
+		}
 
 		s = s.trim();
 		if (s.regionMatches(true, 0, "FROM: ", 0, 6)) {
@@ -403,8 +403,9 @@ public class MailHandler {
 	}
 
 	private Date extractTimeDate(String s) {
-		if (s == null || s.length() == 0)
+		if (s == null || s.length() == 0) {
 			return null;
+		}
 		int startIndex = s.lastIndexOf(';');
 		if (startIndex > -1) {
 			s = s.substring(startIndex + 1);
@@ -425,14 +426,16 @@ public class MailHandler {
 
 		String token;
 
-		if (!st.hasMoreTokens())
+		if (!st.hasMoreTokens()) {
 			return null;
+		}
 		token = st.nextToken();
 		try {
 			date = Integer.parseInt(token);
 		} catch (NumberFormatException e) {
-			if (!st.hasMoreElements())
+			if (!st.hasMoreElements()) {
 				return null;
+			}
 			token = st.nextToken();
 			try {
 				date = Integer.parseInt(token);
@@ -444,35 +447,37 @@ public class MailHandler {
 		if (!st.hasMoreTokens())
 			return null;
 		token = st.nextToken().toUpperCase();
-		if (token.startsWith("JAN"))
+		if (token.startsWith("JAN")) {
 			month = 0;
-		else if (token.startsWith("FEB"))
+		} else if (token.startsWith("FEB")) {
 			month = 1;
-		else if (token.startsWith("MAR"))
+		} else if (token.startsWith("MAR")) {
 			month = 2;
-		else if (token.startsWith("APR"))
+		} else if (token.startsWith("APR")) {
 			month = 3;
-		else if (token.startsWith("MAY"))
+		} else if (token.startsWith("MAY")) {
 			month = 4;
-		else if (token.startsWith("JUN"))
+		} else if (token.startsWith("JUN")) {
 			month = 5;
-		else if (token.startsWith("JUL"))
+		} else if (token.startsWith("JUL")) {
 			month = 6;
-		else if (token.startsWith("AUG"))
+		} else if (token.startsWith("AUG")) {
 			month = 7;
-		else if (token.startsWith("SEP"))
+		} else if (token.startsWith("SEP")) {
 			month = 8;
-		else if (token.startsWith("OCT"))
+		} else if (token.startsWith("OCT")) {
 			month = 9;
-		else if (token.startsWith("NOV"))
+		} else if (token.startsWith("NOV")) {
 			month = 10;
-		else if (token.startsWith("DEC"))
+		} else if (token.startsWith("DEC")) {
 			month = 11;
-		else
+		} else {
 			return null;
+		}
 
-		if (!st.hasMoreTokens())
+		if (!st.hasMoreTokens()) {
 			return null;
+		}
 		token = st.nextToken();
 		try {
 			year = Integer.parseInt(token);
@@ -480,21 +485,24 @@ public class MailHandler {
 			return null;
 		}
 		if (year < 100) {
-			if (year < 70)
+			if (year < 70) {
 				year += 2000;
-			else
+			} else {
 				year += 1900;
+			}
 		}
 		if (year > 3000) {
 			return null;
 		}
 
-		if (!st.hasMoreTokens())
+		if (!st.hasMoreTokens()) {
 			return null;
+		}
 		token = st.nextToken();
 		StringTokenizer timeSt = new StringTokenizer(token, ":");
-		if (!timeSt.hasMoreTokens())
+		if (!timeSt.hasMoreTokens()) {
 			return null;
+		}
 		token = timeSt.nextToken();
 		try {
 			hour = Integer.parseInt(token);
@@ -530,15 +538,17 @@ public class MailHandler {
 		cal.set(year, month, date, hour, minute, second);
 		cal.setTimeZone(tz);
 
-		if (cal.getTimeInMillis() < 0)
+		if (cal.getTimeInMillis() < 0) {
 			return null;
+		}
 
 		return cal.getTime();
 	}
 
 	private String extractMultipartBoundary(String s) {
-		if (s == null || s.equals(""))
+		if (s == null || s.equals("")) {
 			return null;
+		}
 
 		int startIndex = s.lastIndexOf(';');
 		if (startIndex > -1) {
@@ -600,12 +610,14 @@ public class MailHandler {
 	}
 
 	private String extractUUFileName(String s) {
-		if (s == null || s.equals(""))
+		if (s == null || s.equals("")) {
 			return null;
+		}
 
 		StringTokenizer st = new StringTokenizer(s, " ");
-		if (st.countTokens() < 3)
+		if (st.countTokens() < 3) {
 			return null;
+		}
 		st.nextToken();
 		st.nextToken();
 		return st.nextToken("");

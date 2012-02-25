@@ -7,46 +7,48 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
 public class MboxHandler {
 
-	private Vector senders;
-	private Vector receivers;
-	private Vector subjects;
-	private Vector dates;
-	private Vector contentTypes;
-	private Vector contentEncodings;
-	private Vector contentStarts;
-	private Vector contentEnds;
-	private Vector contentFileNames;
-	private Vector msgOffsets;
-	private Vector sorting;
+	private Vector<String> senders;
+	private Vector<String> receivers;
+	private Vector<String> subjects;
+	private Vector<Date> dates;
+	private Vector<String[]> contentTypes;
+	private Vector<String[]> contentEncodings;
+	private Vector<int[]> contentStarts;
+	private Vector<int[]> contentEnds;
+	private Vector<String[]> contentFileNames;
+	private Vector<Integer> msgOffsets;
+	private Vector<Integer> sorting;
 	private File file;
 	private int numMessages = 0;
 	private LineReader br = null;
+	private String lastLine;
+	private boolean isHeader = false;
 
 	public MboxHandler(String directory, String fileName) {
 		this(new File(directory + fileName));
 	}
 
 	public MboxHandler(File f) {
-		String line, lastLine = "";
-		boolean isHeader = false;
+		String line;
 
 		file = f;
-		senders = new Vector();
-		receivers = new Vector();
-		subjects = new Vector();
-		dates = new Vector();
-		contentTypes = new Vector();
-		contentEncodings = new Vector();
-		contentStarts = new Vector();
-		contentEnds = new Vector();
-		contentFileNames = new Vector();
-		msgOffsets = new Vector();
+		senders = new Vector<String>();
+		receivers = new Vector<String>();
+		subjects = new Vector<String>();
+		dates = new Vector<Date>();
+		contentTypes = new Vector<String[]>();
+		contentEncodings = new Vector<String[]>();
+		contentStarts = new Vector<int[]>();
+		contentEnds = new Vector<int[]>();
+		contentFileNames = new Vector<String[]>();
+		msgOffsets = new Vector<Integer>();
 
 		try {
 			br = new LineReader(file);
@@ -100,7 +102,7 @@ public class MboxHandler {
 			overallTime += System.currentTimeMillis() - startTime;
 			System.out.println(overallTime);
 
-			sorting = new Vector();
+			sorting = new Vector<Integer>();
 			for (int i = 0; i < numMessages; i++)
 				sorting.addElement(new Integer(i));
 			sorting = indexSort(sorting, dates);
@@ -148,8 +150,8 @@ public class MboxHandler {
 	}
 
 	public String getContentType(int index) {
-		return (String) contentTypes.elementAt(((Integer) sorting
-				.elementAt(index)).intValue());
+		return contentTypes.elementAt(
+				((Integer) sorting.elementAt(index)).intValue()).toString();
 	}
 
 	public String getMessageContent(int index) {
@@ -262,7 +264,7 @@ public class MboxHandler {
 		index = ((Integer) sorting.elementAt(index)).intValue();
 
 		String[] fileNames = (String[]) contentFileNames.elementAt(index);
-		String[] types = (String[]) contentTypes.elementAt(index);
+		// String[] types = (String[]) contentTypes.elementAt(index);
 		int numFileNames = 0;
 
 		for (int i = 0; i < fileNames.length; i++) {
@@ -332,23 +334,21 @@ public class MboxHandler {
 			}
 		}
 
-		if (name.length() == 0)
-			return (subject);
+		if (name.length() == 0) {
+			return subject;
+		}
 
 		return (name + " - " + subject);
 	}
 
 	public int saveAsEml(int[] messages, boolean useReceiver, String directory) {
-		Vector toSave = new Vector();
-		Vector toSaveOffsets = new Vector();
+		Vector<Integer> toSave = new Vector<Integer>();
 		int successfulExported = 0;
 
 		for (int i = 0; i < messages.length; i++) {
 			Integer index = (Integer) sorting.elementAt(messages[i]);
 			toSave.addElement(index);
 		}
-
-		File outputFile;
 
 		try {
 			for (int i = 0; i < toSave.size(); i++) {
@@ -535,7 +535,7 @@ public class MboxHandler {
 	}
 
 	public void sort(String criterion) {
-		Vector toSort;
+		Vector<?> toSort;
 		if (criterion.equals("Date")) {
 			toSort = dates;
 		} else if (criterion.equals("Sender")) {
@@ -544,15 +544,16 @@ public class MboxHandler {
 			toSort = receivers;
 		} else if (criterion.equals("Subject")) {
 			toSort = subjects;
-		} else
+		} else {
 			return;
+		}
 
 		sorting = indexSort(sorting, toSort);
 	}
 
-	private Vector indexSort(Vector index, Vector items) {
-		Vector buffer = new Vector();
-		Vector newIndex = new Vector();
+	private Vector<Integer> indexSort(Vector<Integer> index, Vector<?> items) {
+		Vector<Object> buffer = new Vector<Object>();
+		Vector<Integer> newIndex = new Vector<Integer>();
 
 		boolean isString = false;
 
@@ -569,13 +570,32 @@ public class MboxHandler {
 				item = items.elementAt(((Integer) index.elementAt(i))
 						.intValue());
 			}
-			int insertionPoint = java.util.Collections.binarySearch(
-					(List) buffer, item);
-			if (insertionPoint < 0)
+			@SuppressWarnings("unchecked")
+			int insertionPoint = Collections.binarySearch(
+					(List<? extends Comparable<? super Object>>) buffer, item);
+			if (insertionPoint < 0) {
 				insertionPoint = -insertionPoint - 1;
+			}
 			buffer.insertElementAt(item, insertionPoint);
 			newIndex.insertElementAt(index.elementAt(i), insertionPoint);
 		}
 		return newIndex;
 	}
+
+	public String getLastLine() {
+		return lastLine;
+	}
+
+	public void setLastLine(String lastLine) {
+		this.lastLine = lastLine;
+	}
+
+	public boolean isHeader() {
+		return isHeader;
+	}
+
+	public void setHeader(boolean isHeader) {
+		this.isHeader = isHeader;
+	}
+
 }

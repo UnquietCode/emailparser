@@ -23,11 +23,11 @@ public class SortByDate {
 			// if (args.length != 2) {
 			// die("Wrong number of arguments", true);
 			// }
-			
-//			String inputFi
-			
-			File input = new File(args[0]);
-			File output = new File(args[1]);
+
+			// String inputFi
+
+			File input = new File("D:\\Desktop\\mbox");
+			File output = new File("D:\\att");
 			if (!input.exists()) {
 				die("No such file or directory: " + input, false);
 			}
