@@ -46,6 +46,7 @@ import org.owlmail.global.SearchType;
 import org.owlmail.res.Resource;
 import org.owlmail.utils.ImageUtil;
 import org.owlmail.view.help.Help;
+import org.owlmail.view.menu.Menubar;
 import org.owlmail.view.render.OwlListCellRender;
 import org.owlmail.view.setting.Preferences;
 
@@ -59,6 +60,7 @@ public class Owlmail {
 
 	private JFrame frame;
 	private Container container;
+	private Menubar menuBar;
 	private JCheckBox chbxShowCCandBCC;
 	private JCheckBox chbxShowAttachedFiles;
 	private JEditorPane epMessageBody;
@@ -76,12 +78,12 @@ public class Owlmail {
 	private Help help;
 	private static JComboBox cbSelectSearchType;
 	private static JList listResults;
-	private static MailData Mails;
 
 	private static boolean showAttachments = false;
 	private static boolean showCC_BCC = false;
 
 	private SearchType Type;
+	private static MailData Mails;
 
 	private static String Path = System.getProperty("user.dir");
 
@@ -387,6 +389,10 @@ public class Owlmail {
 			}
 		});
 		container.add(btnSettings);
+
+		//
+		menuBar = new Menubar();
+		frame.setJMenuBar(menuBar);
 	}
 
 	private void RefreshView(String SearchText) {
