@@ -47,7 +47,7 @@ import org.owlmail.res.Resource;
 import org.owlmail.utils.ImageUtil;
 import org.owlmail.view.help.Help;
 import org.owlmail.view.render.OwlListCellRender;
-import org.owlmail.view.setting.Settings;
+import org.owlmail.view.setting.Preferences;
 
 /**
  * 
@@ -72,7 +72,7 @@ public class Owlmail {
 	private JScrollPane scrollPane;
 	private JButton btnSettings;
 	private JButton btnHelp;
-	private Settings settings;
+	private Preferences settings;
 	private Help help;
 	private static JComboBox cbSelectSearchType;
 	private static JList listResults;
@@ -382,7 +382,7 @@ public class Owlmail {
 		btnSettings.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				settings = new Settings();
+				settings = new Preferences();
 				settings.setVisible(true);
 			}
 		});

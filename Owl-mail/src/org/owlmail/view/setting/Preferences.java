@@ -26,7 +26,7 @@ import org.owlmail.utils.ImageUtil;
  * @Author zhangzuoqiang
  * @Date 2012-2-27
  */
-public class Settings extends JDialog {
+public class Preferences extends JDialog {
 
 	/**
 	 * 
@@ -42,7 +42,7 @@ public class Settings extends JDialog {
 			e.printStackTrace();
 		}
 		try {
-			Settings dialog = new Settings();
+			Preferences dialog = new Preferences();
 			dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -53,7 +53,7 @@ public class Settings extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Settings() {
+	public Preferences() {
 		setResizable(false);
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setAlwaysOnTop(true);
