@@ -74,7 +74,7 @@ public class MailData {
 		File root = new File(getSearchFolder());
 		try {
 			boolean recursive = true;
-			statusText.setText(Resource.getValue("MailMessages.GettingFiles"));
+			statusText.setText(Resource.getValue("MailData.GettingFiles"));
 			Collection<File> files = FileUtils.listFiles(root,
 					FileUtil.extensions, recursive);
 			statusBar.setValue(0);
@@ -88,7 +88,7 @@ public class MailData {
 				if (cacheFile.exists()
 						&& (cacheFile.lastModified() > cal.getTimeInMillis())) {
 					statusText.setText(Resource
-							.getValue("MailMessages.DataFromCache")
+							.getValue("MailData.DataFromCache")
 							+ cacheFile.getName());
 					FileInputStream fis = null;
 					ObjectInputStream in = null;
@@ -100,7 +100,7 @@ public class MailData {
 					in.close();
 				} else {
 					statusText.setText(Resource
-							.getValue("MailMessages.DataFromEmailFiles")
+							.getValue("MailData.DataFromEmailFiles")
 							+ file.getName());
 
 					Date date = new Date(file.lastModified());
@@ -192,7 +192,7 @@ public class MailData {
 				File checkFile = new File(getSearchFolder() + "\\"
 						+ getCacheFolderPath() + "\\" + file);
 				statusText.setText(Resource
-						.getValue("MailMessages.CreatingCacheFile")
+						.getValue("MailData.CreatingCacheFile")
 						+ checkFile.getName());
 				FileOutputStream fos = null;
 				ObjectOutputStream out = null;
