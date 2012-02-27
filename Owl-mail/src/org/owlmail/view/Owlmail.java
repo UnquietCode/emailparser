@@ -29,7 +29,6 @@ import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
@@ -46,6 +45,7 @@ import org.owlmail.global.MailSetting;
 import org.owlmail.global.SearchType;
 import org.owlmail.res.Resource;
 import org.owlmail.utils.ImageUtil;
+import org.owlmail.view.help.Help;
 import org.owlmail.view.render.OwlListCellRender;
 import org.owlmail.view.setting.Settings;
 
@@ -69,7 +69,11 @@ public class Owlmail {
 	private JSplitPane splitPane;
 	private SpringLayout layout;
 	private JTextField tfSearchText;
+	private JScrollPane scrollPane;
 	private JButton btnSettings;
+	private JButton btnHelp;
+	private Settings settings;
+	private Help help;
 	private static JComboBox cbSelectSearchType;
 	private static JList listResults;
 	private static MailData Mails;
@@ -132,7 +136,7 @@ public class Owlmail {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setIconImage(ImageUtil
-				.getImage("org/owlmail/view/images/frame-16.png"));
+				.getImage("org/owlmail/view/images/Owlmail.png"));
 		frame.setTitle(Resource.getValue("Owlmail.AppName"));
 		frame.setBounds(100, 100, 754, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -259,7 +263,7 @@ public class Owlmail {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		container.add(splitPane);
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane
 				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		splitPane.setLeftComponent(scrollPane);
@@ -320,8 +324,7 @@ public class Owlmail {
 				SpringLayout.EAST, chbxShowAttachedFiles);
 		container.add(chbxShowCCandBCC);
 
-		JButton btnHelp = new JButton(
-				Resource.getValue("Owlmail.dlgHelpCaption"));
+		btnHelp = new JButton(Resource.getValue("Owlmail.dlgHelpCaption"));
 		layout.putConstraint(SpringLayout.SOUTH, cbSelectSearchType, -6,
 				SpringLayout.NORTH, btnHelp);
 		btnHelp.setIcon(ImageUtil
@@ -333,10 +336,8 @@ public class Owlmail {
 		btnHelp.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(frame,
-						Resource.getValue("Owlmail.HelpMsgText"),
-						Resource.getValue("Owlmail.dlgHelpCaption"),
-						JOptionPane.QUESTION_MESSAGE);
+				help = new Help();
+				help.setVisible(true);
 			}
 		});
 		container.add(btnHelp);
@@ -381,7 +382,7 @@ public class Owlmail {
 		btnSettings.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Settings settings = new Settings();
+				settings = new Settings();
 				settings.setVisible(true);
 			}
 		});

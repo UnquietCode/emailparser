@@ -62,7 +62,7 @@ public class Settings extends JDialog {
 		setModal(true);
 		setTitle(Resource.getValue("Owlmail.AppName") + " - "
 				+ Resource.getValue("Owlmail.lblSettings"));
-		setBounds(100, 100, 490, 167);
+		setBounds(400, 150, 490, 167);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.text.DateFormat;
 
@@ -75,7 +74,6 @@ public class OwlListCellRender extends DefaultListCellRenderer {
 			JLabel lblfrom = new JLabel("<html><font color=maroon><b>"
 					+ Resource.getValue("Owlmail.lblFrom") + ":</b></font> "
 					+ ((Message) value).getColorizedSender() + "<html>");
-			lblfrom.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			lblfrom.setPreferredSize(new Dimension(300, 17));
 			lblfrom.setMaximumSize(new Dimension(300, 17));
 			FromTo.add(lblfrom);
@@ -83,7 +81,6 @@ public class OwlListCellRender extends DefaultListCellRenderer {
 			JLabel lblto = new JLabel("<html><font color=green><b>"
 					+ Resource.getValue("Owlmail.lblTo") + ":</b></font> "
 					+ ((Message) value).getColorizedReceiver() + "<html>");
-			lblto.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			FromTo.add(lblto);
 
 			mypanel.add(FromTo);
@@ -94,7 +91,6 @@ public class OwlListCellRender extends DefaultListCellRenderer {
 					CC.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
 					JLabel lblccspacer = new JLabel("");
-					lblccspacer.setFont(new Font("Tahoma", Font.PLAIN, 14));
 					lblccspacer.setPreferredSize(new Dimension(300, 17));
 					lblccspacer.setMaximumSize(new Dimension(300, 17));
 					CC.add(lblccspacer);
@@ -103,7 +99,6 @@ public class OwlListCellRender extends DefaultListCellRenderer {
 							+ Resource.getValue("Owlmail.lblCC")
 							+ ":</b></font> "
 							+ ((Message) value).getColorizedCC() + "<html>");
-					lblcc.setFont(new Font("Tahoma", Font.PLAIN, 14));
 					CC.add(lblcc);
 
 					CC.setBackground(color);
@@ -116,7 +111,6 @@ public class OwlListCellRender extends DefaultListCellRenderer {
 					BCC.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
 					JLabel lblbccspacer = new JLabel("");
-					lblbccspacer.setFont(new Font("Tahoma", Font.PLAIN, 14));
 					lblbccspacer.setPreferredSize(new Dimension(300, 17));
 					lblbccspacer.setMaximumSize(new Dimension(300, 17));
 					BCC.add(lblbccspacer);
@@ -125,7 +119,6 @@ public class OwlListCellRender extends DefaultListCellRenderer {
 							+ Resource.getValue("Owlmail.lblBCC")
 							+ ":</b></font> "
 							+ ((Message) value).getColorizedBCC() + "<html>");
-					lblbcc.setFont(new Font("Tahoma", Font.PLAIN, 14));
 					BCC.add(lblbcc);
 
 					BCC.setBackground(color);
@@ -139,7 +132,6 @@ public class OwlListCellRender extends DefaultListCellRenderer {
 					Spacer.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
 					JLabel lblspacer = new JLabel("");
-					lblspacer.setFont(new Font("Tahoma", Font.PLAIN, 14));
 					lblspacer.setPreferredSize(new Dimension(300, 17));
 					lblspacer.setMaximumSize(new Dimension(300, 17));
 					Spacer.add(lblspacer);
@@ -153,7 +145,6 @@ public class OwlListCellRender extends DefaultListCellRenderer {
 			JLabel lblbetreff = new JLabel("<html><font color=#4B0082><b>"
 					+ Resource.getValue("Owlmail.lblSubject") + ":</b></font> "
 					+ ((Message) value).getColorizedSubject() + "<html>");
-			lblbetreff.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			mypanel.add(lblbetreff);
 
 			if (Owlmail.isShowAttachments()) {
@@ -169,7 +160,6 @@ public class OwlListCellRender extends DefaultListCellRenderer {
 					JLabel lblAttachments = new JLabel("<html>"
 							+ Resource.getValue("Owlmail.lblAttachments")
 							+ ": <font color=blue>" + files + "</font><html>");
-					lblAttachments.setFont(new Font("Tahoma", Font.PLAIN, 14));
 					mypanel.add(lblAttachments);
 				}
 			}
