@@ -30,7 +30,7 @@ import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
 import net.goldenbogen.jmsgreader.JMsgReader;
-import net.goldenbogen.jmsgreader.Messages;
+import net.goldenbogen.jmsgreader.Resource;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.hsmf.MAPIMessage;
@@ -44,36 +44,26 @@ import org.apache.poi.hsmf.datatypes.AttachmentChunks;
  */
 public class MailMessages {
 
-	/**
-	 * 
-	 * @Description
-	 * @Author zhangzuoqiang
-	 * @Date 2012-2-27
-	 */
 	public enum SearchType {
 		CONTENT, PERSON, RECEIVER_ONLY, SENDER_ONLY, SUBJECT;
 	}
 
 	private static String cacheFolderPath = ".jmsgreader";
 
-	/**
-	 * 
-	 * @return
-	 */
 	private static String getCacheFolderPath() {
 		return cacheFolderPath;
 	}
 
 	private ArrayList<Message> Mails = new ArrayList<Message>();
-
 	private ArrayList<Message> Result = new ArrayList<Message>();
-
 	private ArrayList<Message> cacheMessages = new ArrayList<Message>();
-
 	private String SearchFolder;
 
 	/**
+	 * 
 	 * @param SearchFolderForMessages
+	 * @param statusBar
+	 * @param statusText
 	 */
 	public MailMessages(String SearchFolderForMessages, JProgressBar statusBar,
 			JLabel statusText) {
@@ -100,7 +90,7 @@ public class MailMessages {
 		try {
 			boolean recursive = true;
 			String[] extensions = { "msg", "eml" };
-			statusText.setText(Messages.getString("MailMessages.GettingFiles"));
+			statusText.setText(Resource.getString("MailMessages.GettingFiles"));
 			Collection<File> files = FileUtils.listFiles(root, extensions,
 					recursive);
 			statusBar.setValue(0);
@@ -117,7 +107,7 @@ public class MailMessages {
 						+ getCacheFolderPath() + "\\" + fileName);
 				if (cacheFile.exists()
 						&& (cacheFile.lastModified() > cal.getTimeInMillis())) {
-					statusText.setText(Messages
+					statusText.setText(Resource
 							.getString("MailMessages.DataFromCache")
 							+ cacheFile.getName());
 					FileInputStream fis = null;
@@ -129,8 +119,7 @@ public class MailMessages {
 					Mails.add(cachedMessage);
 					in.close();
 				} else {
-
-					statusText.setText(Messages
+					statusText.setText(Resource
 							.getString("MailMessages.DataFromMsgFiles")
 							+ file.getName());
 
@@ -203,7 +192,7 @@ public class MailMessages {
 						try {
 							textBODY = msg.getTextBody();
 						} catch (Exception e) {
-							textBODY = Messages
+							textBODY = Resource
 									.getString("MailMessages.AlternativeMsgText");
 							System.err.println("Error: " + file.getName()
 									+ " no messageTEXTBODY-CHUNK");
@@ -224,7 +213,6 @@ public class MailMessages {
 							System.err.println("Error: " + file.getName()
 									+ " no messageATTACHMENTS-CHUNK");
 						}
-
 					} else {
 						Properties props = System.getProperties();
 						props.put("mail.host", "smtp.dummydomain.com");
@@ -311,7 +299,7 @@ public class MailMessages {
 						try {
 							textBODY = msg.getContent().toString();
 						} catch (Exception e) {
-							textBODY = Messages
+							textBODY = Resource
 									.getString("MailMessages.AlternativeMsgText");
 							System.err.println("Error: " + file.getName()
 									+ " no messageTEXTBODY-CHUNK");
@@ -326,10 +314,8 @@ public class MailMessages {
 
 					cacheMessages.add(myMessage);
 					Mails.add(myMessage);
-
 				}
 			}
-
 			initResults();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -337,13 +323,11 @@ public class MailMessages {
 		}
 
 		if (UserSettings.isEnableCaching()) {
-
 			File hiddenCacheFolder = new File(getSearchFolder() + "\\"
 					+ getCacheFolderPath());
 			if (!hiddenCacheFolder.exists()) {
 				hiddenCacheFolder.mkdir();
 			}
-
 			try {
 				Process p = Runtime.getRuntime().exec(
 						"attrib +h \"" + hiddenCacheFolder.getAbsolutePath()
@@ -372,7 +356,7 @@ public class MailMessages {
 						+ ".cache";
 				File checkFile = new File(getSearchFolder() + "\\"
 						+ getCacheFolderPath() + "\\" + file);
-				statusText.setText(Messages
+				statusText.setText(Resource
 						.getString("MailMessages.CreatingCacheFile")
 						+ checkFile.getName());
 				FileOutputStream fos = null;
@@ -386,46 +370,24 @@ public class MailMessages {
 					e.printStackTrace();
 					bOk = false;
 				}
-
 			}
 		}
-
 		return bOk;
 	}
 
-	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:30:22
-	 * 
-	 * @return
-	 */
 	public ArrayList<Message> getResult() {
 		return Result;
 	}
 
-	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:30:38
-	 * 
-	 * @return
-	 */
 	private String getSearchFolder() {
 		return SearchFolder;
 	}
 
-	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:29:44
-	 * 
-	 */
 	private void initResults() {
 		setResult(Mails);
 		SortResults();
 	}
 
-	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:54:07
-	 * 
-	 * @param SearchValue
-	 * @param SearchType
-	 */
 	public void searchMails(String SearchValue, SearchType Type,
 			JProgressBar statusBar) {
 		ArrayList<Message> tmpMessages = new ArrayList<Message>();
@@ -492,28 +454,14 @@ public class MailMessages {
 		setResult(tmpMessages);
 	}
 
-	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:30:18
-	 * 
-	 * @param result
-	 */
 	private void setResult(ArrayList<Message> result) {
 		Result = result;
 	}
 
-	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:30:32
-	 * 
-	 * @param searchFolder
-	 */
 	private void setSearchFolder(String searchFolder) {
 		SearchFolder = searchFolder;
 	}
 
-	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:31:10
-	 * 
-	 */
 	private void SortResults() {
 		Collections.sort(Result, new Comparator<Object>() {
 			@Override

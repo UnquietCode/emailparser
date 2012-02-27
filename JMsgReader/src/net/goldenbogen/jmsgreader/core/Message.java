@@ -25,7 +25,7 @@ public class Message implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4533330067689696810L;
+	private static final long serialVersionUID = 4338087143385626559L;
 
 	private ArrayList<String> Attachments;
 	private String BCC;
@@ -44,11 +44,16 @@ public class Message implements Serializable {
 	private String Subject;
 
 	/**
+	 * 
+	 * @param FilePath
 	 * @param ReceivedDate
 	 * @param Receiver
 	 * @param Sender
+	 * @param CC
+	 * @param BCC
 	 * @param Subject
 	 * @param Content
+	 * @param Attachments
 	 */
 	public Message(String FilePath, Date ReceivedDate, String Receiver,
 			String Sender, String CC, String BCC, String Subject,
@@ -65,7 +70,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 14:47:38
 	 * 
 	 * @param SearchText
 	 * @param Text
@@ -105,9 +109,9 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 14:39:51
 	 * 
 	 * @param SearchText
+	 * @param Type
 	 */
 	public void colorizeElements(String SearchText, SearchType Type) {
 		switch (Type) {
@@ -163,6 +167,7 @@ public class Message implements Serializable {
 	}
 
 	/**
+	 * 
 	 * @return the attachments
 	 */
 	public ArrayList<String> getAttachments() {
@@ -170,7 +175,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 02.12.2011 10:17:24
 	 * 
 	 * @return
 	 */
@@ -179,7 +183,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 02.12.2011 10:17:29
 	 * 
 	 * @return
 	 */
@@ -188,7 +191,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 02.12.2011 10:17:08
 	 * 
 	 * @return
 	 */
@@ -197,7 +199,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 02.12.2011 10:17:03
 	 * 
 	 * @return
 	 */
@@ -206,7 +207,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 14:47:24
 	 * 
 	 * @return
 	 */
@@ -215,7 +215,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 14:47:00
 	 * 
 	 * @return
 	 */
@@ -224,7 +223,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 14:47:32
 	 * 
 	 * @return
 	 */
@@ -233,7 +231,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 14:47:28
 	 * 
 	 * @return
 	 */
@@ -242,7 +239,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:32:13
 	 * 
 	 * @return
 	 */
@@ -251,6 +247,7 @@ public class Message implements Serializable {
 	}
 
 	/**
+	 * 
 	 * @return the filePath
 	 */
 	public String getFilePath() {
@@ -258,7 +255,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:31:51
 	 * 
 	 * @return
 	 */
@@ -267,7 +263,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:31:56
 	 * 
 	 * @return
 	 */
@@ -276,7 +271,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:32:02
 	 * 
 	 * @return
 	 */
@@ -285,7 +279,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:32:07
 	 * 
 	 * @return
 	 */
@@ -294,6 +287,7 @@ public class Message implements Serializable {
 	}
 
 	/**
+	 * 
 	 * @param attachments
 	 *            the attachments to set
 	 */
@@ -302,7 +296,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 02.12.2011 10:17:26
 	 * 
 	 * @param bCC
 	 */
@@ -311,7 +304,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 02.12.2011 10:17:31
 	 * 
 	 * @param cC
 	 */
@@ -320,7 +312,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 02.12.2011 10:17:11
 	 * 
 	 * @param colorizedBCC
 	 */
@@ -329,7 +320,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 02.12.2011 10:17:05
 	 * 
 	 * @param colorizedCC
 	 */
@@ -338,7 +328,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 14:47:19
 	 * 
 	 * @param colorizedContent
 	 */
@@ -349,7 +338,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 14:47:34
 	 * 
 	 * @param colorizedReceiver
 	 */
@@ -358,7 +346,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 14:47:30
 	 * 
 	 * @param colorizedSender
 	 */
@@ -367,7 +354,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 14:47:26
 	 * 
 	 * @param colorizedSubject
 	 */
@@ -376,7 +362,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:32:15
 	 * 
 	 * @param content
 	 */
@@ -385,6 +370,7 @@ public class Message implements Serializable {
 	}
 
 	/**
+	 * 
 	 * @param filePath
 	 *            the filePath to set
 	 */
@@ -393,7 +379,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:31:54
 	 * 
 	 * @param receivedDate
 	 */
@@ -402,7 +387,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:31:59
 	 * 
 	 * @param receiver
 	 */
@@ -411,7 +395,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:32:05
 	 * 
 	 * @param sender
 	 */
@@ -420,7 +403,6 @@ public class Message implements Serializable {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 01.12.2011 11:32:10
 	 * 
 	 * @param subject
 	 */

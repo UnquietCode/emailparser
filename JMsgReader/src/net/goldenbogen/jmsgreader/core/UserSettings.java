@@ -32,11 +32,6 @@ public class UserSettings {
 	private static boolean enableCaching;
 	private static Locale currentLocale = Locale.getDefault();
 
-	/**
-	 * @author Goldenbogen, Pierre Created: 15.12.2011 13:59:31
-	 * 
-	 * @return the liveSearch
-	 */
 	public static boolean isManualSearch() {
 		int tmp = 0;
 		tmp = prefs.getInt(new String("ManualSearch").toLowerCase(), tmp);
@@ -49,9 +44,8 @@ public class UserSettings {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 15.12.2011 13:59:31
 	 * 
-	 * @param liveSearch
+	 * @param ManualSearch
 	 *            the liveSearch to set
 	 */
 	public static void setManualSearch(boolean ManualSearch) {
@@ -63,11 +57,6 @@ public class UserSettings {
 		manualSearch = ManualSearch;
 	}
 
-	/**
-	 * @author Goldenbogen, Pierre Created: 21.12.2011 16:38:51
-	 * 
-	 * @return the enableCaching
-	 */
 	public static boolean isEnableCaching() {
 		int tmp = 0;
 		tmp = prefs.getInt(new String("EnableCaching").toLowerCase(), tmp);
@@ -80,9 +69,8 @@ public class UserSettings {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 21.12.2011 16:38:51
 	 * 
-	 * @param enableCaching
+	 * @param EnableCaching
 	 *            the enableCaching to set
 	 */
 	public static void setEnableCaching(boolean EnableCaching) {
@@ -95,7 +83,6 @@ public class UserSettings {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 30.12.2011 13:56:37
 	 * 
 	 * @return the currentLocalte
 	 */
@@ -104,10 +91,9 @@ public class UserSettings {
 	}
 
 	/**
-	 * @author Goldenbogen, Pierre Created: 30.12.2011 13:56:37
+	 * the currentLocalte
 	 * 
-	 * @param currentLocalte
-	 *            the currentLocalte to set
+	 * @param currentLocale
 	 */
 	public static void setCurrentLocale(Locale currentLocale) {
 		UserSettings.currentLocale = currentLocale;

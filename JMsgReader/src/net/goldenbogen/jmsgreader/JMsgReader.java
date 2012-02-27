@@ -59,7 +59,7 @@ import net.goldenbogen.jmsgreader.core.UserSettings;
 
 /**
  * 
- * @Description
+ * @Description 程序入口
  * @Author zhangzuoqiang
  * @Date 2012-2-27
  */
@@ -160,7 +160,7 @@ public class JMsgReader {
 			protected Boolean doInBackground() {
 				Boolean bOk = true;
 				loadingDialog = new JDialog(frmMsgCrawler,
-						Messages.getString("JMsgReader.Loading"));
+						Resource.getString("JMsgReader.Loading"));
 				final JLabel label = new JLabel();
 				label.setIcon(new ImageIcon(
 						JMsgReader.class
@@ -220,7 +220,7 @@ public class JMsgReader {
 						.getImage(
 								JMsgReader.class
 										.getResource("/net/goldenbogen/jmsgreader/mail-receive.png")));
-		frmMsgCrawler.setTitle(Messages.getString("JMsgReader.AppName"));
+		frmMsgCrawler.setTitle(Resource.getString("JMsgReader.AppName"));
 		frmMsgCrawler.setBounds(100, 100, 754, 550);
 		frmMsgCrawler.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		springLayout = new SpringLayout();
@@ -246,7 +246,7 @@ public class JMsgReader {
 		tfSearchText.setColumns(10);
 
 		JLabel lblSearchtext = new JLabel(
-				Messages.getString("JMsgReader.lblSearchText"));
+				Resource.getString("JMsgReader.lblSearchText"));
 		lblSearchtext.setFont(new Font("Tahoma", Font.BOLD, 11));
 		springLayout.putConstraint(SpringLayout.NORTH, tfSearchText, 6,
 				SpringLayout.SOUTH, lblSearchtext);
@@ -273,19 +273,19 @@ public class JMsgReader {
 			public void actionPerformed(ActionEvent e) {
 				JComboBox cb = (JComboBox) e.getSource();
 				String type = (String) cb.getSelectedItem();
-				if (type == Messages.getString("JMsgReader.typeSubject")) {
+				if (type == Resource.getString("JMsgReader.typeSubject")) {
 					setType(MailMessages.SearchType.SUBJECT);
 				}
-				if (type == Messages.getString("JMsgReader.typePerson")) {
+				if (type == Resource.getString("JMsgReader.typePerson")) {
 					setType(MailMessages.SearchType.PERSON);
 				}
-				if (type == Messages.getString("JMsgReader.typeText")) {
+				if (type == Resource.getString("JMsgReader.typeText")) {
 					setType(MailMessages.SearchType.CONTENT);
 				}
-				if (type == Messages.getString("JMsgReader.typeSenderOnly")) {
+				if (type == Resource.getString("JMsgReader.typeSenderOnly")) {
 					setType(MailMessages.SearchType.SENDER_ONLY);
 				}
-				if (type == Messages.getString("JMsgReader.typeReceiverOnly")) {
+				if (type == Resource.getString("JMsgReader.typeReceiverOnly")) {
 					setType(MailMessages.SearchType.RECEIVER_ONLY);
 				}
 				if (!type.equals("")) {
@@ -293,23 +293,23 @@ public class JMsgReader {
 				} else {
 					switch (getType()) {
 					case SUBJECT:
-						cb.setSelectedItem(Messages
+						cb.setSelectedItem(Resource
 								.getString("JMsgReader.typeSubject"));
 						break;
 					case PERSON:
-						cb.setSelectedItem(Messages
+						cb.setSelectedItem(Resource
 								.getString("JMsgReader.typePerson"));
 						break;
 					case CONTENT:
-						cb.setSelectedItem(Messages
+						cb.setSelectedItem(Resource
 								.getString("JMsgReader.typeText"));
 						break;
 					case SENDER_ONLY:
-						cb.setSelectedItem(Messages
+						cb.setSelectedItem(Resource
 								.getString("JMsgReader.typeSenderOnly"));
 						break;
 					case RECEIVER_ONLY:
-						cb.setSelectedItem(Messages
+						cb.setSelectedItem(Resource
 								.getString("JMsgReader.typeReceiverOnly"));
 						break;
 					}
@@ -317,15 +317,15 @@ public class JMsgReader {
 			}
 		});
 		cbSelectSearchType.setModel(new DefaultComboBoxModel(new String[] {
-				Messages.getString("JMsgReader.typeSubject"),
-				Messages.getString("JMsgReader.typePerson"),
-				Messages.getString("JMsgReader.typeText"), "",
-				Messages.getString("JMsgReader.typeSenderOnly"),
-				Messages.getString("JMsgReader.typeReceiverOnly") }));
+				Resource.getString("JMsgReader.typeSubject"),
+				Resource.getString("JMsgReader.typePerson"),
+				Resource.getString("JMsgReader.typeText"), "",
+				Resource.getString("JMsgReader.typeSenderOnly"),
+				Resource.getString("JMsgReader.typeReceiverOnly") }));
 		frmMsgCrawler.getContentPane().add(cbSelectSearchType);
 
 		JLabel lblSearchIn = new JLabel(
-				Messages.getString("JMsgReader.lblSearchIn"));
+				Resource.getString("JMsgReader.lblSearchIn"));
 		springLayout.putConstraint(SpringLayout.NORTH, cbSelectSearchType, 7,
 				SpringLayout.SOUTH, lblSearchIn);
 		springLayout.putConstraint(SpringLayout.EAST, lblSearchIn, 0,
@@ -368,7 +368,7 @@ public class JMsgReader {
 		splitPane.setDividerLocation(550);
 
 		chbxShowAttachedFiles = new JCheckBox(
-				Messages.getString("JMsgReader.lblShowAttachedFiles"));
+				Resource.getString("JMsgReader.lblShowAttachedFiles"));
 		springLayout.putConstraint(SpringLayout.NORTH, chbxShowAttachedFiles,
 				6, SpringLayout.SOUTH, tfSearchText);
 		springLayout.putConstraint(SpringLayout.WEST, chbxShowAttachedFiles,
@@ -391,7 +391,7 @@ public class JMsgReader {
 		frmMsgCrawler.getContentPane().add(chbxShowAttachedFiles);
 
 		chbxShowCCandBCC = new JCheckBox(
-				Messages.getString("JMsgReader.lblShowCCbCC"));
+				Resource.getString("JMsgReader.lblShowCCbCC"));
 		springLayout.putConstraint(SpringLayout.NORTH, chbxShowCCandBCC, 6,
 				SpringLayout.SOUTH, tfSearchText);
 		chbxShowCCandBCC.setMnemonic('C');
@@ -412,7 +412,7 @@ public class JMsgReader {
 		frmMsgCrawler.getContentPane().add(chbxShowCCandBCC);
 
 		JButton btnHelp = new JButton(
-				Messages.getString("JMsgReader.dlgHelpCaption"));
+				Resource.getString("JMsgReader.dlgHelpCaption"));
 		springLayout.putConstraint(SpringLayout.SOUTH, cbSelectSearchType, -6,
 				SpringLayout.NORTH, btnHelp);
 		btnHelp.setIcon(new ImageIcon(JMsgReader.class
@@ -425,8 +425,8 @@ public class JMsgReader {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(frmMsgCrawler,
-						Messages.getString("JMsgReader.HelpMsgText"),
-						Messages.getString("JMsgReader.dlgHelpCaption"),
+						Resource.getString("JMsgReader.HelpMsgText"),
+						Resource.getString("JMsgReader.dlgHelpCaption"),
 						JOptionPane.QUESTION_MESSAGE);
 			}
 		});
@@ -461,7 +461,7 @@ public class JMsgReader {
 				SpringLayout.NORTH, progressBar);
 		frmMsgCrawler.getContentPane().add(lblWork);
 
-		btnSettings = new JButton(Messages.getString("JMsgReader.lblSettings"));
+		btnSettings = new JButton(Resource.getString("JMsgReader.lblSettings"));
 		springLayout.putConstraint(SpringLayout.EAST, lblInfo, -6,
 				SpringLayout.WEST, btnSettings);
 		springLayout.putConstraint(SpringLayout.NORTH, btnSettings, 0,
@@ -481,7 +481,7 @@ public class JMsgReader {
 	}
 
 	private void RefreshView(String SearchText) {
-		lblWork.setText(Messages.getString("JMsgReader.lblRendering"));
+		lblWork.setText(Resource.getString("JMsgReader.lblRendering"));
 		progressBar.setValue(0);
 		if (!path.isEmpty()) {
 			Mails.searchMails(SearchText, getType(), progressBar);

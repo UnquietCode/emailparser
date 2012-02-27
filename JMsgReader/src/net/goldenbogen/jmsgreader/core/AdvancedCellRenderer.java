@@ -16,11 +16,11 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import net.goldenbogen.jmsgreader.JMsgReader;
-import net.goldenbogen.jmsgreader.Messages;
+import net.goldenbogen.jmsgreader.Resource;
 
 /**
  * 
- * @Description
+ * @Description List单元格渲染
  * @Author zhangzuoqiang
  * @Date 2012-2-27
  */
@@ -29,7 +29,7 @@ public class AdvancedCellRenderer extends DefaultListCellRenderer {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4061993200168026754L;
+	private static final long serialVersionUID = 7414087954856212800L;
 
 	@Override
 	public Component getListCellRendererComponent(JList list, Object value,
@@ -72,14 +72,14 @@ public class AdvancedCellRenderer extends DefaultListCellRenderer {
 			FromTo.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
 			JLabel lblfrom = new JLabel(
-					"<html><font color=maroon><b>" + Messages.getString("JMsgReader.lblFrom") + ":</b></font> " + ((Message) value).getColorizedSender() + "<html>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+					"<html><font color=maroon><b>" + Resource.getString("JMsgReader.lblFrom") + ":</b></font> " + ((Message) value).getColorizedSender() + "<html>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			lblfrom.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			lblfrom.setPreferredSize(new Dimension(300, 17));
 			lblfrom.setMaximumSize(new Dimension(300, 17));
 			FromTo.add(lblfrom);
 
 			JLabel lblto = new JLabel("<html><font color=green><b>"
-					+ Messages.getString("JMsgReader.lblTo") + ":</b></font> "
+					+ Resource.getString("JMsgReader.lblTo") + ":</b></font> "
 					+ ((Message) value).getColorizedReceiver() + "<html>");
 			lblto.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			FromTo.add(lblto);
@@ -98,7 +98,7 @@ public class AdvancedCellRenderer extends DefaultListCellRenderer {
 					CC.add(lblccspacer);
 
 					JLabel lblcc = new JLabel("<html><font color=green><b>"
-							+ Messages.getString("JMsgReader.lblCC")
+							+ Resource.getString("JMsgReader.lblCC")
 							+ ":</b></font> "
 							+ ((Message) value).getColorizedCC() + "<html>");
 					lblcc.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -120,7 +120,7 @@ public class AdvancedCellRenderer extends DefaultListCellRenderer {
 					BCC.add(lblbccspacer);
 
 					JLabel lblbcc = new JLabel(
-							"<html><font color=green><b>" + Messages.getString("JMsgReader.lblBCC") + ":</b></font> " + ((Message) value).getColorizedBCC() + "<html>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+							"<html><font color=green><b>" + Resource.getString("JMsgReader.lblBCC") + ":</b></font> " + ((Message) value).getColorizedBCC() + "<html>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 					lblbcc.setFont(new Font("Tahoma", Font.PLAIN, 14));
 					BCC.add(lblbcc);
 
@@ -147,7 +147,7 @@ public class AdvancedCellRenderer extends DefaultListCellRenderer {
 			}
 
 			JLabel lblbetreff = new JLabel("<html><font color=#4B0082><b>"
-					+ Messages.getString("JMsgReader.lblSubject")
+					+ Resource.getString("JMsgReader.lblSubject")
 					+ ":</b></font> " + ((Message) value).getColorizedSubject()
 					+ "<html>");
 			lblbetreff.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -164,7 +164,7 @@ public class AdvancedCellRenderer extends DefaultListCellRenderer {
 					String files = stringBuffer.toString();
 					files = files.substring(0, files.lastIndexOf("-") - 2);
 					JLabel lblAttachments = new JLabel("<html>"
-							+ Messages.getString("JMsgReader.lblAttachments")
+							+ Resource.getString("JMsgReader.lblAttachments")
 							+ ": <font color=blue>" + files + "</font><html>");
 					lblAttachments.setFont(new Font("Tahoma", Font.PLAIN, 14));
 					mypanel.add(lblAttachments);

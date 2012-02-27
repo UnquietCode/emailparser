@@ -29,7 +29,7 @@ import net.goldenbogen.jmsgreader.core.UserSettings;
 
 /**
  * 
- * @Description
+ * @Description 设置面板
  * @Author zhangzuoqiang
  * @Date 2012-2-27
  */
@@ -38,7 +38,7 @@ public class Settings extends JDialog {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7258379775854225921L;
+	private static final long serialVersionUID = 8109284926276490287L;
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -74,8 +74,8 @@ public class Settings extends JDialog {
 						Settings.class
 								.getResource("/net/goldenbogen/jmsgreader/setting_tools.png")));
 		setModal(true);
-		setTitle(Messages.getString("JMsgReader.AppName") + " - "
-				+ Messages.getString("JMsgReader.lblSettings"));
+		setTitle(Resource.getString("JMsgReader.AppName") + " - "
+				+ Resource.getString("JMsgReader.lblSettings"));
 		setBounds(100, 100, 490, 167);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -84,7 +84,7 @@ public class Settings extends JDialog {
 		contentPanel.setLayout(sl_contentPanel);
 
 		final JCheckBox chbxSearchAfterRetrunOnly = new JCheckBox(
-				Messages.getString("Settings.lblOnlySearchAfterReturnWasHit"));
+				Resource.getString("Settings.lblOnlySearchAfterReturnWasHit"));
 		chbxSearchAfterRetrunOnly.setMnemonic('S');
 		sl_contentPanel
 				.putConstraint(SpringLayout.NORTH, chbxSearchAfterRetrunOnly,
@@ -97,7 +97,7 @@ public class Settings extends JDialog {
 		contentPanel.add(chbxSearchAfterRetrunOnly);
 
 		JLabel lblSearchAfterReturnInfoText = new JLabel(
-				Messages.getString("Settings.lblInfoForlblOnlySearchAfterReturnWasHit"));
+				Resource.getString("Settings.lblInfoForlblOnlySearchAfterReturnWasHit"));
 		sl_contentPanel.putConstraint(SpringLayout.NORTH,
 				lblSearchAfterReturnInfoText, 6, SpringLayout.SOUTH,
 				chbxSearchAfterRetrunOnly);
@@ -110,7 +110,7 @@ public class Settings extends JDialog {
 		contentPanel.add(lblSearchAfterReturnInfoText);
 
 		final JCheckBox chbxEnableCaching = new JCheckBox(
-				Messages.getString("Settings.lblEnableCaching"));
+				Resource.getString("Settings.lblEnableCaching"));
 		sl_contentPanel.putConstraint(SpringLayout.NORTH, chbxEnableCaching, 6,
 				SpringLayout.SOUTH, lblSearchAfterReturnInfoText);
 		sl_contentPanel.putConstraint(SpringLayout.WEST, chbxEnableCaching, 0,
@@ -125,7 +125,7 @@ public class Settings extends JDialog {
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
 
-		JButton btnOk = new JButton(Messages.getString("Settings.btnOk"));
+		JButton btnOk = new JButton(Resource.getString("Settings.btnOk"));
 		btnOk.setIcon(new ImageIcon(Settings.class
 				.getResource("/net/goldenbogen/jmsgreader/accept.png")));
 		btnOk.addActionListener(new ActionListener() {
@@ -143,7 +143,7 @@ public class Settings extends JDialog {
 		buttonPane.add(btnOk);
 		getRootPane().setDefaultButton(btnOk);
 		JButton btnCancel = new JButton(
-				Messages.getString("Settings.btnCancel"));
+				Resource.getString("Settings.btnCancel"));
 		btnCancel.setIcon(new ImageIcon(Settings.class
 				.getResource("/net/goldenbogen/jmsgreader/cancel.png")));
 		btnCancel.addActionListener(new ActionListener() {
@@ -154,8 +154,7 @@ public class Settings extends JDialog {
 		});
 
 		btnCancel.setMnemonic('b');
-		btnCancel.setActionCommand("Cancel"); //$NON-NLS-1$
+		btnCancel.setActionCommand("Cancel");
 		buttonPane.add(btnCancel);
-
 	}
 }
