@@ -414,6 +414,9 @@ public class Owlmail {
 				if (listResults.getModel().getSize() != -1) {
 					if (e.getClickCount() == 1) {
 						int index = listResults.locationToIndex(e.getPoint());
+						if (-1 == index) {
+							return;
+						}
 						Object item = listResults.getModel()
 								.getElementAt(index);
 						listResults.setSelectedIndex(index);
@@ -436,6 +439,8 @@ public class Owlmail {
 							e1.printStackTrace();
 						}
 					}
+				} else {
+					return;
 				}
 			}
 		};
