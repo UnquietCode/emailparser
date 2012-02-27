@@ -112,35 +112,42 @@ public class MailData {
 					String textBODY = "";
 					ArrayList<String> attachmentFiles = new ArrayList<String>();
 
+					MailType type = MailType.getFileType(file);
+					switch (type) {
+					case MSG:
+
+						break;
+					case EML:
+
+						break;
+					case MBOX:
+
+						break;
+					case UNKNOWN:
+
+						break;
+					default:
+
+						break;
+					}
+
+					// 构建SWITCH，替换掉此处的IF...ELSE...
 					if (FileUtil.isExtendsequal(file, MailType.MSG)) {
 						// Get Date
-
 						// Get To
-
 						// Get From
-
 						// Get CC
-
 						// Get BCC
-
 						// Get Subject
-
 						// Get TextBody
-
 						// Get Attachments
 					} else {
 						// Get Date
-
 						// Get To
-
 						// Get From
-
 						// Get CC
-
 						// Get BCC
-
 						// Get Subject
-
 						// Get TextBody
 					}
 					Message myMessage = new Message(file.getAbsolutePath(),
