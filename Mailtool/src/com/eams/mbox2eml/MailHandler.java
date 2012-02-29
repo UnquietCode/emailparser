@@ -304,7 +304,7 @@ public class MailHandler {
 
 		n = new int[contentStarts.size()];
 		for (int i = 0; i < n.length; i++) {
-			n[i] = ((Integer) contentStarts.elementAt(i)).intValue();
+			n[i] = (contentStarts.elementAt(i)).intValue();
 		}
 		return n;
 	}
@@ -314,7 +314,7 @@ public class MailHandler {
 
 		n = new int[contentEnds.size()];
 		for (int i = 0; i < n.length; i++) {
-			n[i] = ((Integer) contentEnds.elementAt(i)).intValue();
+			n[i] = (contentEnds.elementAt(i)).intValue();
 		}
 		return n;
 	}
@@ -324,7 +324,7 @@ public class MailHandler {
 
 		s = new String[contentTypes.size()];
 		for (int i = 0; i < s.length; i++) {
-			s[i] = (String) contentTypes.elementAt(i);
+			s[i] = contentTypes.elementAt(i);
 		}
 		return s;
 	}
@@ -334,7 +334,7 @@ public class MailHandler {
 
 		s = new String[contentEncodings.size()];
 		for (int i = 0; i < s.length; i++) {
-			s[i] = (String) contentEncodings.elementAt(i);
+			s[i] = contentEncodings.elementAt(i);
 		}
 		return s;
 	}
@@ -344,7 +344,7 @@ public class MailHandler {
 
 		s = new String[contentFileNames.size()];
 		for (int i = 0; i < s.length; i++) {
-			s[i] = (String) contentFileNames.elementAt(i);
+			s[i] = contentFileNames.elementAt(i);
 		}
 		return s;
 	}

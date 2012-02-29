@@ -23,7 +23,7 @@ public class LineReader {
 	private File file;
 
 	private static int BUFFERSIZE = 1024;
-
+	
 	public LineReader(File in) throws FileNotFoundException {
 		file = in;
 		br = new RandomAccessFile(file, "r");
@@ -38,13 +38,13 @@ public class LineReader {
 
 	public void setLineNr(int lineNr) throws IOException {
 		if (lineNr <= offset.size()) {
-			curOffset = ((Integer) offset.elementAt(lineNr - 1)).intValue();
+			curOffset = (offset.elementAt(lineNr - 1)).intValue();
 			br.seek(curOffset);
 			bufString = "";
 			curLine = lineNr;
 		} else {
 			curLine = offset.size();
-			curOffset = ((Integer) offset.elementAt(curLine - 1)).intValue();
+			curOffset = (offset.elementAt(curLine - 1)).intValue();
 			br.seek(curOffset);
 			bufString = "";
 			while (readLine() != null && curLine < lineNr) {

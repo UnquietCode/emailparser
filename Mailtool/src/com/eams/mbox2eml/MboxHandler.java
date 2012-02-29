@@ -117,18 +117,15 @@ public class MboxHandler {
 	}
 
 	public String getSender(int index) {
-		return (String) senders.elementAt(((Integer) sorting.elementAt(index))
-				.intValue());
+		return senders.elementAt((sorting.elementAt(index)).intValue());
 	}
 
 	public String getReceiver(int index) {
-		return (String) receivers
-				.elementAt(((Integer) sorting.elementAt(index)).intValue());
+		return receivers.elementAt((sorting.elementAt(index)).intValue());
 	}
 
 	public String getFormattedDate(int index) {
-		Date date = dates.elementAt(((Integer) sorting.elementAt(index))
-				.intValue());
+		Date date = dates.elementAt((sorting.elementAt(index)).intValue());
 		String formattedDate;
 		if (date.getTime() != 0L) {
 			SimpleDateFormat formatter = new SimpleDateFormat(
@@ -141,17 +138,16 @@ public class MboxHandler {
 	}
 
 	public Date getDate(int index) {
-		return dates.elementAt(((Integer) sorting.elementAt(index)).intValue());
+		return dates.elementAt((sorting.elementAt(index)).intValue());
 	}
 
 	public String getSubject(int index) {
-		return subjects.elementAt(((Integer) sorting.elementAt(index))
-				.intValue());
+		return subjects.elementAt((sorting.elementAt(index)).intValue());
 	}
 
 	public String getContentType(int index) {
-		return contentTypes.elementAt(
-				((Integer) sorting.elementAt(index)).intValue()).toString();
+		return contentTypes.elementAt((sorting.elementAt(index)).intValue())
+				.toString();
 	}
 
 	public String getMessageContent(int index) {
@@ -161,12 +157,12 @@ public class MboxHandler {
 
 		index = (sorting.elementAt(index)).intValue();
 
-		int numParts = ((int[]) contentStarts.elementAt(index)).length;
+		int numParts = (contentStarts.elementAt(index)).length;
 
 		int k = 0;
 		do {
 			for (int i = 0; i < numParts; i++) {
-				String contentType = ((String[]) contentTypes.elementAt(index))[i];
+				String contentType = (contentTypes.elementAt(index))[i];
 				if (contentType == null) {
 					contentType = "TEXT/PLAIN";
 				} else {
@@ -177,22 +173,20 @@ public class MboxHandler {
 					if (outBuf.length() > 0) {
 						outBuf.append("\r\n");
 						outBuf.append("--------- Next Part");
-						if ((fileName = ((String[]) contentFileNames
-								.elementAt(index))[i]) != null) {
+						if ((fileName = (contentFileNames.elementAt(index))[i]) != null) {
 							outBuf.append(": \"" + fileName + "\"");
 						}
 						outBuf.append(" ---------");
 						outBuf.append("\r\n\r\n");
 					}
 
-					String contentEncoding = ((String[]) contentEncodings
-							.elementAt(index))[i];
+					String contentEncoding = (contentEncodings.elementAt(index))[i];
 					if (contentEncoding == null) {
 						contentEncoding = "7BIT";
 					}
 
-					int contentStart = ((int[]) contentStarts.elementAt(index))[i];
-					int contentEnd = ((int[]) contentEnds.elementAt(index))[i];
+					int contentStart = (contentStarts.elementAt(index))[i];
+					int contentEnd = (contentEnds.elementAt(index))[i];
 
 					try {
 						br.setLineNr(contentStart);
@@ -236,16 +230,16 @@ public class MboxHandler {
 
 	private void addFileNames() {
 		for (int i = 0; i < numMessages; i++) {
-			int numContents = ((int[]) contentStarts.elementAt(i)).length;
-			String[] fileNames = (String[]) contentFileNames.elementAt(i);
-			String[] types = (String[]) contentTypes.elementAt(i);
+			int numContents = (contentStarts.elementAt(i)).length;
+			String[] fileNames = contentFileNames.elementAt(i);
+			String[] types = contentTypes.elementAt(i);
 
 			for (int j = 0; j < numContents; j++) {
 				if (fileNames[j] == null) {
 					if ((types[j] != null && types[j]
 							.equalsIgnoreCase("MESSAGE/RFC822"))) {
-						int contentStart = ((int[]) contentStarts.elementAt(i))[j];
-						int contentEnd = ((int[]) contentEnds.elementAt(i))[j];
+						int contentStart = (contentStarts.elementAt(i))[j];
+						int contentEnd = (contentEnds.elementAt(i))[j];
 						MailHandler mh = new MailHandler(br, contentStart,
 								contentEnd);
 						String attachmentSubject;
@@ -254,8 +248,8 @@ public class MboxHandler {
 						} else {
 							attachmentSubject = "";
 						}
-						((String[]) contentFileNames.elementAt(i))[j] = makeFilename(
-								"", attachmentSubject) + ".eml";
+						(contentFileNames.elementAt(i))[j] = makeFilename("",
+								attachmentSubject) + ".eml";
 					}
 				}
 			}
@@ -351,20 +345,19 @@ public class MboxHandler {
 		int successfulExported = 0;
 
 		for (int i = 0; i < messages.length; i++) {
-			Integer index = (Integer) sorting.elementAt(messages[i]);
+			Integer index = sorting.elementAt(messages[i]);
 			toSave.addElement(index);
 		}
 
 		try {
 			for (int i = 0; i < toSave.size(); i++) {
-				int index = ((Integer) toSave.elementAt(i)).intValue();
-				int msgOffset = ((Integer) msgOffsets.elementAt(index))
-						.intValue();
-				Date msgDate = (Date) dates.elementAt(index);
+				int index = (toSave.elementAt(i)).intValue();
+				int msgOffset = (msgOffsets.elementAt(index)).intValue();
+				Date msgDate = dates.elementAt(index);
 
 				int msgOffsetNext;
 				if (index < msgOffsets.size() - 1) {
-					msgOffsetNext = ((Integer) msgOffsets.elementAt(index + 1))
+					msgOffsetNext = (msgOffsets.elementAt(index + 1))
 							.intValue();
 				} else {
 					msgOffsetNext = -1;
@@ -375,13 +368,11 @@ public class MboxHandler {
 
 				String baseFileName;
 				if (useReceiver) {
-					baseFileName = makeFilename(
-							(String) receivers.elementAt(index),
-							(String) subjects.elementAt(index));
+					baseFileName = makeFilename(receivers.elementAt(index),
+							subjects.elementAt(index));
 				} else {
-					baseFileName = makeFilename(
-							(String) senders.elementAt(index),
-							(String) subjects.elementAt(index));
+					baseFileName = makeFilename(senders.elementAt(index),
+							subjects.elementAt(index));
 				}
 				String fileName = baseFileName + ".eml";
 
@@ -426,9 +417,9 @@ public class MboxHandler {
 	public int saveAttachments(int index, int[] attachments, String directory) {
 		int successfulSaved = 0;
 
-		index = ((Integer) sorting.elementAt(index)).intValue();
-		Date msgDate = (Date) dates.elementAt(index);
-		String[] fileNames = (String[]) contentFileNames.elementAt(index);
+		index = (sorting.elementAt(index)).intValue();
+		Date msgDate = dates.elementAt(index);
+		String[] fileNames = contentFileNames.elementAt(index);
 
 		try {
 			for (int i = 0; i < attachments.length; i++) {
@@ -443,10 +434,9 @@ public class MboxHandler {
 				if (k != attachments[i])
 					continue;
 
-				int contentStart = ((int[]) contentStarts.elementAt(index))[j];
-				int contentEnd = ((int[]) contentEnds.elementAt(index))[j];
-				String contentEncoding = ((String[]) contentEncodings
-						.elementAt(index))[j];
+				int contentStart = (contentStarts.elementAt(index))[j];
+				int contentEnd = (contentEnds.elementAt(index))[j];
+				String contentEncoding = (contentEncodings.elementAt(index))[j];
 				if (contentEncoding == null) {
 					contentEncoding = "7BIT";
 				}
@@ -486,8 +476,9 @@ public class MboxHandler {
 						while ((curLine = br.getLineNr()) <= contentEnd
 								&& (line = br.readLine()) != null) {
 							out.append(line);
-							if (curLine < contentEnd)
+							if (curLine < contentEnd) {
 								out.append("\r\n");
+							}
 						}
 						String outString = QuotedPrintable.decode(out
 								.toString());
@@ -571,11 +562,10 @@ public class MboxHandler {
 		for (int i = 0; i < index.size(); i++) {
 			Object item;
 			if (isString) {
-				item = ((String) items.elementAt(((Integer) index.elementAt(i))
+				item = ((String) items.elementAt((index.elementAt(i))
 						.intValue())).toUpperCase();
 			} else {
-				item = items.elementAt(((Integer) index.elementAt(i))
-						.intValue());
+				item = items.elementAt((index.elementAt(i)).intValue());
 			}
 			@SuppressWarnings("unchecked")
 			int insertionPoint = Collections.binarySearch(
