@@ -85,7 +85,8 @@ public class Owlmail {
 	private SearchType Type;
 	private static MailData Mails;
 
-	private static String Path = System.getProperty("user.dir");
+	// private static String Path = System.getProperty("user.dir");
+	private static String Path = "D:/Desktop/resources";
 
 	public Owlmail() {
 		initialize();
@@ -108,6 +109,7 @@ public class Owlmail {
 				loadingDialog.setLocationRelativeTo(null);
 				loadingDialog.setVisible(true);
 				setType(SearchType.SUBJECT);
+
 				Mails = new MailData(getPath(), progressBar, lblWork);
 				RefreshView("");
 				lblWork.setVisible(false);
@@ -192,22 +194,23 @@ public class Owlmail {
 			public void actionPerformed(ActionEvent e) {
 				JComboBox cb = (JComboBox) e.getSource();
 				String type = (String) cb.getSelectedItem();
-				if (type == Resource.getValue("Owlmail.typeSubject")) {
+				if (type.equals(Resource.getValue("Owlmail.typeSubject"))) {
 					setType(SearchType.SUBJECT);
 				}
-				if (type == Resource.getValue("Owlmail.typePerson")) {
+				if (type.equals(Resource.getValue("Owlmail.typePerson"))) {
 					setType(SearchType.PERSON);
 				}
-				if (type == Resource.getValue("Owlmail.typeText")) {
+				if (type.equals(Resource.getValue("Owlmail.typeText"))) {
 					setType(SearchType.CONTENT);
 				}
-				if (type == Resource.getValue("Owlmail.typeSenderOnly")) {
+				if (type.equals(Resource.getValue("Owlmail.typeSenderOnly"))) {
 					setType(SearchType.SENDER_ONLY);
 				}
-				if (type == Resource.getValue("Owlmail.typeReceiverOnly")) {
+				if (type.equals(Resource.getValue("Owlmail.typeReceiverOnly"))) {
 					setType(SearchType.RECEIVER_ONLY);
 				}
 				if (!type.equals("")) {
+					// 处理选中项
 					RefreshView(tfSearchText.getText());
 				} else {
 					switch (getType()) {
@@ -238,7 +241,8 @@ public class Owlmail {
 		cbSelectSearchType.setModel(new DefaultComboBoxModel(new String[] {
 				Resource.getValue("Owlmail.typeSubject"),
 				Resource.getValue("Owlmail.typePerson"),
-				Resource.getValue("Owlmail.typeText"), "",
+				Resource.getValue("Owlmail.typeText"),
+				"",// 此处添加一个空格
 				Resource.getValue("Owlmail.typeSenderOnly"),
 				Resource.getValue("Owlmail.typeReceiverOnly") }));
 		container.add(cbSelectSearchType);
