@@ -301,12 +301,13 @@ public class AppFrame extends FrameView {
 							+ ApplicationProperty
 									.getString("Application.helpFileName"));
 			JEditorPane jep = new JEditorPane();
+			// 避免中文乱码
 			jep.setContentType("text/html;charset=utf-8");
 			jep.setEditable(false);
 			jep.read(in, jep);
 			JScrollPane jsp = new JScrollPane(jep);
 			jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-			jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+			jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 			jsp.setPreferredSize(new Dimension(800, 600));
 			JOptionPane.showMessageDialog(instance, jsp,
 					locale.getString("AIDE"), JOptionPane.PLAIN_MESSAGE);
