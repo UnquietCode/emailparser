@@ -829,9 +829,9 @@ public class AppFrame extends FrameView {
 		String rep = "";
 		if (!locale.getLocale().getLanguage()
 				.equals(Locale.getDefault().getLanguage())) {
-			rep = "<br><br><p align=center><font color='gray'><i>Your language isn'thread suported. It's easy to translate this software into your language :<br> See "
-					+ ApplicationProperty.getString("Application.homepage")
-					+ "</p>";
+			rep = "<br><br><p align=center><font size='6' color='gray'>"
+					+ ApplicationProperty.getString("Application.welcome")
+					+ "</font></p>";
 		}
 		return rep + "</html>";
 	}
