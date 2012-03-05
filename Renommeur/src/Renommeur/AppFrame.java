@@ -301,7 +301,7 @@ public class AppFrame extends FrameView {
 							+ ApplicationProperty
 									.getString("Application.helpFileName"));
 			JEditorPane jep = new JEditorPane();
-			jep.setContentType("text/html");
+			jep.setContentType("text/html;charset=utf-8");
 			jep.setEditable(false);
 			jep.read(in, jep);
 			JScrollPane jsp = new JScrollPane(jep);
