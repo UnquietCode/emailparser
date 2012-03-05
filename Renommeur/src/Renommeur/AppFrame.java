@@ -906,6 +906,7 @@ public class AppFrame extends FrameView {
 				.getString("CRÉE UN BOUTON À PARTIR DU TEXTE SÉLECTIONNÉ"));
 		fileMenu.add(jmAjouter);
 
+		//
 		jmDel.setAction(actionMap.get("actionDel"));
 		jmDel.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
 		jmDel.setText(locale

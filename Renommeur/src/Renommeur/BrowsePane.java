@@ -36,7 +36,7 @@ public class BrowsePane extends JPanel implements MouseListener,
 
 	private JScrollPane scrollPane;
 	// 当前选中的缩略图
-	private Element VignetteSelectionnée;
+	private Element SelectedThumbnail;
 	//
 	private Element interm;
 	//
@@ -52,7 +52,7 @@ public class BrowsePane extends JPanel implements MouseListener,
 		super();
 		IsRefresh = false;
 		this.frame = frame;
-		VignetteSelectionnée = null;
+		SelectedThumbnail = null;
 		old = System.currentTimeMillis();
 
 		centre = new JPanel();
@@ -120,7 +120,7 @@ public class BrowsePane extends JPanel implements MouseListener,
 				tab[j] = new Element(photo, frame);
 				tab[j].setNum(i);
 				if (cur == photo) {
-					VignetteSelectionnée = tab[j];
+					SelectedThumbnail = tab[j];
 				}
 				centre.add(tab[j]);
 				centre.validate();
@@ -129,7 +129,7 @@ public class BrowsePane extends JPanel implements MouseListener,
 		}
 		centre.addMouseListener(this);
 		centre.addMouseMotionListener(this);
-		centre.scrollRectToVisible(VignetteSelectionnée.getBounds());
+		centre.scrollRectToVisible(SelectedThumbnail.getBounds());
 		this.repaint();
 		this.validate();
 		ChargePrioritairementImages();
