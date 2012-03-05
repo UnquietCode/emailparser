@@ -308,7 +308,7 @@ public class AppFrame extends FrameView {
 			JScrollPane jsp = new JScrollPane(jep);
 			jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 			jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-			jsp.setPreferredSize(new Dimension(800, 600));
+			jsp.setPreferredSize(new Dimension(600, 500));
 			JOptionPane.showMessageDialog(instance, jsp,
 					locale.getString("AIDE"), JOptionPane.PLAIN_MESSAGE);
 		} catch (Exception e) {
