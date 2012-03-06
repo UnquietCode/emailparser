@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: . lib/metadata-extractor-2.4.0-beta-1.jar lib/swing-worker-1.1.jar lib/appframework-1.0.3.jar
+Main-Class: Renommeur.Renommeur
+
