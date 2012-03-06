@@ -6,14 +6,22 @@
 ;Include Modern UI
 
   !include "MUI.nsh"
-
+ 
+ ;--------------------------------
+  ; 安装程序初始定义常量
+  
+  !define PRODUCT_NAME "Rename"
+  !define PRODUCT_VERSION "0.9"
+  !define PRODUCT_PUBLISHER "SHENZHEN AISTOR INFORMATION STORAGE TECHNOLOGIES CO.,LTD."
+  !define PRODUCT_WEB_SITE "www.sz-aistor.com"
+  
 ;--------------------------------
 ;General
 
   ;Name and file
   Name "Rename"
   OutFile "RenameInstaller.exe"
-
+  
   ;Default installation folder
   InstallDir "$PROGRAMFILES\SZ-AISTOR\Rename"
   
@@ -24,11 +32,11 @@
 ;Interface Settings
 
   !define MUI_ABORTWARNING
-    !define MUI_HEADERIMAGE "E:\Spaces\Renommeur\installer\install.bmp"
-    !define MUI_HEADERIMAGE_BITMAP_NOSTRETCH
-    !define MUI_HEADERIMAGE_BITMAP "E:\Spaces\Renommeur\installer\install.bmp"
-    !define MUI_ICON "E:\Spaces\Renommeur\installer\setup.ico"
-    !define MUI_UNICON "E:\Spaces\Renommeur\installer\unsetup.ico"
+  !define MUI_HEADERIMAGE "E:\Spaces\Renommeur\installer\install.bmp"
+  !define MUI_HEADERIMAGE_BITMAP_NOSTRETCH
+  !define MUI_HEADERIMAGE_BITMAP "E:\Spaces\Renommeur\installer\install.bmp" ;顶部左侧图片
+  !define MUI_ICON "E:\Spaces\Renommeur\installer\setup.ico" ;安装包图标
+  !define MUI_UNICON "E:\Spaces\Renommeur\installer\unsetup.ico" ;卸载文件图标
 
 ;--------------------------------
 ;Pages
@@ -44,6 +52,7 @@
 ;--------------------------------
 ;Languages
  
+  !insertmacro MUI_LANGUAGE "SimpChinese"
   !insertmacro MUI_LANGUAGE "English"
 
 ;--------------------------------
@@ -84,6 +93,11 @@ Section "Start Menu Shortcuts"
   CreateDirectory "$SMPROGRAMS\Rename"
   CreateShortCut "$SMPROGRAMS\Rename\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe"
   CreateShortCut "$SMPROGRAMS\Rename\Rename.lnk" "$INSTDIR\Rename_0.9.jar" "" "$INSTDIR\rename_32.ico"
+  CreateShortCut "$DESKTOP\Rename.lnk" "$INSTDIR\Rename_0.9.jar" "" "$INSTDIR\rename_32.ico"
+SectionEnd
+
+Section "Desktop shortcut"
+  CreateShortCut "$DESKTOP\Rename.lnk" "$INSTDIR\Rename_0.9.jar" "" "$INSTDIR\rename_32.ico"
 SectionEnd
 
 ;--------------------------------
@@ -98,6 +112,8 @@ Section "Uninstall"
 
     ; Remove shortcuts
   RMDir /r "$SMPROGRAMS\Rename"
+  
+  Delete /REBOOTOK "$DESKTOP\Rename"
 
   ; Remove directories used
   RMDir /r "$INSTDIR"
