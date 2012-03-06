@@ -1,7 +1,7 @@
-Welcome to use ÕÕÆ¬ÖØÃüÃû¹ÜÀí¹¤¾ß
+Welcome to use ç…§ç‰‡é‡å‘½åç®¡ç†å·¥å…·
 
-°æÈ¨¹éÉîÛÚ°®Ë¼ÍØĞÅÏ¢´æ´¢¼¼ÊõÓĞÏŞ¹«Ë¾ËùÓĞ¡£
+Copyright SZ-AISTOR. All rights reserved.
 
-×÷Õß£ºÕÅ×÷Ç¿
-E-mail£ºz.zuoqiang@gmail.com
-2012Äê3ÔÂ5ÈÕ
+Author: zhangzuoqiang
+E-mail: z.zuoqiang@gmail.com
+2012-03-06
