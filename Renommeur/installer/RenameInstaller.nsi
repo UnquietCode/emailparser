@@ -1,11 +1,6 @@
 ;NSIS Modern User Interface version 1.70
 ;Rename Installer Script
 ;Written by zhangzuoqiang
-
-;--------------------------------
-;Include Modern UI
-
-  !include "MUI.nsh"
  
  ;--------------------------------
   ; 安装程序初始定义常量
@@ -14,6 +9,13 @@
   !define PRODUCT_VERSION "0.9"
   !define PRODUCT_PUBLISHER "SHENZHEN AISTOR INFORMATION STORAGE TECHNOLOGIES CO.,LTD."
   !define PRODUCT_WEB_SITE "www.sz-aistor.com"
+  
+  SetCompressor lzma
+  
+;--------------------------------
+;Include Modern UI
+
+  !include "MUI.nsh"
   
 ;--------------------------------
 ;General
@@ -66,7 +68,7 @@ Section "Rename (required)" SecDummy
   SetOutPath "$INSTDIR"
   
    File "E:\Spaces\Renommeur\Rename_0.9.jar"
-   File "E:\Spaces\Renommeur\Res\rename_32.ico"
+   File "E:\Spaces\Renommeur\Res\rename.ico"
 
     SetOutPath "$INSTDIR\Renommeur_lib"
 
@@ -92,12 +94,11 @@ SectionEnd
 Section "Start Menu Shortcuts"
   CreateDirectory "$SMPROGRAMS\Rename"
   CreateShortCut "$SMPROGRAMS\Rename\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe"
-  CreateShortCut "$SMPROGRAMS\Rename\Rename.lnk" "$INSTDIR\Rename_0.9.jar" "" "$INSTDIR\rename_32.ico"
-  CreateShortCut "$DESKTOP\Rename.lnk" "$INSTDIR\Rename_0.9.jar" "" "$INSTDIR\rename_32.ico"
+  CreateShortCut "$SMPROGRAMS\Rename\Rename.lnk" "$INSTDIR\Rename_0.9.jar" "" "$INSTDIR\rename.ico"
 SectionEnd
 
 Section "Desktop shortcut"
-  CreateShortCut "$DESKTOP\Rename.lnk" "$INSTDIR\Rename_0.9.jar" "" "$INSTDIR\rename_32.ico"
+  CreateShortCut "$DESKTOP\Rename.lnk" "$INSTDIR\Rename_0.9.jar" "" "$INSTDIR\rename.ico"
 SectionEnd
 
 ;--------------------------------
@@ -110,12 +111,15 @@ Section "Uninstall"
   DeleteRegKey HKLM SOFTWARE\Rename
   DeleteRegKey /ifempty HKCU "Software\Rename"
 
-    ; Remove shortcuts
-  RMDir /r "$SMPROGRAMS\Rename"
-  
+  ; Remove shortcuts
+  Delete /REBOOTOK "$SMPROGRAMS\Rename\Uninstall.lnk"
+  Delete /REBOOTOK "$SMPROGRAMS\Rename\Rename.lnk"
   Delete /REBOOTOK "$DESKTOP\Rename"
+  RMDir /r "$SMPROGRAMS\Rename"
 
   ; Remove directories used
   RMDir /r "$INSTDIR"
+  
+  SetAutoClose false
 
 SectionEnd
