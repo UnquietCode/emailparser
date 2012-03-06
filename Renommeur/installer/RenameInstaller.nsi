@@ -57,9 +57,7 @@ Section "Rename (required)" SecDummy
   SetOutPath "$INSTDIR"
   
    File "E:\Spaces\Renommeur\Rename_0.9.jar"
-   File "E:\Spaces\Renommeur\Res\rename_16.ico"
    File "E:\Spaces\Renommeur\Res\rename_32.ico"
-   File "E:\Spaces\Renommeur\Res\rename_48.ico"
 
     SetOutPath "$INSTDIR\Renommeur_lib"
 
