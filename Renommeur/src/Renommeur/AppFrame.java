@@ -738,7 +738,7 @@ public class AppFrame extends FrameView {
 			HttpURLConnection connection = (HttpURLConnection) url
 					.openConnection();
 
-			// Configuration de la requete.
+			// 配置Connection
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty(
 					"User-Agent",
@@ -771,44 +771,43 @@ public class AppFrame extends FrameView {
 					String[] Version = s.split("##");
 					if (Version[0].compareToIgnoreCase(ApplicationProperty
 							.getString("Application.version")) > 0) {
-						String nouveautés = "";
-						// En langue par défaut
+						String newStr = "";
+						// 默认语言
 						for (String lang : Version) {
 							if (lang.startsWith(Locale.getDefault()
 									.getLanguage() + "#")) {
-								nouveautés = lang.substring(3, lang.length());
+								newStr = lang.substring(3, lang.length());
 							}
 						}
-						// En anglais
-						if (nouveautés.equals("")) {
+						// 英语
+						if (newStr.equals("")) {
 							for (String lang : Version) {
 								if (lang.startsWith("en#")) {
-									nouveautés = lang.substring(3,
-											lang.length());
+									newStr = lang.substring(3, lang.length());
 								}
 							}
 						}
-						// Le 1er venu
-						if (nouveautés.equals("")) {
+						// 首次初始化
+						if (newStr.equals("")) {
 							if (Version.length > 0) {
 								if (Version[1].length() > 3) {
-									nouveautés = Version[1].substring(3,
+									newStr = Version[1].substring(3,
 											Version[1].length());
 								}
-								// Message par défaut
+								// 默认消息
 								else {
-									nouveautés = locale
+									newStr = locale
 											.getString("PAS_D_INFORMATIONS_DE_VERSION");
-									nouveautés = nouveautés.replaceAll("\\|",
+									newStr = newStr.replaceAll("\\|",
 											"</div></li><li><div align=left>");
 								}
 							}
 						}
 
-						// Pour tous :
+						// 所有的
 						rep += "</center><p align='left'><b><u>" + Version[0]
 								+ " :</u></b><br><ul><li><div align=left>"
-								+ nouveautés + "</div></li></ul><br>";
+								+ newStr + "</div></li></ul><br>";
 					}
 				}
 			}
