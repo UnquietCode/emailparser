@@ -27,7 +27,9 @@
   ;Name and file
   Name "${PRODUCT_NAME}"
   OutFile "RenameInstaller.exe"
-  
+  AutoCloseWindow false
+  ShowInstDetails show
+
   ;Default installation folder
   InstallDir "$PROGRAMFILES\SZ-AISTOR\Rename"
   
@@ -75,31 +77,32 @@
 ;--------------------------------
 ;Installer Sections
 
-Section "Rename (required)" SecDummy
-  
-  ; //
-  call DownloadAndInstallJREIfNecessary
-  
-  
+Section "Rename" SecDummy
+    
   SectionIn RO
 
   ;Files to be installed
-  SetOutPath "$INSTDIR"  
-   File "E:\Spaces\Renommeur\Rename_0.9.jar"
-   File "E:\Spaces\Renommeur\Res\rename.ico"
-   
-   SetOutPath "$SYSDIR"   
-   File "E:\Spaces\Renommeur\installer\InetLoad.dll"
-   
-   SetOutPath "$INSTDIR\Renommeur_lib"
-   File "E:\Spaces\Renommeur\Renommeur_lib\appframework-1.0.3.jar"
-   File "E:\Spaces\Renommeur\Renommeur_lib\metadata-extractor-2.4.0-beta-1.jar"
-   File "E:\Spaces\Renommeur\Renommeur_lib\swing-worker-1.1.jar"
-   
-   SetOutPath "$INSTDIR"
+  SetOutPath "$INSTDIR"
+  File "E:\Spaces\Renommeur\Rename_0.9.jar"
+  File "E:\Spaces\Renommeur\Res\rename.ico"
+  File "E:\Spaces\Renommeur\installer\runjar.bat"
+  
+  SetOutPath "$INSTDIR\Renommeur_lib"
+  File "E:\Spaces\Renommeur\Renommeur_lib\appframework-1.0.3.jar"
+  File "E:\Spaces\Renommeur\Renommeur_lib\metadata-extractor-2.4.0-beta-1.jar"
+  File "E:\Spaces\Renommeur\Renommeur_lib\swing-worker-1.1.jar"
+  
+  SetOutPath "$INSTDIR"
 
     ; Write the installation path into the registry
   WriteRegStr HKLM SOFTWARE\Rename "Install_Dir" "$INSTDIR"
+  
+  WriteRegStr HKEY_LOCAL_MACHINE SOFTWARE\Classes\.jar "" jar_auto_file
+  WriteRegStr HKEY_LOCAL_MACHINE SOFTWARE\Classes\jar_auto_file "" ""
+  WriteRegStr HKEY_LOCAL_MACHINE SOFTWARE\Classes\jar_auto_file\shell "" open
+  WriteRegStr HKEY_LOCAL_MACHINE SOFTWARE\Classes\jar_auto_file\shell\open "" ""
+  DeleteRegValue HKEY_LOCAL_MACHINE SOFTWARE\Classes\jar_auto_file\shell\open ""
+  WriteRegStr HKEY_LOCAL_MACHINE SOFTWARE\Classes\jar_auto_file\shell\open\command "" "$\"$WINDIR\runjar.bat$\" $\"%1$\""
   
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "DisplayName" "${PRODUCT_NAME}"
@@ -109,7 +112,11 @@ Section "Rename (required)" SecDummy
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "NoModify" 1
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "NoRepair" 1
   WriteUninstaller "uninstall.exe"
-  
+SectionEnd
+
+Section "Install Java JRE"
+  SectionIn RO
+  call DownloadAndInstallJREIfNecessary
 SectionEnd
 
 ; Optional section (can be disabled by the user)
