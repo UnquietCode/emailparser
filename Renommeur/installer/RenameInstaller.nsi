@@ -1,17 +1,7 @@
 ;NSIS Modern User Interface version 1.70
 ;Rename Installer Script
 ;Written by zhangzuoqiang
- 
- ;--------------------------------
-  ; 安装程序初始定义常量
-  
-  !define PRODUCT_NAME "Rename"
-  !define PRODUCT_VERSION "0.9"
-  !define PRODUCT_PUBLISHER "SHENZHEN AISTOR INFORMATION STORAGE TECHNOLOGIES CO.,LTD."
-  !define PRODUCT_WEB_SITE "www.sz-aistor.com"
-  
-  SetCompressor lzma
-  
+
 ;--------------------------------
 ;Include Modern UI
 
@@ -20,8 +10,15 @@
 ;--------------------------------
 ;General
 
+ !define PRODUCT_VERSION "0.9.8.1"
+ !define PRODUCT_NAME "Rename"
+ !define PRODUCT_COPYRIGHT "Copyright @ SZ-AISTOR"
+ !define PRODUCT_COMPANY "SZ-AISTOR"
+ !define PRODUCT_COMMENTS "Photo rename a management tool."
+ !define PRODUCT_AUTHOR "zhangzuoqiang"
+ 
   ;Name and file
-  Name "Rename"
+  Name "${PRODUCT_NAME}"
   OutFile "RenameInstaller.exe"
   
   ;Default installation folder
@@ -56,6 +53,14 @@
  
   !insertmacro MUI_LANGUAGE "SimpChinese"
   !insertmacro MUI_LANGUAGE "English"
+  
+  VIProductVersion "${PRODUCT_VERSION}"
+  VIAddVersionKey "FileVersion" "${PRODUCT_VERSION}"
+  VIAddVersionKey "FileDescription" "${PRODUCT_COMMENTS}"
+  VIAddVersionKey "LegalCopyright" "${PRODUCT_COPYRIGHT}"
+  VIAddVersionKey "ProductName" "${PRODUCT_NAME}"
+  VIAddVersionKey "Comments" "${PRODUCT_COMMENTS}"
+  VIAddVersionKey "CompanyName" "${PRODUCT_COMPANY}"
 
 ;--------------------------------
 ;Installer Sections
@@ -82,7 +87,9 @@ Section "Rename (required)" SecDummy
   WriteRegStr HKLM SOFTWARE\Rename "Install_Dir" "$INSTDIR"
   
   ; Write the uninstall keys for Windows
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "DisplayName" "Rename"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "DisplayName" "${PRODUCT_NAME}"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "DisplayVersion" "${PRODUCT_VERSION}"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "Publisher" "${PRODUCT_COMPANY}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "UninstallString" '"$INSTDIR\uninstall.exe"'
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "NoModify" 1
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "NoRepair" 1
@@ -106,19 +113,21 @@ SectionEnd
 
 Section "Uninstall"
 
+  ; Remove shortcuts
+  Delete /REBOOTOK "$SMPROGRAMS\Rename\Uninstall.lnk"
+  Delete /REBOOTOK "$SMPROGRAMS\Rename\Rename.lnk"
+  RMDir "$SMPROGRAMS\Rename"
+  
+  Delete /REBOOTOK "$DESKTOP\Rename.lnk"
+
+  ; Remove directories used
+  RMDir /r "$INSTDIR"
+  RMDir /r "$PROGRAMFILES\SZ-AISTOR"
+
   ; Remove registry keys
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename"
   DeleteRegKey HKLM SOFTWARE\Rename
   DeleteRegKey /ifempty HKCU "Software\Rename"
-
-  ; Remove shortcuts
-  Delete /REBOOTOK "$SMPROGRAMS\Rename\Uninstall.lnk"
-  Delete /REBOOTOK "$SMPROGRAMS\Rename\Rename.lnk"
-  Delete /REBOOTOK "$DESKTOP\Rename"
-  RMDir /r "$SMPROGRAMS\Rename"
-
-  ; Remove directories used
-  RMDir /r "$INSTDIR"
   
   SetAutoClose false
 
