@@ -93,7 +93,7 @@ Function DownloadAndInstallJREIfNecessary
 
 downloadJRE:
   DetailPrint "About to download JRE from ${JRE_URL}"
-  InetLoad::load "${JRE_URL}" "$INSTDIR\jre-6u31-windows-i586.exe"
+  InetLoad::load "${JRE_URL}" "$INSTDIR\jre-${JRE_VERSION}-windows-i586.exe"
   Pop $0 # return value = exit code, "OK" if OK
   DetailPrint "Download result = $0"
 

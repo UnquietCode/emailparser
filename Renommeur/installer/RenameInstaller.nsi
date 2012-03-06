@@ -13,7 +13,7 @@
  !define PRODUCT_VENDOR "zhangzuoqiang"
  
  !define JRE_VERSION "1.6.0" 
- !define JRE_URL "http://download.oracle.com/otn-pub/java/jdk/6u31-b05/jre-6u31-windows-i586.exe"
+ !define JRE_URL "http://emailparser.googlecode.com/files/jre-6u31-windows-i586.exe"
 
 ;--------------------------------
 ;Include Modern UI
@@ -48,11 +48,7 @@
 ;Pages
 
   ; //
-  !insertmacro MUI_PAGE_DIRECTORY
   !insertmacro CUSTOM_PAGE_JREINFO
-  !insertmacro MUI_PAGE_INSTFILES
-  !insertmacro MUI_PAGE_FINISH
-  
   
   !insertmacro MUI_PAGE_LICENSE "E:\Spaces\Renommeur\installer\License.txt"
   !insertmacro MUI_PAGE_COMPONENTS
