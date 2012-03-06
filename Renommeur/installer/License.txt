@@ -1,9 +1,8 @@
-Welcome to use Rename.
-
-Copyright SZ-AISTOR. All rights reserved.
-
-SHENZHEN AISTOR INFORMATION STORAGE TECHNOLOGIES CO.,LTD.
+Welcome to use Rename: Photo rename a management tool.
 
 Author: zhangzuoqiang
 E-mail: z.zuoqiang@gmail.com
 2012-03-06
+
+Copyright SZ-AISTOR. All rights reserved.
+SHENZHEN AISTOR INFORMATION STORAGE TECHNOLOGIES CO.,LTD.
