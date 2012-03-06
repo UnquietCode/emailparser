@@ -66,7 +66,7 @@
 ;Installer Sections
 
 Section "Rename (required)" SecDummy
-
+  
   SectionIn RO
 
   ;Files to be installed
