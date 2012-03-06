@@ -1,6 +1,6 @@
 ;NSIS Modern User Interface version 1.70
 ;Rename Installer Script
-;Written by Stephen Strenn
+;Written by zhangzuoqiang
 
 ;--------------------------------
 ;Include Modern UI
