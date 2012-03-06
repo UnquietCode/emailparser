@@ -44,7 +44,7 @@
 ;--------------------------------
 ;Languages
  
-  !insertmacro MUI_LANGUAGE "Chinese"
+  !insertmacro MUI_LANGUAGE "English"
 
 ;--------------------------------
 ;Installer Sections
