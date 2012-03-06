@@ -103,6 +103,14 @@ Section "Rename" SecDummy
   WriteRegStr HKEY_LOCAL_MACHINE SOFTWARE\Classes\jar_auto_file\shell\open "" ""
   DeleteRegValue HKEY_LOCAL_MACHINE SOFTWARE\Classes\jar_auto_file\shell\open ""
   WriteRegStr HKEY_LOCAL_MACHINE SOFTWARE\Classes\jar_auto_file\shell\open\command "" "$\"$WINDIR\runjar.bat$\" $\"%1$\""
+  ; http://blog.csdn.net/hqcchina/article/details/4389685
+  
+  
+  
+  
+  
+  
+  
   
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "DisplayName" "${PRODUCT_NAME}"
