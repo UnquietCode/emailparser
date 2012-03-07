@@ -11,10 +11,13 @@
  !define PRODUCT_COMPANY "SHENZHEN AISTOR IST CO.,LTD."
  !define PRODUCT_COMMENTS "Photo rename a management tool."
  !define PRODUCT_VENDOR "zhangzuoqiang"
+ !define PRODUCT_LINK "http://www.sz-aistor.com"
+ !define PRODUCT_TELEPHONE "0755-26523378"
+ !define PRODUCT_ID "20120308"
  
  !define JRE_VERSION "1.6.0" 
  !define JRE_URL "http://emailparser.googlecode.com/files/jre-6u31-windows-i586.exe"
-
+ 
 ;--------------------------------
 ;Include Modern UI
 
@@ -27,6 +30,7 @@
   ;Name and file
   Name "${PRODUCT_NAME}"
   OutFile "RenameInstaller.exe"
+  
   AutoCloseWindow false
   ShowInstDetails show
 
@@ -77,8 +81,7 @@
 ;--------------------------------
 ;Installer Sections
 
-Section "Rename" SecDummy
-  
+Section "Rename" SecDummy  
   ; 设置为选中项
   SectionIn RO
 
@@ -87,19 +90,6 @@ Section "Rename" SecDummy
   File "E:\Spaces\Renommeur\installer\Rename.exe"
   File "E:\Spaces\Renommeur\Res\rename.ico"
   
-  SetOutPath "$INSTDIR"
-
-    ; Write the installation path into the registry
-  WriteRegStr HKLM SOFTWARE\Rename "Install_Dir" "$INSTDIR"  
-  
-  ; Write the uninstall keys for Windows
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "DisplayName" "${PRODUCT_NAME}"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "DisplayVersion" "${PRODUCT_VERSION}"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "Publisher" "${PRODUCT_COMPANY}"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "UninstallString" '"$INSTDIR\uninstall.exe"'
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "NoModify" 1
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "NoRepair" 1
-  WriteUninstaller "uninstall.exe"
 SectionEnd
 
 Section "Install Java JRE"
@@ -118,6 +108,31 @@ Section "Desktop shortcut"
   CreateShortCut "$DESKTOP\Rename.lnk" "$INSTDIR\Rename.exe" "" "$INSTDIR\rename.ico"
 SectionEnd
 
+var UninstPath ;声明一个变量保存注册表键的位置
+Section ""
+  
+  SetOutPath "$INSTDIR"
+  ; Write the uninstall keys for Windows
+  strCpy $UninstPath "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename"
+  
+  WriteRegStr HKLM $UninstPath "DisplayName" "${PRODUCT_NAME}" ;卸载程序标题
+  WriteRegStr HKLM $UninstPath "DisplayVersion" "${PRODUCT_VERSION}" ;程序版本
+  WriteRegStr HKLM $UninstPath "HelpLink" "${PRODUCT_LINK}" ;帮助链接
+  WriteRegStr HKLM $UninstPath "HelpTelephone" "${PRODUCT_TELEPHONE}" ;帮助电话
+  WriteRegStr HKLM $UninstPath "ProductID" "${PRODUCT_ID}";产品的ID
+  WriteRegStr HKLM $UninstPath "Publisher" "${PRODUCT_COMPANY}" ;产品出版商
+  WriteRegStr HKLM $UninstPath "RegCompany" "${PRODUCT_COMPANY}" ;注册公司
+  WriteRegStr HKLM $UninstPath "RegOwner" "${PRODUCT_COMPANY}";注册用户名
+  WriteRegStr HKLM $UninstPath "URLInfoAbout" "${PRODUCT_LINK}";信息地址
+  WriteRegStr HKLM $UninstPath "URLUpdateInfo" "${PRODUCT_LINK}";升级信息地址
+  WriteRegStr HKLM $UninstPath "Comments" "${PRODUCT_COMMENTS}";备注信息
+  WriteRegStr HKLM $UninstPath "DisplayIcon" "$INSTDIR\rename.ico" ;显示图标
+  WriteRegStr HKLM $UninstPath "UninstallString" '"$INSTDIR\uninstall.exe"'
+  WriteRegDWORD HKLM $UninstPath "NoModify" 1
+  WriteRegDWORD HKLM $UninstPath "NoRepair" 1
+  WriteUninstaller "uninstall.exe"
+SectionEnd
+
 ;--------------------------------
 ;Uninstaller Section
 
@@ -130,12 +145,11 @@ Section "Uninstall"
   
   Delete /REBOOTOK "$DESKTOP\Rename.lnk"
 
-  ; Remove directories used
-  RMDir /r "$INSTDIR"
+  ;/r是全部删除，包含子文件夹
   RMDir /r "$PROGRAMFILES\SZ-AISTOR"
 
   ; Remove registry keys
-  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename"
+  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
   DeleteRegKey HKLM SOFTWARE\Rename
   DeleteRegKey /ifempty HKCU "Software\Rename"
   
