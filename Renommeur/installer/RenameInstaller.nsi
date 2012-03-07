@@ -78,14 +78,14 @@
 ;Installer Sections
 
 Section "Rename" SecDummy
-    
+  
+  ; 设置为选中项
   SectionIn RO
 
   ;Files to be installed
   SetOutPath "$INSTDIR"
   File "E:\Spaces\Renommeur\Rename_0.9.jar"
   File "E:\Spaces\Renommeur\Res\rename.ico"
-  File "E:\Spaces\Renommeur\installer\runjar.bat"
   
   SetOutPath "$INSTDIR\Renommeur_lib"
   File "E:\Spaces\Renommeur\Renommeur_lib\appframework-1.0.3.jar"
@@ -95,22 +95,7 @@ Section "Rename" SecDummy
   SetOutPath "$INSTDIR"
 
     ; Write the installation path into the registry
-  WriteRegStr HKLM SOFTWARE\Rename "Install_Dir" "$INSTDIR"
-  
-  WriteRegStr HKEY_LOCAL_MACHINE SOFTWARE\Classes\.jar "" jar_auto_file
-  WriteRegStr HKEY_LOCAL_MACHINE SOFTWARE\Classes\jar_auto_file "" ""
-  WriteRegStr HKEY_LOCAL_MACHINE SOFTWARE\Classes\jar_auto_file\shell "" open
-  WriteRegStr HKEY_LOCAL_MACHINE SOFTWARE\Classes\jar_auto_file\shell\open "" ""
-  DeleteRegValue HKEY_LOCAL_MACHINE SOFTWARE\Classes\jar_auto_file\shell\open ""
-  WriteRegStr HKEY_LOCAL_MACHINE SOFTWARE\Classes\jar_auto_file\shell\open\command "" "$\"$WINDIR\runjar.bat$\" $\"%1$\""
-  ; http://blog.csdn.net/hqcchina/article/details/4389685
-  
-  
-  
-  
-  
-  
-  
+  WriteRegStr HKLM SOFTWARE\Rename "Install_Dir" "$INSTDIR"  
   
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Rename" "DisplayName" "${PRODUCT_NAME}"
@@ -134,7 +119,7 @@ Section "Start Menu Shortcuts"
   CreateShortCut "$SMPROGRAMS\Rename\Rename.lnk" "$INSTDIR\Rename_0.9.jar" "" "$INSTDIR\rename.ico"
 SectionEnd
 
-Section "Desktop shortcut"
+Section "Desktop shortcut"  
   CreateShortCut "$DESKTOP\Rename.lnk" "$INSTDIR\Rename_0.9.jar" "" "$INSTDIR\rename.ico"
 SectionEnd
 
