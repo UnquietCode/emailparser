@@ -84,13 +84,8 @@ Section "Rename" SecDummy
 
   ;Files to be installed
   SetOutPath "$INSTDIR"
-  File "E:\Spaces\Renommeur\Rename_0.9.jar"
+  File "E:\Spaces\Renommeur\Rename.exe"
   File "E:\Spaces\Renommeur\Res\rename.ico"
-  
-  SetOutPath "$INSTDIR\Renommeur_lib"
-  File "E:\Spaces\Renommeur\Renommeur_lib\appframework-1.0.3.jar"
-  File "E:\Spaces\Renommeur\Renommeur_lib\metadata-extractor-2.4.0-beta-1.jar"
-  File "E:\Spaces\Renommeur\Renommeur_lib\swing-worker-1.1.jar"
   
   SetOutPath "$INSTDIR"
 
@@ -116,11 +111,16 @@ SectionEnd
 Section "Start Menu Shortcuts"
   CreateDirectory "$SMPROGRAMS\Rename"
   CreateShortCut "$SMPROGRAMS\Rename\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe"
-  CreateShortCut "$SMPROGRAMS\Rename\Rename.lnk" "$INSTDIR\Rename_0.9.jar" "" "$INSTDIR\rename.ico"
+  CreateShortCut "$SMPROGRAMS\Rename\Rename.lnk" "$INSTDIR\Rename.exe" "" "$INSTDIR\rename.ico"
 SectionEnd
 
+<<<<<<< .mine
+Section "Desktop shortcut"  
+  CreateShortCut "$DESKTOP\Rename.lnk" "$INSTDIR\Rename.exe" "" "$INSTDIR\rename.ico"
+=======
 Section "Desktop shortcut"  
   CreateShortCut "$DESKTOP\Rename.lnk" "$INSTDIR\Rename_0.9.jar" "" "$INSTDIR\rename.ico"
+>>>>>>> .r92
 SectionEnd
 
 ;--------------------------------
