@@ -1,8 +1,14 @@
-Welcome to use Rename: Photo rename a management tool.
+Welcome to use Rename: A photo rename management tool.
 
+                                SZ-AISTOR License
+                           Version 0.9, 2012-03-07
+                          http://www.sz-aistor.com
+                          
 Author: zhangzuoqiang
 E-mail: z.zuoqiang@gmail.com
-2012-03-06
+2012-03-07
 
 Copyright SZ-AISTOR. All rights reserved.
 SHENZHEN AISTOR INFORMATION STORAGE TECHNOLOGIES CO.,LTD.
+
+TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
