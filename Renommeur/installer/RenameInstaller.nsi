@@ -9,7 +9,7 @@
  !define PRODUCT_NAME "Rename"
  !define PRODUCT_COPYRIGHT "Copyright @ SZ-AISTOR"
  !define PRODUCT_COMPANY "SHENZHEN AISTOR IST CO.,LTD."
- !define PRODUCT_COMMENTS "Photo rename a management tool."
+ !define PRODUCT_COMMENTS "A photo rename management tool."
  !define PRODUCT_VENDOR "zhangzuoqiang"
  !define PRODUCT_LINK "http://www.sz-aistor.com"
  !define PRODUCT_TELEPHONE "0755-26523378"
