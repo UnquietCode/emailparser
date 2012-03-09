@@ -13,9 +13,8 @@
 	<div align="center">
 		<form action="/Booklib/login" method="post">
 			登录名：<input type="text" value="${loginName }" name="loginName" /><br>
-			&nbsp;&nbsp;&nbsp;密码： <input type="password" value="" name="password" /><br> <input
-				type="submit" value="登陆" /><br> <font color=red>${error
-				}</font>
+			&nbsp;&nbsp;&nbsp;密码：<input type="password" value="" name="password" /><br> 
+			<input type="submit" value="登陆" /><br> <font color=red>${error}</font>
 		</form>
 	</div>
 </body>
