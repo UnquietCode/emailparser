@@ -1,0 +1,28 @@
++----+--------+--------------------------------------+---------------------------------------------------------+
+| id | method | uri                                  | desc                                                    |
++----+--------+--------------------------------------+---------------------------------------------------------+
+| 01 | GET    | /lib/                                | 跳转到/lib/book；                                       
+| 02 | GET    | /lib/book                            | 按页浏览书库的书，参数byBookId用于定位与分页；
+| 03 | POST   | /lib/book/add                        | 增加一本书，参数为name、author、price，都是必填项目；  
+| 04 | GET    | /lib/book/add                        | 显示增加书的页面                                      
+| 05 | GET    | /lib/book/{bookId}?edit=true         | 展示该书的详细信息，包括附属的所有评论，最新的评论在前；如果带有edit参数，则返回编辑页面，编辑页面不包含评论 
+| 06 | POST   | /lib/book/{bookId}/update            | 修改该书的信息  
+| 07 | POST   | /lib/book/{bookId}/delete            | 删除该书，只有管理用户才可以
+上面是book的controller
+| 09 | POST   | /lib/book/{bookId}/remark/add        | 增加对该书的评论               
+| 07 | POST   | /lib/book/{bookId}/remark/deleteAll  | 删除该书的所有评论,只有管理用户才可以                    
+| 08 | POST   | /lib/book/{bookId}/remark/{remarkId}/delete | 删除某一个评论 ,只有管理用户才可以
+上面是remark的controller                                        
+| 09 | GET    | /lib/login                           | 返回登录页面                                            
+| 10 | POST   | /lib/login                           | 执行登录判断 
+上面是login的controller                                           
+| 11 | GET    | /lib/user                            | 列出所有用户 ,只有管理用户才可以                                  
+| 12 | POST   | /lib/user/add                        | 新增一个用户，只有管理用户才可以                                        
+| 13 | GET    | /lib/user/add                        | 显示增加用户的页面                                      
+| 14 | GET    | /lib/user/{userId}?edit=true         | 显示某个用户的详细信息；如果带有edit参数，则返回编辑页面
+| 15 | POST   | /lib/user/{userId}/update            | 修改用户信息，只有管理用户和自己才可以
+| 16 | POST   | /lib/user/{userId}/delete            | 注销某个用户，只有管理用户才可以
+上面是user的controller                                      
+| 17 | GET    | /lib/logs                            | 按页列出所有用户操作日志，只有管理用户才可以查看          
+上面是log的controller                      
++----+--------+--------------------------------------+---------------------------------------------------------+
