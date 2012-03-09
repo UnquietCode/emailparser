@@ -9,7 +9,7 @@
 <title>登陆</title>
 </head>
 <body>
-	<h1 style="text-align: center">请先登录</h1>
+	<h1 style="text-align: center">登录</h1>
 	<div align="center">
 		<form action="/Booklib/login" method="post">
 			登录名：<input type="text" value="${loginName }" name="loginName" /><br>
