@@ -22,8 +22,8 @@
 		<c:choose>
 			<c:when test="${user.groups == 0 }">普通用户</c:when>
 			<c:otherwise>管理用户</c:otherwise>
-		</c:choose>
-		<br> 创建时间：${user.createTime }<br>
+		</c:choose><br>
+		创建时间：${user.createTime }<br>
 		<form action="/Booklib/user/${user.id }/delete" method="post">
 			<input type="submit" value="注销此用户" />
 		</form>
