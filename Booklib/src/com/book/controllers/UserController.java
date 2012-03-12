@@ -128,8 +128,13 @@ public class UserController {
 
 	@Post("{id}/delete")
 	@AdminRequired
-	public String delete(@Param("id") final String id) {
+	public String delete(final Invocation inv, @Param("id") final String id) {
 		this.userDAO.delete(Long.parseLong(id));
+		final User user = (User) inv.getRequest().getSession()
+				.getAttribute("loginUser");
+		if (id.equals(user.getId())) {
+			return logout(inv);
+		}
 		return "r:/Booklib/user";
 	}
 
