@@ -23,6 +23,7 @@
 				<th>是否成功</th>
 				<th>额外说明</th>
 				<th>创建时间</th>
+				<th>操作</th>
 			</tr>
 			<c:forEach var="item" items="${logs}">
 				<tr>
@@ -33,6 +34,12 @@
 					<td>${item.success }</td>
 					<td>${item.remarks }</td>
 					<td>${item.createTime }</td>
+					<td>
+						<form action="/Booklib/logs/${item.id }/delete" method="post">
+							<input type="hidden" value="${item.id }" name="id" />
+							<input type="submit" value="删除">
+						</form>
+					</td>
 				</tr>
 			</c:forEach>
 		</table>
