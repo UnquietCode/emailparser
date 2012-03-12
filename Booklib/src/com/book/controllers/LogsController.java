@@ -31,10 +31,8 @@ public class LogsController {
 	}
 
 	// 指定访问页码的数据？？？？？？？？？？？？
-	@Get("{id:[0-9]+}")
-	public String pageList(final Invocation inv,
-			@Param("id") final long pageId,
-			@Param("pageAction") final String action) {
+	@Get("{id}")
+	public String pageList(final Invocation inv, @Param("id") final long pageId) {
 		final User user = (User) inv.getRequest().getSession()
 				.getAttribute("loginUser");
 		final List<Log> logs = (pageId <= 0) ? this.logDAO.find(user.getName(),
