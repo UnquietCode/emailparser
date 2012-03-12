@@ -37,6 +37,9 @@ public class LogsController {
 	public String pageList(final Invocation inv,
 			@Param("pageId") final long pageId,
 			@Param("pageAction") final String action) {
+		
+		inv.getRequest();
+		
 		System.out.println(pageId);
 		System.out.println(action);
 		return list(inv, pageId);
