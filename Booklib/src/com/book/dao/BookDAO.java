@@ -10,8 +10,7 @@ import com.book.model.Book;
 
 //
 /**
- * 必须是接口，并且以大写DAO结尾
- * 必须标注@DAO，DAO中有一个catalog属性，对于大部分人来说，这个都是没用的
+ * 必须是接口，并且以大写DAO结尾 必须标注@DAO，DAO中有一个catalog属性，对于大部分人来说，这个都是没用的
  * 
  * @do
  * @Modify
@@ -28,6 +27,14 @@ public interface BookDAO {
 	 */
 	@SQL("select id, name, price, author, create_time from book where id = :1")
 	public Book get(long bookId);
+
+	/**
+	 * 获取记录条数
+	 * 
+	 * @return
+	 */
+	@SQL("select count(*) from book")
+	public int rows();
 
 	/**
 	 * @do 从数据库中查询出书名一样的书，一般来说书名可能重复，但是书名和作者不能同事重复

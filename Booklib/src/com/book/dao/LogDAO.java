@@ -16,12 +16,15 @@ import com.book.model.Log;
 @DAO
 public interface LogDAO {
 
+	@SQL("select count(*) from log where user_name=:1")
+	public int rows(String userName);
+
 	@SQL("select id, user_name, resource_pattern, resource_id, success, remarks, create_time from log")
 	public List<Log> find();
 
 	@SQL("select id, user_name, resource_pattern, resource_id, success, remarks, create_time from log where user_name=:1")
 	public List<Log> find(String userName);
-	
+
 	/**
 	 * @do 查询前几行的数据
 	 * @Modify

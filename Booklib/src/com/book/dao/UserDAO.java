@@ -11,6 +11,9 @@ import com.book.model.User;
 @DAO
 public interface UserDAO {
 
+	@SQL("select count(*) from user")
+	public int rows();
+
 	@SQL("select id, name, password, login_name, create_time, groups from user where login_name=:1")
 	public User getByLoginName(String loginName);
 
