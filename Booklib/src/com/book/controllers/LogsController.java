@@ -30,9 +30,10 @@ public class LogsController {
 		return "logs";
 	}
 
-	@Get("{pageId}")
+	// 指定访问页码的数据？？？？？？？？？？？？
+	@Get("{id:[0-9]+}")
 	public String pageList(final Invocation inv,
-			@Param("pageId") final long pageId,
+			@Param("id") final long pageId,
 			@Param("pageAction") final String action) {
 		final User user = (User) inv.getRequest().getSession()
 				.getAttribute("loginUser");

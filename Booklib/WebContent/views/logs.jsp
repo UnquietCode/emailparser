@@ -45,10 +45,10 @@
 			<!-- 分页 -->
 			<tr bgcolor="#CCCCCC">
 				<td colspan="8" align="right" valign="middle">
-					<a href="/Booklib/logs/${user.pageId }?pageAction=FIRST">首页</a>
-					<a href="/Booklib/logs/${user.pageId }?pageAction=PREVIOUS">上一页</a>
-					<a href="/Booklib/logs/${user.pageId }?pageAction=NEXT">下一页</a>
-					<a href="/Booklib/logs/${user.pageId }?pageAction=LAST">尾页</a>
+					<a href="/Booklib/logs/${user.id }?pageAction=FIRST">首页</a>
+					<a href="/Booklib/logs/${user.id }?pageAction=PREVIOUS">上一页</a>
+					<a href="/Booklib/logs/${user.id }?pageAction=NEXT">下一页</a>
+					<a href="/Booklib/logs/${user.id }?pageAction=LAST">尾页</a>
 				</td>
 			</tr>
 		</table>
