@@ -36,12 +36,21 @@
 					<td>${item.createTime }</td>
 					<td>
 						<form action="/Booklib/logs/${item.id }/delete" method="post">
-							<input type="hidden" value="${item.id }" name="id" />
-							<input type="submit" value="删除">
+							<input type="hidden" value="${item.id }" name="id" /> <input
+								type="submit" value="删除">
 						</form>
 					</td>
 				</tr>
 			</c:forEach>
+			<!-- 分页 -->
+			<tr bgcolor="#CCCCCC">
+				<td colspan="8" align="right" valign="middle">
+					<a href="/Booklib/logs/${user.pageId }?pageAction=FIRST">首页</a>
+					<a href="/Booklib/logs/${user.pageId }?pageAction=PREVIOUS">上一页</a>
+					<a href="/Booklib/logs/${user.pageId }?pageAction=NEXT">下一页</a>
+					<a href="/Booklib/logs/${user.pageId }?pageAction=LAST">尾页</a>
+				</td>
+			</tr>
 		</table>
 	</div>
 </body>
