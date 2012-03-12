@@ -22,13 +22,10 @@ public class LogsController {
 	private LogDAO logDAO;
 
 	@Get()
-	public String list(final Invocation inv,
-			@Param("pageId") final long pageId) {
+	public String list(final Invocation inv) {
 		final User user = (User) inv.getRequest().getSession()
 				.getAttribute("loginUser");
-		final List<Log> logs = (pageId <= 0) ? this.logDAO.find(
-				user.getName(), PER_PAGE_LIMIT) : this.logDAO.find(
-				user.getName(), pageId, PER_PAGE_LIMIT);
+		final List<Log> logs = this.logDAO.find(user.getName(), PER_PAGE_LIMIT);
 		inv.addModel("logs", logs);
 		return "logs";
 	}
@@ -37,12 +34,13 @@ public class LogsController {
 	public String pageList(final Invocation inv,
 			@Param("pageId") final long pageId,
 			@Param("pageAction") final String action) {
-		
-		inv.getRequest();
-		
-		System.out.println(pageId);
-		System.out.println(action);
-		return list(inv, pageId);
+		final User user = (User) inv.getRequest().getSession()
+				.getAttribute("loginUser");
+		final List<Log> logs = (pageId <= 0) ? this.logDAO.find(user.getName(),
+				PER_PAGE_LIMIT) : this.logDAO.find(user.getName(), pageId,
+				PER_PAGE_LIMIT);
+		inv.addModel("logs", logs);
+		return "logs";
 	}
 
 	@Post("{id:[0-9]+}/delete")
