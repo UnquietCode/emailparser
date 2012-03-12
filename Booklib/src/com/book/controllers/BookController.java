@@ -20,6 +20,8 @@ import com.book.util.Utils;
 
 @LoginRequired
 public class BookController {
+	
+	public static final int PER_PAGE_LIMIT = 20;
 
 	// 推荐使用bookDAO作为字段名，但这不是必须的，如果要以其它名称作为名字也不需要另外的配置
 	// 如果使用多个DAO，则需要写多个@Autowired在每个DAO声明前
@@ -41,9 +43,8 @@ public class BookController {
 			@Param("byBookId") final long byBookId) {
 		final Cookie[] cookies = inv.getRequest().getCookies();
 		cookies.toString();
-		final int limit = 100;
-		final List<Book> books = (byBookId <= 0) ? this.bookDAO.find(limit)
-				: this.bookDAO.find(byBookId, limit);
+		final List<Book> books = (byBookId <= 0) ? this.bookDAO.find(PER_PAGE_LIMIT)
+				: this.bookDAO.find(byBookId, PER_PAGE_LIMIT);
 		inv.addModel("books", books);
 		return "books";
 	}

@@ -15,10 +15,11 @@
 	</div>
 	<div align="center">
 		<form action="/Booklib/book/add" method="post">
-			书的名称：<input type="text" value="" name="name" /><br> 书的价格：<input
-				type="text" value="" name="price" /><br> 书的作者：<input
-				type="text" value="" name="author" /><br> <input type="submit"
-				value="增加" /><br> <font color=red>${error }</font>
+			书的名称：<input type="text" value="" name="name" /><br>
+			书的价格：<input type="text" value="" name="price" /><br>
+			书的作者：<input type="text" value="" name="author" /><br>
+			<input type="submit" value="增加" /><br>
+			<font color=red>${error }</font>
 		</form>
 	</div>
 </body>
