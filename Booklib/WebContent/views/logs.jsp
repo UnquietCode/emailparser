@@ -43,9 +43,14 @@
 					</td>
 				</tr>
 			</c:forEach>
+			<!-- 分页 -->
+			<tr bgcolor="#CCCCCC">
+				<td colspan="8" align="right" valign="middle">
+					<!-- 注意了，两个字母实现通用分页 -->
+					<t:p />
+				</td>
+			</tr>
 		</table>
-		<!-- 注意了，两个字母实现通用分页 -->
-		<t:p />
 	</div>
 </body>
 </html>

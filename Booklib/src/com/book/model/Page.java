@@ -8,7 +8,7 @@ public class Page {
 	/** 当前页码 **/
 	private int pageIndex;
 	/** 每页记录数 **/
-	private int pageSize = 10;
+	private int pageSize = 20;
 	/** 总记录数 **/
 	private int totalCount;
 	/** 页码上的地址 **/
