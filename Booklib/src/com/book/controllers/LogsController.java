@@ -28,12 +28,11 @@ public class LogsController {
 
 		final User user = (User) inv.getRequest().getSession()
 				.getAttribute("loginUser");
+
 		int pageIndex = WebUtil.getIntByRequestParament(inv, "pageIndex", 1);
-
-		System.out.println(pageIndex);
-
 		// 当前页码*页面容量-1 pageIndex, limit
 		int preLimit = pageIndex * PER_PAGE_LIMIT - 1;
+
 		final List<Log> logs = this.logDAO.find(user.getName(), preLimit,
 				PER_PAGE_LIMIT);
 
