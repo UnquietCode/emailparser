@@ -25,7 +25,7 @@
 				<th>创建时间</th>
 				<th>操作</th>
 			</tr>
-			<c:forEach var="item" items="${page.logs}">
+			<c:forEach var="item" items="${logs}">
 				<tr>
 					<td>${item.id }</td>
 					<td>${item.userName }</td>
@@ -36,8 +36,8 @@
 					<td>${item.createTime }</td>
 					<td>
 						<form action="/Booklib/logs/${item.id }/delete" method="post">
-							<input type="hidden" value="${item.id }" name="id" /> <input
-								type="submit" value="删除${page.totalCount }">
+							<input type="hidden" value="${item.id }" name="id" />
+							<input type="submit" value="删除">
 						</form>
 					</td>
 				</tr>
@@ -45,7 +45,7 @@
 			<!-- 分页 -->
 			<tr bgcolor="#CCCCCC">
 				<td colspan="8" align="right" valign="middle">
-					<a href="/Booklib/logs/${user.id }">首页</a>
+					<a href="/Booklib/logs?">首页</a>
 					<a href="/Booklib/logs/${user.id }">上一页</a>
 					<a href="/Booklib/logs/${user.id }">下一页</a>
 					<a href="/Booklib/logs/${user.id }">尾页</a>
