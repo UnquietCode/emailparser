@@ -25,7 +25,7 @@
 				<th>创建时间</th>
 				<th>操作</th>
 			</tr>
-			<c:forEach var="item" items="${logs}">
+			<c:forEach var="item" items="${page.logs}">
 				<tr>
 					<td>${item.id }</td>
 					<td>${item.userName }</td>
@@ -37,7 +37,7 @@
 					<td>
 						<form action="/Booklib/logs/${item.id }/delete" method="post">
 							<input type="hidden" value="${item.id }" name="id" /> <input
-								type="submit" value="删除">
+								type="submit" value="删除${page.totalCount }">
 						</form>
 					</td>
 				</tr>

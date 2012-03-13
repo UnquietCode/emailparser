@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.book.dao.LogDAO;
 import com.book.model.Log;
+import com.book.model.Page;
 import com.book.model.User;
 
 @LoginRequired
@@ -26,7 +27,9 @@ public class LogsController {
 		final User user = (User) inv.getRequest().getSession()
 				.getAttribute("loginUser");
 		final List<Log> logs = this.logDAO.find(user.getName(), PER_PAGE_LIMIT);
-		inv.addModel("logs", logs);
+		final Long rows = Long.valueOf(this.logDAO.rows(user.getName()));
+		final Page page = new Page(logs, Long.valueOf(PER_PAGE_LIMIT), rows);
+		inv.addModel("page", page);
 		return "logs";
 	}
 
