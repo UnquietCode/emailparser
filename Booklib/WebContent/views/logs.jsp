@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://weibo.com/zzuoqiang/page" prefix="t"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,22 +37,15 @@
 					<td>${item.createTime }</td>
 					<td>
 						<form action="/Booklib/logs/${item.id }/delete" method="post">
-							<input type="hidden" value="${item.id }" name="id" />
-							<input type="submit" value="删除">
+							<input type="hidden" value="${item.id }" name="id" /> <input
+								type="submit" value="删除">
 						</form>
 					</td>
 				</tr>
 			</c:forEach>
-			<!-- 分页 -->
-			<tr bgcolor="#CCCCCC">
-				<td colspan="8" align="right" valign="middle">
-					<a href="/Booklib/logs?">首页</a>
-					<a href="/Booklib/logs/${user.id }">上一页</a>
-					<a href="/Booklib/logs/${user.id }">下一页</a>
-					<a href="/Booklib/logs/${user.id }">尾页</a>
-				</td>
-			</tr>
 		</table>
+		<!-- 注意了，两个字母实现通用分页 -->
+		<t:p />
 	</div>
 </body>
 </html>
