@@ -4,7 +4,7 @@ public class Page {
 
 	/** URL上页码参数 **/
 	public static String pageNumberParameterName = "pageIndex";
-	
+
 	/** 当前页码 **/
 	private int pageIndex;
 	/** 每页记录数 **/
@@ -91,7 +91,7 @@ public class Page {
 		if (totalCount == 0) {
 			return 0;
 		}
-		return totalCount / pageSize + (totalCount % pageSize == 0 ? 0 : 1);
+		return totalCount / pageSize + (totalCount % pageSize == 0 ? 0 : 1) - 1;
 	}
 
 	public boolean isEmpty() {
