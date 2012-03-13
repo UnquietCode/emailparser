@@ -20,8 +20,15 @@ public interface UserDAO {
 	@SQL("select id, name, password, login_name, create_time, groups from user where id=:1")
 	public User get(long userId);
 
-	@SQL("select id, name, password, login_name, create_time, groups from user")
-	public List<User> find();
+	/**
+	 * 分页显示
+	 * 
+	 * @param preLimit
+	 * @param limit
+	 * @return
+	 */
+	@SQL("select id, name, password, login_name, create_time, groups from user order by id desc limit :1, :2")
+	public List<User> find(int preLimit, int limit);
 
 	@SQL("delete from user where id=:1")
 	public void delete(long userId);

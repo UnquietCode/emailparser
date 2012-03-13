@@ -34,6 +34,16 @@ public interface LogDAO {
 	@SQL("select id, user_name, resource_pattern, resource_id, success, remarks, create_time from log where user_name=:1 order by id desc limit :2")
 	public List<Log> find(String userName, int limit);
 
+	/**
+	 * 分页显示
+	 * 
+	 * @param userName
+	 * @param preLimit
+	 *            当前页码*页面容量-1
+	 * @param limit
+	 *            页面容量
+	 * @return
+	 */
 	@SQL("select id, user_name, resource_pattern, resource_id, success, remarks, create_time from log where user_name=:1 order by id desc limit :2, :3")
 	public List<Log> find(String userName, int preLimit, int limit);
 

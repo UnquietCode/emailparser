@@ -18,7 +18,7 @@ import com.book.util.WebUtil;
 @LoginRequired
 public class LogsController {
 
-	public static final int PER_PAGE_LIMIT = 20;
+	private static final int PER_PAGE_LIMIT = 20;
 
 	@Autowired
 	private LogDAO logDAO;
@@ -30,8 +30,8 @@ public class LogsController {
 				.getAttribute("loginUser");
 
 		int pageIndex = WebUtil.getIntByRequestParament(inv, "pageIndex", 1);
-		// 当前页码*页面容量-1 pageIndex, limit
-		int preLimit = pageIndex * PER_PAGE_LIMIT - 1;
+		// (当前页码-1)*页面容量 pageIndex, limit
+		int preLimit = (pageIndex - 1) * PER_PAGE_LIMIT;
 
 		final List<Log> logs = this.logDAO.find(user.getName(), preLimit,
 				PER_PAGE_LIMIT);
