@@ -54,8 +54,8 @@ public interface BookDAO {
 	@SQL("select id, name, price, author, create_time from book order by id desc limit :1")
 	public List<Book> find(int limit);
 
-	@SQL("select id, name, price, author, create_time from book order by id desc where id < :1 limit :2")
-	public List<Book> find(long bookId, int limit);
+	@SQL("select id, name, price, author, create_time from book order by id desc limit :1, :2")
+	public List<Book> find(int preLimit, int limit);
 
 	@SQL("update book set name=:1.name, price=:1.price, author=:1.author where id=:1.id")
 	public void update(Book book);

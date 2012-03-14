@@ -2,8 +2,6 @@ package com.book.controllers;
 
 import java.util.List;
 
-import javax.servlet.http.Cookie;
-
 import net.paoding.rose.web.Invocation;
 import net.paoding.rose.web.annotation.Param;
 import net.paoding.rose.web.annotation.rest.Get;
@@ -15,13 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.book.dao.BookDAO;
 import com.book.dao.RemarkDAO;
 import com.book.model.Book;
+import com.book.model.Page;
 import com.book.model.Remark;
 import com.book.util.Utils;
+import com.book.util.WebUtil;
 
 @LoginRequired
 public class BookController {
-	
-	public static final int PER_PAGE_LIMIT = 20;
+
+	public static final int PER_PAGE_LIMIT = 10;
 
 	// 推荐使用bookDAO作为字段名，但这不是必须的，如果要以其它名称作为名字也不需要另外的配置
 	// 如果使用多个DAO，则需要写多个@Autowired在每个DAO声明前
@@ -39,12 +39,21 @@ public class BookController {
 	 * @return
 	 */
 	@Get("")
-	public String list(final Invocation inv,
-			@Param("byBookId") final long byBookId) {
-		final Cookie[] cookies = inv.getRequest().getCookies();
-		cookies.toString();
-		final List<Book> books = (byBookId <= 0) ? this.bookDAO.find(PER_PAGE_LIMIT)
-				: this.bookDAO.find(byBookId, PER_PAGE_LIMIT);
+	public String list(final Invocation inv) {
+		int pageIndex = WebUtil.getIntByRequestParament(inv, "pageIndex", 1);
+		// (当前页码-1)*页面容量 pageIndex, limit
+		int preLimit = (pageIndex - 1) * PER_PAGE_LIMIT;
+
+		// final Cookie[] cookies = inv.getRequest().getCookies();
+		// cookies.toString();
+		final List<Book> books = this.bookDAO.find(preLimit, PER_PAGE_LIMIT);
+
+		// 构造一个page对象，第1个参数是当前页，第2个参数是该页最大记录数，第3个是页码上的连接地址
+		Page page = new Page(pageIndex, PER_PAGE_LIMIT, "book");
+		page.setTotalCount(this.bookDAO.rows());
+		// 出来后的page对象已经有了总记录数了，自然就有了页码信息
+		inv.addModel("page", page);
+
 		inv.addModel("books", books);
 		return "books";
 	}
@@ -99,8 +108,22 @@ public class BookController {
 	@Get("{id:[0-9]+}")
 	public String oneBook(final Invocation inv, @Param("id") final long id,
 			@Param("edit") final boolean edit) {
+
+		int pageIndex = WebUtil.getIntByRequestParament(inv, "pageIndex", 1);
+		// (当前页码-1)*页面容量 pageIndex, limit
+		int preLimit = (pageIndex - 1) * PER_PAGE_LIMIT;
+
 		final Book book = this.bookDAO.get(id);
-		final List<Remark> remarks = this.remarkDAO.findByBook(id);
+
+		final List<Remark> remarks = this.remarkDAO.findByBook(id, preLimit,
+				PER_PAGE_LIMIT);
+
+		// 构造一个page对象，第1个参数是当前页，第2个参数是该页最大记录数，第3个是页码上的连接地址
+		Page page = new Page(pageIndex, PER_PAGE_LIMIT, id + "");
+		page.setTotalCount(this.remarkDAO.rows(Long.parseLong(id + "")));
+		// 出来后的page对象已经有了总记录数了，自然就有了页码信息
+		inv.addModel("page", page);
+
 		inv.addModel("book", book);
 		inv.addModel("remarks", remarks);
 		// 放在session中，为添加评论返回错误提供方便。

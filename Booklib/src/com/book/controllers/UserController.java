@@ -33,11 +33,13 @@ public class UserController {
 		int preLimit = (pageIndex - 1) * PER_PAGE_LIMIT;
 
 		final List<User> users = this.userDAO.find(preLimit, PER_PAGE_LIMIT);
+		
 		// 构造一个page对象，第1个参数是当前页，第2个参数是该页最大记录数，第3个是页码上的连接地址
 		Page page = new Page(pageIndex, PER_PAGE_LIMIT, "user");
 		page.setTotalCount(this.userDAO.rows());
 		// 出来后的page对象已经有了总记录数了，自然就有了页码信息
 		inv.addModel("page", page);
+		
 		inv.addModel("users", users);
 		return "all_users";
 	}

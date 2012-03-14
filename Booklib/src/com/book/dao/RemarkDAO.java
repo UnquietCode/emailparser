@@ -17,8 +17,8 @@ public interface RemarkDAO {
 	// 标注一个@SQL，写入你的sql语句
 	// 不能写select * from remark，这样的后果可能会因为数据库增加了一个字段，但Remark没有相应字段的属性，Jade将抛出异常
 	// 参数以冒号开始，:1表示第一个参数
-	@SQL("select id, user_name, book_id, essay, create_time from remark where book_id=:1 order by id desc")
-	public List<Remark> findByBook(long bookId);
+	@SQL("select id, user_name, book_id, essay, create_time from remark where book_id=:1 order by id desc limit :2, :3")
+	public List<Remark> findByBook(long bookId, int preLimit, int limit);
 
 	@SQL("delete from remark where book_id=:1")
 	public void deleteByBook(long bookId);
