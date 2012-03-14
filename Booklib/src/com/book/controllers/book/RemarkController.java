@@ -35,13 +35,14 @@ public class RemarkController {
 	 */
 	@Post("add")
 	public String add(final Invocation inv, final Remark remark) {
+		inv.addModel("book", inv.getRequest().getSession().getAttribute("book"));
+		inv.addModel("remarks",
+				inv.getRequest().getSession().getAttribute("remarks"));
+		inv.addModel("page", inv.getRequest().getSession().getAttribute("page"));
+
 		if (StringUtils.isEmpty(remark.getEssay())) {
-			inv.addModel("book",
-					inv.getRequest().getSession().getAttribute("book"));
-			inv.addModel("remarks",
-					inv.getRequest().getSession().getAttribute("remarks"));
 			inv.addModel("remark_error", "评论内容不能为空");
-			return "one_book";
+			return "/views/one_book.jsp";
 		}
 		final User user = (User) inv.getRequest().getSession()
 				.getAttribute("loginUser");

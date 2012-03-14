@@ -31,7 +31,7 @@ public class AdminRequiredInterceptor extends ControllerInterceptorAdapter {
 			// 没有返回true或null，表示要中断整个处理流程，即不再继续调用其他拦截器以及最终的控制器
 			inv.addModel("error", "你没有管理员权限");
 			// 使用绝对路径，如果直接return "error"，删除remark的时候，路径是在book下，会出现404
-			return "error";
+			return "/views/error.jsp";
 		}
 		// 返回true或null，表示继续整个流程
 		return true;

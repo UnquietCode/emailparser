@@ -42,7 +42,7 @@
 		</c:forEach>
 		<!-- 分页 -->
 		<tr bgcolor="#CCCCCC">
-			<td colspan="8" align="right" valign="middle">
+			<td colspan="1" align="right" valign="middle">
 				<!-- 注意了，两个字母实现通用分页 --> <t:p />
 			</td>
 		</tr>
