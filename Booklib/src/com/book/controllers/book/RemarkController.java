@@ -41,7 +41,7 @@ public class RemarkController {
 			inv.addModel("remarks",
 					inv.getRequest().getSession().getAttribute("remarks"));
 			inv.addModel("remark_error", "评论内容不能为空");
-			return "/views/one_book";
+			return "one_book";
 		}
 		final User user = (User) inv.getRequest().getSession()
 				.getAttribute("loginUser");
