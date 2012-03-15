@@ -27,10 +27,10 @@ public class PagePrint extends TagSupport {
 	private static final long serialVersionUID = 1L;
 
 	/** 是否显示总记录数 */
-	private boolean totalcount = true; // 如果外面不指定，将默认为显示
+	private boolean totalcount = false; // 如果外面不指定，将默认为显示
 
 	/** 是否显示总页数 */
-	private boolean pagecount = true; // 如果外面不指定，将默认为显示
+	private boolean pagecount = false; // 如果外面不指定，将默认为显示
 
 	/** 当前页码的显示样式 **/
 	private String curPageNumberStyle = "pagenumbervisited"; // 如果外面不指定，将按默认值
@@ -59,7 +59,7 @@ public class PagePrint extends TagSupport {
 				sb.append("页码：");
 				// 如果当前页码大于1时，应该输出开始一页和上一页的连接
 				if (page.getPageIndex() > 1) {
-					sb.append("<a title=\"开始一页\" href=\""
+					sb.append("<a title=\"首页\" href=\""
 							+ conversionUrl(page.getUrl(), 1)
 							+ "\">"
 							+ "<img src=\""
@@ -112,7 +112,7 @@ public class PagePrint extends TagSupport {
 							+ "'><img src=\""
 							+ curPath
 							+ "/pageimgs/navigation_next.png\" border=\"0\"/></a>");
-					sb.append("<a title=\"最后一页\" href='"
+					sb.append("<a title=\"尾页\" href='"
 							+ conversionUrl(page.getUrl(), page.getPageCount())
 							+ "'><img src=\""
 							+ curPath
