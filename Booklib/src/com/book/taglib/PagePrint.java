@@ -76,7 +76,7 @@ public class PagePrint extends TagSupport {
 				// 开始在总页数里循环
 				for (int cur = 1; cur <= page.getPageCount(); cur++) {
 					// 假如有几十页、几百页、甚至n多，我们不能全部将页码输出吧？这里只取10页
-					if (page.getPageIndex() < 5 && cur < 11) {
+					if (page.getPageIndex() < 5 && cur < 10) {
 						if (cur == page.getPageIndex()) {
 							// 当前页不应该有连接
 							sb.append("<span class=\"pagenumbervisited\">"
