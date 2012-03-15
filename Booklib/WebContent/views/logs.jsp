@@ -38,7 +38,9 @@
 					<td>${item.remarks }</td>
 					<td>${item.createTime }</td>
 					<td>
-						<form action="/Booklib/logs/${item.id }/delete" method="post">
+						<form
+							action="/Booklib/logs/${item.id }/delete?pageIndex=${page.pageIndex }"
+							method="post">
 							<input type="hidden" value="${item.id }" name="id" /> <input
 								type="submit" value="删除">
 						</form>
