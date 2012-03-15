@@ -1,7 +1,7 @@
 package com.book.model;
 
 /**
- * @do 
+ * @do
  * @Modify
  * @author zhangzuoqiang
  */
@@ -9,6 +9,7 @@ public class Log {
 
 	private String id;
 	private String userName;
+	private String ip;
 	private String resourcePattern;
 	private String resourceId;
 	private boolean success;
@@ -69,6 +70,14 @@ public class Log {
 
 	public void setCreateTime(final String createTime) {
 		this.createTime = createTime;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 
 }

@@ -3,6 +3,11 @@
  */
 package com.book.controllers;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.servlet.http.HttpServletRequest;
+
 import net.paoding.rose.web.ControllerInterceptorAdapter;
 import net.paoding.rose.web.Invocation;
 
@@ -36,6 +41,7 @@ public class AutoLogInterceptor extends ControllerInterceptorAdapter {
 
 		final Log log = new Log();
 		log.setResourceId(uri);
+		log.setIp(getClientIP(inv));
 		log.setResourcePattern(uid);
 		log.setSuccess(success);
 		log.setRemarks(remarks);
@@ -60,5 +66,33 @@ public class AutoLogInterceptor extends ControllerInterceptorAdapter {
 		// 在实际场景中，这种方式要注意webapp shutdown的时候，还未执行的Task的处理问题
 		final Thread saveLog = new Thread(task);
 		saveLog.start();
+	}
+
+	/**
+	 * 获取客户端ip
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public String getClientIP(final Invocation inv) {
+		HttpServletRequest request = inv.getRequest();
+		String address = request.getHeader("X-Forwarded-For");
+		if (address != null && isIpAddress(address)) {
+			return address;
+		}
+		return request.getRemoteAddr();
+	}
+
+	/**
+	 * ip校验
+	 * 
+	 * @param s
+	 * @return
+	 */
+	public Boolean isIpAddress(String s) {
+		String regex = "(((2[0-4]\\d)|(25[0-5]))|(1\\d{2})|([1-9]\\d)|(\\d))[.](((2[0-4]\\d)|(25[0-5]))|(1\\d{2})|([1-9]\\d)|(\\d))[.](((2[0-4]\\d)|(25[0-5]))|(1\\d{2})|([1-9]\\d)|(\\d))[.](((2[0-4]\\d)|(25[0-5]))|(1\\d{2})|([1-9]\\d)|(\\d))";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(s);
+		return m.matches();
 	}
 }

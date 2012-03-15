@@ -44,10 +44,10 @@ public interface LogDAO {
 	 *            页面容量
 	 * @return
 	 */
-	@SQL("select id, user_name, resource_pattern, resource_id, success, remarks, create_time from log where user_name=:1 order by id desc limit :2, :3")
+	@SQL("select id, user_name, resource_pattern, resource_id, success, remarks, create_time, ip from log where user_name=:1 order by id desc limit :2, :3")
 	public List<Log> find(String userName, int preLimit, int limit);
 
-	@SQL("insert into log (user_name, resource_pattern, resource_id, success, remarks) values (:1.userName, :1.resourcePattern, :1.resourceId, :1.success, :1.remarks)")
+	@SQL("insert into log (user_name, resource_pattern, resource_id, success, remarks, ip) values (:1.userName, :1.resourcePattern, :1.resourceId, :1.success, :1.remarks, :1.ip)")
 	public Identity save(Log log);
 
 	@SQL("delete from log where id=:1")

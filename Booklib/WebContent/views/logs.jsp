@@ -19,6 +19,7 @@
 			<tr>
 				<th>操作ID</th>
 				<th>操作人</th>
+				<th>IP</th>
 				<th>资源模式</th>
 				<th>资源地址</th>
 				<th>是否成功</th>
@@ -30,6 +31,7 @@
 				<tr>
 					<td>${item.id }</td>
 					<td>${item.userName }</td>
+					<td>${item.ip }</td>
 					<td>${item.resourcePattern }</td>
 					<td>${item.resourceId }</td>
 					<td>${item.success }</td>
@@ -45,9 +47,8 @@
 			</c:forEach>
 			<!-- 分页 -->
 			<tr bgcolor="#CCCCCC">
-				<td colspan="8" align="right" valign="middle">
-					<!-- 注意了，两个字母实现通用分页 -->
-					<t:p />
+				<td colspan="9" align="right" valign="middle">
+					<!-- 注意了，两个字母实现通用分页 --> <t:p />
 				</td>
 			</tr>
 		</table>
