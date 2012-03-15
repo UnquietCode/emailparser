@@ -41,8 +41,8 @@
 						<form
 							action="/Booklib/logs/${item.id }/delete?pageIndex=${page.pageIndex }"
 							method="post">
-							<input type="hidden" value="${item.id }" name="id" /> <input
-								type="submit" value="删除">
+							<input type="hidden" value="${item.id }" name="id" />
+							<input type="submit" value="删除">
 						</form>
 					</td>
 				</tr>
