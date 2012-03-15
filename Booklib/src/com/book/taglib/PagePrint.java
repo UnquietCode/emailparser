@@ -56,7 +56,7 @@ public class PagePrint extends TagSupport {
 					sb.append("当前页/总页数：" + page.getPageIndex() + "/"
 							+ page.getPageCount() + "&nbsp;&nbsp;&nbsp;");
 				}
-				sb.append("页码：");
+				// sb.append("页码：");
 				// 如果当前页码大于1时，应该输出开始一页和上一页的连接
 				if (page.getPageIndex() > 1) {
 					sb.append("<a title=\"首页\" href=\""
