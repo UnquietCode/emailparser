@@ -57,6 +57,7 @@ public class RemarkController {
 			inv.addModel("page", page);
 
 			inv.addModel("remark_error", "评论内容不能为空");
+			// 使用绝对路径时，要加上JSP后缀名
 			return "/views/one_book.jsp";
 		}
 		final User user = (User) inv.getRequest().getSession()
