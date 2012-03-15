@@ -90,8 +90,9 @@ public class RemarkController {
 	@Post("{remarkId}/delete")
 	@AdminRequired
 	public String delete(@Param("bookId") final long bookId,
-			@Param("remarkId") final String remarkId) {
+			@Param("remarkId") final String remarkId,
+			@Param("pageIndex") final int pageIndex) {
 		this.remarkDAO.delete(Long.parseLong(remarkId));
-		return "r:/Booklib/book/" + bookId;
+		return "r:/Booklib/book/" + bookId + "?pageIndex=" + pageIndex;
 	}
 }

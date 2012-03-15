@@ -31,7 +31,8 @@
 				<td>${item.id }&nbsp;&nbsp; ${item.userName }&nbsp;&nbsp;
 					${item.bookId }&nbsp;&nbsp; ${item.createTime }<br>
 					${item.essay }
-					<form action="/Booklib/book/${book.id }/remark/${item.id }/delete"
+					<form
+						action="/Booklib/book/${book.id }/remark/${item.id }/delete?pageIndex=${page.pageIndex }"
 						method="post">
 						<input type="hidden" value="${book.id }" name="bookId" /> <input
 							type="hidden" value="${item.id }" name="remarkId" /> <input

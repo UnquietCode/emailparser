@@ -46,7 +46,7 @@ public class LogsController {
 	}
 
 	@Post("{id:[0-9]+}/delete")
-	public String deleteBook(final Invocation inv, @Param("id") final long id,
+	public String deleteBook(@Param("id") final long id,
 			@Param("pageIndex") final int pageIndex) {
 		this.logDAO.delete(id);
 		return "r:/Booklib/logs?pageIndex=" + pageIndex;
