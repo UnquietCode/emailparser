@@ -75,16 +75,3 @@ create table log(
     remarks varchar(255) not null, 
     create_time timestamp not null
 ) character set utf8;
-=============================================我是分隔线==================================================
-customer表
-+------------------+--------+--------------+------+-----+-------------------+-----------------------------+
-create table customer(
-    id bigint not null primary key auto_increment,
-    user_name varchar(255) not null, 
-    address varchar(255) not null, 
-    newsletter tinyint(1)  not null,
-    sex tinyint(1)  not null,
-    country varchar(255) not null, 
-    commons varchar(255) not null, 
-    create_time timestamp not null
-) character set utf8;
