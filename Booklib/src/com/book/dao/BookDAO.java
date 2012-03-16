@@ -8,7 +8,6 @@ import net.paoding.rose.jade.core.Identity;
 
 import com.book.model.Book;
 
-//
 /**
  * 必须是接口，并且以大写DAO结尾 必须标注@DAO，DAO中有一个catalog属性，对于大部分人来说，这个都是没用的
  * 
