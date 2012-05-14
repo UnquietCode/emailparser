@@ -11,7 +11,7 @@
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/book?useUnicode=true&amp;characterEncoding=utf8" />
 		<property name="username" value="root" />
-		<property name="password" value="admin" />
+		<property name="password" value="root" />
 	</bean>
 
 </beans>

@@ -1,6 +1,7 @@
 
 DROP DATABASE IF EXISTS BOOK;
-CREATE DATABASE BOOK DEFAULT CHARACTER SET utf8 COLLATE gbk_chinese_ci; 
+CREATE DATABASE BOOK DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE BOOK;
 
 user表
 +-------------+--------+--------------+------+-----+-------------------+-----------------------------+
@@ -10,7 +11,7 @@ user表
 | login_name  | 登录名    | varchar(255) | NO   |     | NULL              |                             |
 | password    | 密码         | varchar(255) | NO   |     | NULL              |                             |
 | name        | 姓名         | varchar(255) | NO   |     | NULL              |                             |
-| group       | 用户组    | int(10)      | NO   |     | NULL              | 0为普通用户，1为管理员                   |
+| groups       | 用户组    | int(10)      | NO   |     | NULL              | 0为普通用户，1为管理员                   |
 | create_time |创建时间  | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
 +-------------+--------+--------------+------+-----+-------------------+-----------------------------+
 create table user (
@@ -76,6 +77,11 @@ create table log(
     resource_pattern varchar(255) not null, 
     resource_id varchar(255) not null, 
     success tinyint(1)  not null,
+    ip  char(15) not null,
     remarks varchar(255) not null, 
     create_time timestamp not null
 ) character set utf8;
+
+insert into user(login_name, password, name, groups) values("admin", "admin", "Administrator", 1);
+
+
