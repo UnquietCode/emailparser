@@ -1,3 +1,7 @@
+
+DROP DATABASE IF EXISTS BOOK;
+CREATE DATABASE BOOK DEFAULT CHARACTER SET utf8 COLLATE gbk_chinese_ci; 
+
 user表
 +-------------+--------+--------------+------+-----+-------------------+-----------------------------+
 | Field       | Desc   | Type         | Null | Key | Default           | Extra                       |
